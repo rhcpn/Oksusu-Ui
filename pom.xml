@@ -3,13 +3,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.mobigen</groupId>
-    <artifactId>msf3</artifactId>
-    <version>3.0.0</version>
+    <groupId>com.skt</groupId>
+    <artifactId>tcore</artifactId>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>msf3</name>
-    <description>msf3</description>
+    <name>TCORE</name>
+    <description>TCORE</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -21,9 +21,9 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <spring.boot.mainclass>com.sample.SampleApplication</spring.boot.mainclass>
+        <spring.boot.mainclass>com.mobigen.MSFApplication</spring.boot.mainclass>
         <java.version>1.8</java.version>
-        <finalName>msf3</finalName>
+        <finalName>tcore</finalName>
     </properties>
 
     <dependencies>

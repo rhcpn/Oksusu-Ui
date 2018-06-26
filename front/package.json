@@ -1,7 +1,7 @@
 {
-  "name": "msf",
-  "version": "3.0.0",
-  "description": "mobigen spring framework",
+  "name": "tcore",
+  "version": "1.0.0",
+  "description": "T-CORE Rackscale Operation Intelligence",
   "author": "rhcpn <rhcpn@mobigen.com>",
   "private": true,
   "scripts": {
@@ -20,7 +20,6 @@
     "ag-grid-vue": "^17.1.0",
     "audit": "0.0.6",
     "axios": "^0.18.0",
-    "bootstrap-vue": "latest",
     "expose-loader": "^0.7.5",
     "globby": "^8.0.1",
     "highcharts": "^6.1.0",
@@ -35,11 +34,9 @@
     "vue-full-loading": "^1.2.1",
     "vue-i18n": "^7.8.0",
     "vue-loaders": "^2.0.0",
-    "vue-material": "latest",
     "vue-notification": "^1.3.10",
     "vue-router": "^3.0.1",
     "vue-virtual-scroll-list": "^1.2.5",
-    "vuejs-datepicker": "^1.3.0",
     "vuelidate": "^0.7.4",
     "vuetify": "latest",
     "material-design-icons-iconfont": "^3.0.3"
