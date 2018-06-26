@@ -5,6 +5,6 @@
   { "name": "F11", "auth": true },
   { "name": "F12", "auth": true },
   { "name": "F1", "auth": true },
-  { "name": "F2", "auth": false },
+  { "name": "F2", "auth": true },
   { "name": "F", "auth": true }
 ]
