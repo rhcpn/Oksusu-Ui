@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sample.msf.user.AuthMapper">
+	<select id="getUser" parameterType="UserModel" resultType="UserModel">
+		SELECT /* getUser */ USER_ID,
+			EMPNO,
+			NAME,
+			PASSWORD,
+			REAL_NAME,
+			DEPARTMENT,
+			PHONE,
+			EMAIL,
+			DEFAULT_DATACENTER,
+			APPROVED,
+			DATE_FORMAT(CREATE_DATE, '%Y-%m-%d %H:%i:%s') as CREATE_DATE,
+			DATE_FORMAT(UPDATE_DATE, '%Y-%m-%d %H:%i:%s') as UPDATE_DATE,
+			ROLE_ID,
+			ROLE_GRADE,
+			AFFAIRS,
+			DATACENTER_ID,
+ 			(SELECT GROUP_CONCAT(DC_ID) FROM TB_USER_DC_AFFAIRS WHERE USER_ID = TB_USER.USER_ID) AS DC_AFFAIRS_LIST
+		FROM
+			TB_USER
+		WHERE
+			NAME = #{name} AND PASSWORD = #{password}
+	</select>
+</mapper>

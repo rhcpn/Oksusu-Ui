@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+  <entry key="Test">테스트 입니다.</entry>
+  <entry key="UserAccount.userModel.username">아이디가 형식에 맞지 않습니다.</entry>
+  <entry key="Size.loginVo.password">비밀번호는 {2} 부터 {1} 사이로 입력 해야 합니다.</entry>
+  <entry key="UserRSAAccount.userModel.username">아이디가 형식에 맞지 않습니다.</entry>
+  <entry key="UserRSAAccount.userModel.userpass">비밀번호가 형식에 맞지 않습니다.</entry>
+  
+  <entry key="ReviewEngine.Request.Checker">{0}님! 요청서[{1}] 상면({2})검토 요청이 들어왔습니다.</entry>
+  <entry key="ReviewEngine.Request.Approvalor">{0}님! 요청서[{1}] 승인검토 요청이 들어왔습니다.</entry>
+  <entry key="ReviewEngine.Complete.Requester">{0}님! 요청하신 요청서[{1}]가 {2}되었습니다.</entry>
+  <entry key="ReviewEngine.Complete.Approvalor">{0}님! 요청서[{1}]에 대한 승인취소요청이 들어왔습니다.</entry>
+  <entry key="ReviewEngine.Complete.CancelApproval">{0}님! 요청서[{1}] 상면 및 공간예약이 취소가 되었습니다.</entry>
+  <entry key="ReviewEngine.Complete.WorkDtAlarmInto">{0}님, [{1}] {2}, 서비스명({3}), 신청자({4}), 작업 예정일입니다. [{5}] 처리를 하지 않으면 2주 뒤 상면 및 공간 예약 취소가 될 예정입니다.</entry>
+  <entry key="ReviewEngine.Complete.WorkDtAlarmMove">{0}님, [{1}] {2}, 서비스명({3}), 신청자({4}), 작업 예정일입니다. [{5}] 처리를 하지 않으면 2주 뒤 상면 및 공간 예약 취소가 될 예정입니다.</entry>
+  <entry key="ReviewEngine.Complete.WorkDtAlarmOut">{0}님, [{1}] {2}, 서비스명({3}), 신청자({4}), 작업 예정일입니다. [{5}] 처리를 혹은 [기간 연장]을 문의 해주시기 바랍니다.</entry>
+  <entry key="file.directory"></entry>
+  <entry key="file.EXL"></entry>
+</properties>

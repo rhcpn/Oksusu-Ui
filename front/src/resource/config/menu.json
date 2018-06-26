@@ -1,0 +1,10 @@
+[
+  { "name": "A", "auth": true },
+  { "name": "B", "auth": false },
+  { "name": "D", "auth": true },
+  { "name": "F11", "auth": true },
+  { "name": "F12", "auth": true },
+  { "name": "F1", "auth": true },
+  { "name": "F2", "auth": false },
+  { "name": "F", "auth": true }
+]
