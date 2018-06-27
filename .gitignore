@@ -3,3 +3,4 @@ package-lock.json
 .idea
 *.iml
 target/
+/src/main/resources/static/
