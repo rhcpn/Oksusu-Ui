@@ -36,7 +36,7 @@ const routes = [
   }
 ]
 
-const MenuData = require('@/resource/config/menu')
+const MenuData = require('@/asset/json/menu')
 
 function initRouter () {
   return addRoute(routes)
