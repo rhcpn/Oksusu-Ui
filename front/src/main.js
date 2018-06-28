@@ -5,7 +5,7 @@ import axios from 'axios'
 import VueI18n from 'vue-i18n'
 import Vuetify from 'vuetify'
 import messages from '@/common/component/messages-handler'
-import cm from '@/resource/config/messages'
+import ConfigMessages from '@/resource/config/messages'
 
 import 'vuetify/dist/vuetify.min.css'
 import '@/asset/css/common/reset.css'
@@ -42,7 +42,7 @@ Vue.use(Vuetify)
 
 Vue.config.productionTip = false
 Vue.prototype.$http = axios
-Vue.prototype.$message = cm
+Vue.prototype.$message = ConfigMessages
 
 /* eslint-disable no-new */
 new Vue({
