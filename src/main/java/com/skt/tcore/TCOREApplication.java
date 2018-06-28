@@ -1,6 +1,5 @@
 package com.skt.tcore;
 
-import com.mobigen.MSFApplication;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -27,6 +26,6 @@ public class TCOREApplication {
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(MSFApplication.class, args);
+        SpringApplication.run(TCOREApplication.class, args);
     }
 }
