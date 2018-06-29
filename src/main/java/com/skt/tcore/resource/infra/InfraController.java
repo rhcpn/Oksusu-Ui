@@ -22,4 +22,15 @@ public class InfraController {
         js.setData(infraService.getList(parent, type));
         return js;
     }
+
+    /*
+    *   navigation tree
+    * */
+    @RequestMapping(value = "/infra/navigation.json", method=RequestMethod.GET)
+    @ResponseBody
+    public JsonResult navigation() {
+        JsonResult js = new JsonResult();
+        js.setData(infraService.getNavigation());
+        return js;
+    }
 }
