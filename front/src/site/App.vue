@@ -5,7 +5,7 @@
     <gnb-component></gnb-component>
 
     <!-- Header-->
-    <header-component :menuFolding="true"></header-component>
+    <header-component :menuFolding="false"></header-component>
 
     <!-- Content -->
     <div class="content">
