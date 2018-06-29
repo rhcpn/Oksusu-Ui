@@ -5,7 +5,7 @@ import axios from 'axios'
 import VueI18n from 'vue-i18n'
 import Vuetify from 'vuetify'
 import messages from '@/common/component/messages-handler'
-import cm from '@/resource/config/messages'
+import ConfigMessages from '@/resource/config/messages'
 
 import 'vuetify/dist/vuetify.min.css'
 import '@/asset/css/common/reset.css'
@@ -18,11 +18,31 @@ const i18n = new VueI18n({
   messages
 })
 
+// 공용 EventHub 선언
+const eventHub = new Vue({
+  created () {
+    // 현재는 사용하지 않은 Event, 예를 들어 alarm-occurred와 같은 전역 Event일 경우 여기에 구현
+    this.$on('alarm-occured', this.alarmOccurredHandler)
+  },
+  methods: {
+    alarmOccurredHandler ($event) {
+      console.log('alarmOccurredHandler', $event)
+    }
+  }
+})
+Object.defineProperties(Vue.prototype, {
+  $eventHub: {
+    get: function () {
+      return eventHub
+    }
+  }
+})
+
 Vue.use(Vuetify)
 
 Vue.config.productionTip = false
 Vue.prototype.$http = axios
-Vue.prototype.$message = cm
+Vue.prototype.$message = ConfigMessages
 
 /* eslint-disable no-new */
 new Vue({
