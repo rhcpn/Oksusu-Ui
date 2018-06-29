@@ -265,8 +265,8 @@ caption {visibility:hidden; overflow:hidden; width:0; height:0; font-size:0; lin
 
 /* filter-tbl */
 .filter-tbl {border:1px solid #c2c2c2;background:#f6f6f6;}
-.filter-tbl table > tbody > tr > th {padding:6px; border-bottom:1px solid #c2c2c2; border-right:1px solid #c2c2c2; text-align:left; font-weight:700;}
-.filter-tbl table > tbody > tr > td {padding:6px; border-bottom:1px solid #c2c2c2; background:#fff; word-wrap:break-word; word-break:break-all; vertical-align:middle;}
+.filter-tbl > table > tbody > tr > th {padding:6px; border-bottom:1px solid #c2c2c2; border-right:1px solid #c2c2c2; text-align:left; font-weight:700;}
+.filter-tbl > table > tbody > tr > td {padding:6px; border-bottom:1px solid #c2c2c2; background:#fff; word-wrap:break-word; word-break:break-all; vertical-align:middle;}
 
 
 .picker__title {background:#6477cd;}
