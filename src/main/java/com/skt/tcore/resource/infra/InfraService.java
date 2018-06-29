@@ -37,7 +37,10 @@ public class InfraService implements Infra {
 
     @Override
     public List<Object> getNavigation() {
-        return null;
+        String filename = "navigation-tree";
+
+        GsonJsonParser jsonParser = new GsonJsonParser();
+        return jsonParser.parseList(getFile(filename + ".json"));
     }
 
     @Override
