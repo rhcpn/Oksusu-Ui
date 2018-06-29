@@ -1,16 +1,11 @@
 <template>
-  <li class="parent-gnb" v-bind:class="{ 'active': isOpen }" @click="openMenu()">
-    <a href="#">
-      <v-icon>view_list</v-icon>
-      <span>{{data.name}}</span>
-      <v-icon class="arrow" v-if="data.children">keyboard_arrow_right</v-icon>
-    </a>
-    <!-- Depth2 -->
-    <ul class="gnb-list" v-if="data.children && isOpen" v-bind:style="{ display: (isOpen? 'list-item':'none') }">
-      <li class="child-gnb" v-for="child in data.children" :key="child.path" v-on:click.stop="openChildMenu($event)" v-bind:class="{ 'active': isChildSelect }">
-        <a href="#">
-          <span>{{child.name}}</span>
-        </a>
+  <li class="parent-gnb" v-bind:class="{ 'active': isOpen }" @click="openMenu($event)">
+    <a href="#"><v-icon>view_list</v-icon><span>{{data.name}}</span><v-icon class="arrow" v-if="data.children">keyboard_arrow_right</v-icon></a>
+
+    <!-- Menu Depth2 -->
+    <ul class="gnb-list" v-if="isFolding || (data.children && isOpen)" v-bind:style="{ display: ((isFolding || isOpen)? 'list-item':'none') }">
+      <li class="child-gnb" v-for="child in data.children" :key="child.path" v-on:click.stop="openChildMenu($event, 'child')">
+        <a href="#"><span>{{child.name}}</span></a>
       </li>
     </ul>
   </li>
@@ -20,15 +15,8 @@
 export default {
   name: 'menu-child-component',
   created: function () {
-    this.$eventHub.$on('menu-open', this.openMenuEventHandler)
-
-    // Design Code
-    $('.parent-gnb').click(function () {
-      $(this).parent().find('>ul').slideDown()
-      $(this).parent().addClass('active')
-      $(this).parent().siblings().find('ul').slideUp()
-      $(this).parent().siblings().removeClass('active').find('.active').removeClass('active')
-    })
+    this.$eventHub.$on('menu-open', this.menuOpenEventHandler)
+    this.$eventHub.$on('menu-folding', this.menuFoldingEventHandler)
   },
   props: {
     data: {
@@ -39,25 +27,28 @@ export default {
   data () {
     return {
       isOpen: false,
-      isChildSelect: false
+      isFolding: false
     }
   },
   computed: {},
   methods: {
-    openMenu: function () {
+    openMenu: function (event) {
       this.isOpen = !this.isOpen
-
+      this.openChildMenu(event, 'parent')
       if (this.isOpen === true) {
         this.$eventHub.$emit('menu-open', this.data)
       }
     },
-    openMenuEventHandler: function (currentMenu) {
+    menuOpenEventHandler: function (currentMenu) {
       if (this.data.name === currentMenu.name) {
         return
       }
       this.isOpen = false
     },
-    openChildMenu: function (event) {
+    menuFoldingEventHandler: function (folding) {
+      this.isFolding = folding
+    },
+    openChildMenu: function (event, type) {
       if (event == null) {
         return
       }
@@ -66,7 +57,7 @@ export default {
       let path = event.path
       for (let i = 0; i < path.length; i++) {
         if (path[i].nodeName === 'LI') {
-          if ($(path[i]).hasClass('child-gnb')) {
+          if ($(path[i]).hasClass(`${type}-gnb`)) {
             currentTarget = path[i]
             break
           }
@@ -81,6 +72,7 @@ export default {
   },
   destroyed: function () {
     this.$eventHub.$off('menu-open')
+    this.$eventHub.$off('menu-folding')
   }
 }
 </script>

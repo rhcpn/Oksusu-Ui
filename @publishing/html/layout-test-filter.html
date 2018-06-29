@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T-CORE</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="../css/vue/vuetify.min.css" rel="stylesheet">
+<link href="../css/common/reset.css" rel="stylesheet" type="text/css"><!-- reset --> 
+<link href="../css/common/common.css" rel="stylesheet" type="text/css"><!-- ui --> 
+
+
+</head>
+
+ <body>
+ <div id="app" class="wrapper application--wrap">
+	<aside>
+		<h1 class="logo"><a href="#none">T-CORE</a></h1>
+		<div class="gnb">
+			<!-- Depth1 -->
+			<ul class="gnb-menu">
+				<li><a href="#"><v-icon>view_list</v-icon><span>운영</span><v-icon class="arrow">keyboard_arrow_right</v-icon></a>
+					<!-- Depth2 -->
+					<ul class="gnb-list">
+						<li><a href="#"><span>Resources</span></a></li>
+						<li><a href="#"><span>Jobs</span></a></li> 
+					</ul>
+				</li>
+				<li><a href="#"><v-icon>desktop_windows</v-icon><span>대시보드</span><v-icon class="arrow">keyboard_arrow_right</v-icon></a>
+					<!-- Depth2 -->
+					<ul class="gnb-list">
+						<li><a href="#"><span>Grafana</span></a></li> 
+						<li><a href="#"><span>Custom</span></a></li> 
+					</ul>
+				</li>
+				<li><a href="#"><v-icon>pie_chart</v-icon><span>데이터분석</span><v-icon class="arrow">keyboard_arrow_right</v-icon></a>					
+				<!-- Depth2 -->
+					<ul class="gnb-list">
+						<li><a href="#"><span>analysis</span></a>
+						</li> 
+					</ul>
+				</li>
+				<li><a href="#"><v-icon>people</v-icon><span>Admin</span><v-icon class="arrow">keyboard_arrow_right</v-icon></a>				
+					<!-- Depth2 -->
+					<ul class="gnb-list">
+						<li><a href="#"><span>사용자 관리</span></a></li> 
+						<li><a href="#"><span>System 모니터링</span></a></li> 
+						<li><a href="#"><span>Data store Statistics</span></a></li> 
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<div class="bottom-cont">
+		하단메뉴
+		</div>
+	</aside>
+
+		<div class="fixed-top-cont">
+			<div class="top-left">
+				<v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+			</div>
+			<div class="top-right">
+				<ul class="util-menu">
+					<li>
+						<v-badge left>
+						  <span slot="badge" class="bg-red">62</span>
+						  <v-icon color="white" class="md-18">notifications</v-icon>
+						</v-badge>
+					</li>
+					<li>
+						<v-menu offset-y>
+						  <v-btn flat small slot="activator"><v-icon left color="white" class="md-18">person</v-icon>User info<v-icon right color="white" class="md-18">expand_more</v-icon></v-btn>
+						  <v-list>
+							<v-list-tile v-for="(item, index) in items" :key="index" @click="">
+							  <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+							</v-list-tile>
+						  </v-list>
+						</v-menu>
+					</li>
+					<li>					
+					  <v-btn flat class="btn-util-logout"><v-icon color="white">power_settings_new</v-icon></v-btn>
+					</li>
+				</ul>
+			</div>	
+		</div>
+			
+		<div class="content">
+			<div class="content--wrap">
+				<div class="container fluid fill-height">
+					<div class="layout row gap-06">
+						<div class="flex md3">
+							<!--<div class="panel-wrap tabs">
+								<!--<div class="panel-header tabs__bar">
+									<div class="tabs__wrapper">
+										<div class="tabs__container">
+											<div class="tabs__div">
+												<a class="tabs__item tabs__item--active">Infra</a>
+											</div>
+											<div class="tabs__div">
+												<a class="tabs__item">Service</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="panel-body">tree</div>
+							</div>-->
+							 <div class="panel-wrap">
+								<v-tabs class="header-tabs"
+								  v-model="active"
+								  color="none"
+								  slider-color="none"
+								>
+								  <v-tab
+									v-for="n in 2"
+									:key="n"
+									ripple
+								  >
+									Item {{ n }}
+								  </v-tab>
+								  <v-tab-item
+									v-for="n in 2"
+									:key="n"
+								  >
+									<v-card flat>
+									  <v-card-text>{{ text }}</v-card-text>
+									</v-card>
+								  </v-tab-item>
+								</v-tabs>
+
+							  </div>
+						</div>
+						<div class="flex md9">
+							<div class="panel-wrap">							
+								<div class="panel-header">
+									<p class="filter-title left"><em>'장비'</em>에 대한 검색결과입니다.</p>
+									<div class="right">
+										<div class="input-srh w200">
+											<v-icon>search</v-icon>
+											<v-text-field 
+											  v-model="search"
+											  :rules="searchRules"
+											  placeholder="검색어를 입력하세요"
+											  required
+											></v-text-field>
+										</div>
+										<v-btn class="btn-md-cr round">장비필터열기</v-btn>
+									</div>
+								</div>
+								<div class="panel-body">
+
+								<!-- 필터 -->
+
+									<div class="filter-tbl mb-2">
+										<table>
+											<colgroup>
+												<col style="width:15%">
+												<col style="width:auto">
+											</colgroup>
+											<tbody>
+											<tr>
+												<th>항목</th>
+												<td>
+													<ul class="filter-list">
+														<li class="active"><a href="#none">장비용도</a></li>
+														<li><a href="#none">Host 명</a></li>
+														<li><a href="#none">H/W 타입</a></li>
+														<li><a href="#none">H/W 상태</a></li>
+														<li><a href="#none">서비스대표 IP</a></li>
+														<li><a href="#none">담당자 정보</a></li>
+														<li><a href="#none">Service명</a></li>
+														<li><a href="#none">ERP번호</a></li>
+														<li><a href="#none">바코드 No</a></li>
+														<li><a href="#none">메모</a></li>
+														<li><a href="#none">시리얼번호</a></li>
+													</ul>
+												</td>
+											</tr>	
+											<tr>
+												<th>H/W상태</th>
+												<td>
+													<ul class="filter-list">
+														<li><a href="#none">사용중</a></li>
+														<li><a href="#none">유휴</a></li>
+														<li class="active"><a href="#none">불휴</a></li>
+														<li><a href="#none">재활용예정</a></li>
+														<li><a href="#none">제각예정</a></li>
+														<li><a href="#none">제각</a></li>
+													</ul>
+												</td>
+											</tr>	
+											<tr>
+												<th>H/W타입</th>
+												<td>
+													<ul class="filter-list">
+														<li><a href="#none">BM Server</a></li>
+														<li><a href="#none">Rack</a></li>
+														<li class="active"><a href="#none">Switch</a></li>
+														<li><a href="#none">Storage</a></li>
+														<li><a href="#none">ETC</a></li>
+														<li><a href="#none">제각</a></li>
+													</ul>
+												</td>
+											</tr>	
+											<tr>
+												<th>반입일</th>
+												<td>
+												<div class="layout row gap06">								 
+													<div class="flex md5">
+													  <v-dialog
+														ref="dialog"
+														v-model="modal"
+														:return-value.sync="date"
+														persistent
+														lazy
+														full-width
+														width="290px"
+													  >
+														<v-text-field
+														  slot="activator"
+														  v-model="date"
+														  prepend-icon="event"
+														  readonly
+														></v-text-field>
+														<v-date-picker v-model="date" scrollable>
+														  <v-spacer></v-spacer>
+														  <v-btn flat color="primary" @click="modal = false">Cancel</v-btn>
+														  <v-btn flat color="primary" @click="$refs.dialog.save(date)">OK</v-btn>
+														</v-date-picker>
+													  </v-dialog>
+												  </div>
+													<div class="flex md5">
+													  <v-dialog
+														ref="dialog"
+														v-model="modal"
+														:return-value.sync="date"
+														persistent
+														lazy
+														full-width
+														width="290px"
+													  >
+														<v-text-field
+														  slot="activator"
+														  v-model="date"
+														  prepend-icon="event"
+														  readonly
+														></v-text-field>
+														<v-date-picker v-model="date" scrollable>
+														  <v-spacer></v-spacer>
+														  <v-btn flat color="primary" @click="modal = false">Cancel</v-btn>
+														  <v-btn flat color="primary" @click="$refs.dialog.save(date)">OK</v-btn>
+														</v-date-picker>
+													  </v-dialog>
+												  </div>
+												  <div class="flex md2"><v-btn class="btn-md-cr ico"><v-icon>search</v-icon></v-btn></div>
+												</div>
+
+												</td>
+											</tr>	
+											<tr>
+												<th>수정일</th>
+												<td>
+												<div class="layout row wrap gap06">								 
+													<div class="flex md5">
+													  <v-dialog
+														ref="dialog"
+														v-model="modal"
+														:return-value.sync="date"
+														persistent
+														lazy
+														full-width
+														width="290px"
+													  >
+														<v-text-field
+														  slot="activator"
+														  v-model="date"
+
+														  prepend-icon="event"
+														  readonly
+														></v-text-field>
+														<v-date-picker v-model="date" scrollable>
+														  <v-spacer></v-spacer>
+														  <v-btn flat color="primary" @click="modal = false">Cancel</v-btn>
+														  <v-btn flat color="primary" @click="$refs.dialog.save(date)">OK</v-btn>
+														</v-date-picker>
+													  </v-dialog>
+												  </div>
+													<div class="flex md5">
+													  <v-dialog
+														ref="dialog"
+														v-model="modal"
+														:return-value.sync="date"
+														persistent
+														lazy
+														full-width
+														width="290px"
+													  >
+														<v-text-field
+														  slot="activator"
+														  v-model="date"
+
+														  prepend-icon="event"
+														  readonly
+														></v-text-field>
+														<v-date-picker v-model="date" scrollable>
+														  <v-spacer></v-spacer>
+														  <v-btn flat color="primary" @click="modal = false">Cancel</v-btn>
+														  <v-btn flat color="primary" @click="$refs.dialog.save(date)">OK</v-btn>
+														</v-date-picker>
+													  </v-dialog>
+												  </div>
+												  <div class="flex md2"><v-btn class="btn-md-cr ico"><v-icon>search</v-icon></v-btn></div>
+												</div>
+
+												</td>
+											</tr>				
+											</tbody>
+										</table>
+										<div class="filter-selected">
+											<v-btn flat class="btn-md"><v-icon>replay</v-icon>전체해제</v-btn>
+											<v-btn flat class="btn-md"><v-icon class="md-18">clear</v-icon>장비용도</v-btn>
+											<v-btn flat class="btn-md"><v-icon class="md-18">clear</v-icon>상태</v-btn>
+											<v-btn flat class="btn-md"><v-icon class="md-18">clear</v-icon>Switch</v-btn>   
+
+										</div>
+									</div>
+								<!-- //필터 -->
+								<v-tabs class="sub-tabs"
+								  v-model="active"
+								  color="none"
+								  slider-color="none"
+								>
+								  <v-tab
+									v-for="n in 2"
+									:key="n"
+									ripple
+								  >
+									Item {{ n }}
+								  </v-tab>
+								  <v-tab-item
+									v-for="n in 2"
+									:key="n"
+								  >
+									<v-card flat>
+									  <v-card-text>{{ text }}</v-card-text>
+									</v-card>
+								  </v-tab-item>
+								</v-tabs>
+
+								</div>
+							</div>
+						
+						</div>
+					</div>
+				
+				</div>
+			</div>
+		</div>
+
+</div>
+  <script src="../js/vue/vue.js"></script>
+  <script src="https://unpkg.com/vuetify/dist/vuetify.js"></script>
+  <script src="../js/common/jquery.min.js"></script>
+  <script src="../js/common/common.js"></script>
+  <script>
+  new Vue({
+	  el: '#app',
+	  data: () => ({
+		drawer: true
+	  }),
+
+	  props: {
+		source: String
+	  }
+
+	})
+  </script>
+
+ </body>
+</html>
