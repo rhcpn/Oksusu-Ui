@@ -44,6 +44,30 @@ public class InfraService implements Infra {
     }
 
     @Override
+    public List<Object> getDatacenter() {
+        String filename = "datacenter";
+
+        GsonJsonParser jsonParser = new GsonJsonParser();
+        return jsonParser.parseList(getFile(filename + ".json"));
+    }
+
+    @Override
+    public List<Object> getFloor() {
+        String filename = "floor";
+
+        GsonJsonParser jsonParser = new GsonJsonParser();
+        return jsonParser.parseList(getFile(filename + ".json"));
+    }
+
+    @Override
+    public List<Object> getRoom() {
+        String filename = "room";
+
+        GsonJsonParser jsonParser = new GsonJsonParser();
+        return jsonParser.parseList(getFile(filename + ".json"));
+    }
+
+    @Override
     public List<Object> getList(String parent, String type) {
         return getJsonToList(type);
     }
