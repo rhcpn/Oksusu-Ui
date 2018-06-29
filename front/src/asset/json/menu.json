@@ -1,5 +1,5 @@
 [
-  { "name": "A", "auth": true },
+  { "name": "Resource-Infra", "auth": true },
   { "name": "B", "auth": false },
   { "name": "D", "auth": true },
   { "name": "F11", "auth": true },
