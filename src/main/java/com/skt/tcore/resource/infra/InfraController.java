@@ -15,6 +15,9 @@ public class InfraController {
     @Autowired
     private InfraService infraService;
 
+    /*
+     *   hardware list
+     * */
     @RequestMapping(value = "/infra/list.json", method=RequestMethod.GET)
     @ResponseBody
     public JsonResult list(String parent, String type) {
@@ -31,6 +34,39 @@ public class InfraController {
     public JsonResult navigation() {
         JsonResult js = new JsonResult();
         js.setData(infraService.getNavigation());
+        return js;
+    }
+
+    /*
+    *   datacenter list
+    * */
+    @RequestMapping(value = "/infra/datacenter.json", method=RequestMethod.GET)
+    @ResponseBody
+    public JsonResult datacneter() {
+        JsonResult js = new JsonResult();
+        js.setData(infraService.getDatacenter());
+        return js;
+    }
+
+    /*
+    *   floor list
+    * */
+    @RequestMapping(value = "/infra/floor.json", method=RequestMethod.GET)
+    @ResponseBody
+    public JsonResult floor() {
+        JsonResult js = new JsonResult();
+        js.setData(infraService.getFloor());
+        return js;
+    }
+
+    /*
+    *   room list
+    * */
+    @RequestMapping(value = "/infra/room.json", method=RequestMethod.GET)
+    @ResponseBody
+    public JsonResult room() {
+        JsonResult js = new JsonResult();
+        js.setData(infraService.getRoom());
         return js;
     }
 }
