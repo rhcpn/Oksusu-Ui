@@ -50,29 +50,29 @@
 </template>
 
 <script>
-  import Vue from 'vue'
-  import gnbComponent from '@/common/component/menu/gnb-component'
-  import commonSpinner from '@/common/component/common-spinner'
-  import httpInterceptors from '@/common/component/http-interceptors'
+import Vue from 'vue'
+import gnbComponent from '@/common/component/menu/gnb-component'
+import commonSpinner from '@/common/component/common-spinner'
+import httpInterceptors from '@/common/component/http-interceptors'
 
-  Vue.component('gnb-component', gnbComponent)
-  Vue.component('common-spinner', commonSpinner)
-  Vue.component('interceptors-handler', httpInterceptors)
+Vue.component('gnb-component', gnbComponent)
+Vue.component('common-spinner', commonSpinner)
+Vue.component('interceptors-handler', httpInterceptors)
 
-  export default {
-    name: 'App',
-    data () {
-      return {
-        menuFolding: false
-      }
-    },
-    methods: {
-      menuFoldingHandler: function () {
-        this.menuFolding = !this.menuFolding
-        $('.wrapper').toggleClass('slim-type')
-      }
+export default {
+  name: 'App',
+  data () {
+    return {
+      menuFolding: false
+    }
+  },
+  methods: {
+    menuFoldingHandler: function () {
+      this.menuFolding = !this.menuFolding
+      $('.wrapper').toggleClass('slim-type')
     }
   }
+}
 </script>
 
 <style>
