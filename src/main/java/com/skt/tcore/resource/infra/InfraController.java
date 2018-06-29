@@ -23,6 +23,9 @@ public class InfraController {
         return js;
     }
 
+    /*
+    *   navigation tree
+    * */
     @RequestMapping(value = "/infra/navigation.json", method=RequestMethod.GET)
     @ResponseBody
     public JsonResult navigation() {
