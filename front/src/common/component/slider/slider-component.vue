@@ -154,14 +154,22 @@ export default {
       this.notDetailShow = true
       this.detailInfo = null
     },
-    openBasicInfo () {
-      this.paneList[0] = true
+    setPanelData: function (location, bool) {
+      var tempAr = []
+
+      for (let i = 0; i < this.panelList.length; i++) {
+        if (i == location) { tempAr.push(bool) } else { tempAr.push(this.panelList[i]) }
+      }
+      this.panelList = tempAr
+    },
+    openBasicInfo (location, bool) {
+      this.setPanelData(0, true)
     },
     openGeneralInfo () {
-      this.paneList[1] = true
+      this.setPanelData(1, true)
     },
     openOperationalInfo () {
-      this.paneList[2] = true
+      this.setPanelData(2, true)
     }
   },
   created () {
