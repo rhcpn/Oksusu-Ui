@@ -36,11 +36,11 @@
                             slider-color="none"
                     >
                       <v-tab
-                        v-for="n in 2"
+                        v-for="n in tabItems"
                         :key="n"
                         ripple
                       >
-                        Item {{ n }}
+                        {{ n }}
                       </v-tab>
                       <v-tab-item
                         v-for="n in 1"
@@ -51,23 +51,54 @@
                             <!-- 상단버튼영역 -->
                             <div class="btns-area">
                               <div class="left">
-                                <v-btn class="btn-md-cr">장비기본정보</v-btn>
-                                <v-btn class="btn-md-cr">장비일반정보</v-btn>
-                                <v-btn class="btn-md-cr">장비운영정보</v-btn>
+                                <v-btn class="btn-md-cr" @click="openBasicInfo">장비기본정보</v-btn>
+                                <v-btn class="btn-md-cr" @click="openGeneralInfo">장비일반정보</v-btn>
+                                <v-btn class="btn-md-cr" @click="openOperationalInfo">장비운영정보</v-btn>
                               </div>
                               <div class="right">
-                                <v-btn class="btn-md-cr" @click.native="panelAllOpen()">전체펼치기</v-btn>
-                                <v-btn class="btn-md-cr" @click.native="panelAllClose()">전체닫기</v-btn>
+                                <v-btn class="btn-md-cr" @click.native="panelAllOpen">전체펼치기</v-btn>
+                                <v-btn class="btn-md-cr" @click.native="panelAllClose">전체닫기</v-btn>
                               </div>
                             </div>
                             <!-- //상단버튼영역 -->
                             <!-- 아코디언 -->
                             <v-expansion-panel v-model="panelList" expand>
-                              <v-expansion-panel-content v-for="(item,i) in items" :key="i">
-                                <div slot="header">Item</div>
+                              <v-expansion-panel-content v-for="(item,i) in panelItems" :key="i">
+                                <div slot="header">{{item}}</div>
                                 <v-card>
-                                  <v-card-text class="">테스트임 <br>테스트임<br>테스트임<br>테스트임<br>테스트임<br>테스트임
-                                  {{item}}
+                                  <v-card-text class="">
+                                    아이디:{{detailInfo.id}}<br>
+                                    장비명:{{detailInfo.name}}<br>
+                                    장비높이:{{detailInfo.unitSize}}<br>
+                                    홀번호 :{{detailInfo.holeNo}}<br>
+                                    상태 :{{detailInfo.status}}<br>
+                                    제조사 :{{detailInfo.manufacturer}}<br>
+                                    모델 :{{detailInfo.modelNo}}<br>
+                                    시리얼 번호 :{{detailInfo.serialNumber}}<br>
+                                    서비스 군 :{{detailInfo.serviceGroup}}<br>
+                                    서비스 명 :{{detailInfo.serviceName}}<br>
+                                    장비무게(Kg) :{{detailInfo.devTotalAmount}}<br>
+                                    발열량(Btu/Hr) :{{detailInfo.heatValue}}<br>
+                                    전원수량(개) :{{detailInfo.powerCount}}<br>
+                                    장비전원(W) :{{detailInfo.systemPower}}<br>
+                                    Host명 :{{detailInfo.hostName}}<br>
+                                    CPU프로세서수(CPU) :{{detailInfo.cpuCnt}}<br>
+                                    CPU전체 코어수(Core) :{{detailInfo.totalCpuCoreCnt}}<br>
+                                    Memory 갯수 :{{detailInfo.memCnt}}<br>
+                                    Memory 용량(GB) :{{detailInfo.totalMemCapcacity}}<br>
+                                    Disk 갯수 :{{detailInfo.hddCnt}}<br>
+                                    Disk 용량(GB) :{{detailInfo.totalHddCapacity}}<br>
+                                    서비스 대표 IP :{{detailInfo.mainIpAddr}}<br>
+                                    Port IP :{{detailInfo.nicNo}}<br>
+                                    OS 명 :{{detailInfo.osName}}<br>
+                                    OS 버전 :{{detailInfo.osVersion}}<br>
+                                    입고일 :{{detailInfo.stockEquipmentComeAt}}<br>
+                                    폐기 예정일 :{{detailInfo.disposeAt}}<br>
+                                    메모 :{{detailInfo.remark}}<br>
+                                    CPU모델명 :{{detailInfo.specType}}<br>
+                                    프로세서 당 코어 수 :{{detailInfo.coreCount}}<br>
+                                    담당자 :{{detailInfo.operatorName}}<br>
+                                    타입 :{{detailInfo.type}}<br>
                                   </v-card-text>
                                 </v-card>
                               </v-expansion-panel-content>
@@ -99,8 +130,9 @@ export default {
       dialog: false,
       active: null,
       detailInfo: null,
-      panelList: [true, true, true, true, true],
-      items: 5,
+      panelList: [true, true, true],
+      panelItems: ['장비 기본정보', '장비 일반정보', '장비 운영정보'],
+      tabItems: ['장비정보', '알람정보'],
       rackClass: 'slider-container w500',
       defaultClass: 'slider-container',
       notDetailShow: true
@@ -109,10 +141,10 @@ export default {
   methods: {
     panelAllOpen () {
       this.panelList = []
-      this.panelList = [true, true, true, true, true];
+      this.panelList = [true, true, true]
     },
     panelAllClose () {
-      this.panelList = [false, false, false, false, false]
+      this.panelList = [false, false, false]
     },
     showDetailInfo (data) {
       this.notDetailShow = false
@@ -121,6 +153,15 @@ export default {
       this.dialog = false
       this.notDetailShow = true
       this.detailInfo = null
+    },
+    openBasicInfo () {
+      this.paneList[0] = true
+    },
+    openGeneralInfo () {
+      this.paneList[1] = true
+    },
+    openOperationalInfo () {
+      this.paneList[2] = true
     }
   },
   created () {
