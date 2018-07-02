@@ -179,6 +179,7 @@ public class InfraController {
     }
 
     /*
+         필터 검색 항목들
      *   Filter Seach Item List
      * */
     @RequestMapping(value = "/infra/filterSearchItemList.json", method = RequestMethod.GET)
