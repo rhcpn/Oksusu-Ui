@@ -95,13 +95,22 @@ export default {
   components: {MsfTree},
   data () {
     return {
-      source: [] // 전체 데이터
+      source: [], // 전체 데이터
+      active: null,
+      dialogData: []
     }
   },
   methods: {
     sliderOpen () {
-      this.$eventHub.$emit('slider-open')
-      this.$eventHub.$emit('slider-change-data', {'data': '블라블라라'})
+      this.$http.get('/resource/infra/list.json?type=bm-server')
+        .then(response => {
+          this.dialogData = response.data.data.hardwareList[1]
+          this.$eventHub.$emit('slider-open')
+          this.$eventHub.$emit('slider-change-data', this.dialogData)
+        })
+        .catch(e => {
+          this.errors.push(e)
+        })
     }
   },
   created () {
