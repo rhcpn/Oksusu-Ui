@@ -51,10 +51,11 @@
                 required
               ></v-text-field>
             </div>
-            <v-btn class="btn-md-cr round">장비필터열기</v-btn>
+            <v-btn class="btn-md-cr round" @click="filterOpen()">장비필터{{isFilterOpen? '닫기':'열기'}}</v-btn>
           </div>
         </div>
         <div class="panel-body">
+          <equipment-filter :filterOpen="isFilterOpen"></equipment-filter>
           <v-tabs class="sub-tabs"
                   v-model="active"
                   color="none"
@@ -90,18 +91,23 @@
 <script>
 import sampleData from '../../asset/json/getResource.json'
 import MsfTree from '../../common/component/tree/MsfTree.vue'
+import equipmentFilter from './equipment-filter'
 export default {
   name: 'resource-infra',
-  components: {MsfTree},
+  components: {MsfTree, equipmentFilter},
   data () {
     return {
-      source: [] // 전체 데이터
+      source: [], // 전체 데이터
+      isFilterOpen: false
     }
   },
   methods: {
     sliderOpen () {
       this.$eventHub.$emit('slider-open')
       this.$eventHub.$emit('slider-change-data', {'data': '블라블라라'})
+    },
+    filterOpen () {
+      this.isFilterOpen = !this.isFilterOpen
     }
   },
   created () {
