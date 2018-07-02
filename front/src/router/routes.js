@@ -6,6 +6,10 @@ Vue.use(VueRouter)
 const PageD = { template: '<div>This is D Page</div>' }
 const PageE = { template: '<div>This is E Page</div>' }
 
+const baseRoutes = [
+  { path: '/login', name: 'Login', component: () => import('@/site/Login') }
+]
+
 const routes = [
   { path: '/', name: 'Resource-Infra', component: () => import('@/site/resource/ResourceInfra') },
   { path: '/B', name: 'B', component: () => import('@/site/moduleb/B') },
@@ -39,7 +43,9 @@ const routes = [
 const MenuData = require('@/asset/json/menu')
 
 function initRouter () {
-  return addRoute(routes)
+  let router = addRoute(routes)
+  router = router.concat(baseRoutes)
+  return router
 }
 
 function addRoute (routes) {
@@ -64,6 +70,16 @@ function addRoute (routes) {
 
 const router = new VueRouter({
   routes: initRouter()
+})
+
+router.beforeEach((to, from, next) => {
+  // console.log('requireAuth', to, from)
+  if (to.name === 'Login') return next()
+  if (window.isAuthenticated) return next()
+  next({
+    path: '/login',
+    query: { redirect: to.fullPath }
+  })
 })
 
 export default router
