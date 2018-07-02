@@ -3,7 +3,7 @@
       v-model="dialog"
       hide-overlay
       transition="dialog-right-transition"
-      scrollable 
+      scrollable
     >
       <!-- 우측 slider-container -->
       <div v-bind:class="[notDetailShow ? rackClass : defaultClass]">
@@ -51,19 +51,19 @@
                             <!-- 상단버튼영역 -->
                             <div class="btns-area">
                               <div class="left">
-                                <v-btn class="btn-md-cr" @click="openBasicInfo">장비기본정보</v-btn>
+                                <v-btn class="btn-md-cr" @click="openBasicInfo">장비기본정보</v-btn><!--
                                 <v-btn class="btn-md-cr" @click="openGeneralInfo">장비일반정보</v-btn>
-                                <v-btn class="btn-md-cr" @click="openOperationalInfo">장비운영정보</v-btn>
+                                <v-btn class="btn-md-cr" @click="openOperationalInfo">장비운영정보</v-btn>-->
                               </div>
-                              <div class="right">
+                              <div class="right"><!--
                                 <v-btn class="btn-md-cr" @click.native="panelAllOpen">전체펼치기</v-btn>
-                                <v-btn class="btn-md-cr" @click.native="panelAllClose">전체닫기</v-btn>
+                                <v-btn class="btn-md-cr" @click.native="panelAllClose">전체닫기</v-btn>-->
                               </div>
                             </div>
                             <!-- //상단버튼영역 -->
                             <!-- 아코디언 -->
                             <v-expansion-panel v-model="panelList" expand>
-                              <v-expansion-panel-content v-for="(item,i) in panelItems" :key="i">
+                              <v-expansion-panel-content v-for="(item,i) in panelItems" :key="i" value="item === 1">
                                 <div slot="header">{{item}}</div>
                                 <v-card>
                                   <v-card-text class="">
@@ -131,7 +131,7 @@ export default {
       active: null,
       detailInfo: null,
       panelList: [true, true, true],
-      panelItems: ['장비 기본정보', '장비 일반정보', '장비 운영정보'],
+      panelItems: ['장비 기본정보'],
       tabItems: ['장비정보', '알람정보'],
       rackClass: 'slider-container w500',
       defaultClass: 'slider-container',
