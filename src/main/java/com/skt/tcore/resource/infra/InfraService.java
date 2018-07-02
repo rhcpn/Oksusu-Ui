@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -72,9 +73,10 @@ public class InfraService implements Infra {
         return getJsonToList(type);
     }
 
-    @Override
-    public List<Object> getTabs(String parent, String type) {
-        return null;
+    public List<Object> getItemNameList(String type) {
+
+        GsonJsonParser jsonParser = new GsonJsonParser();
+        return jsonParser.parseList(getFile(type + "-itemname.json"));
     }
 
     @Override
