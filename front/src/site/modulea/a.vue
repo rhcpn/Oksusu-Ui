@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+    <v-btn color="primary" v-on:click="sliderOpen()">Open Dialog 1</v-btn>
   </div>
 </template>
 
@@ -10,6 +11,12 @@ export default {
   data () {
     return {
       msg: 'A Module Page'
+    }
+  },
+  methods: {
+    sliderOpen () {
+      this.$eventHub.$emit('slider-open')
+      this.$eventHub.$emit('slider-change-data', {'data': '블라블라라'})
     }
   }
 }

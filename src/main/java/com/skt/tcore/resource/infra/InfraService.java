@@ -79,8 +79,12 @@ public class InfraService implements Infra {
         return jsonParser.parseList(getFile(type + "-itemname.json"));
     }
 
+    public List<Object> getTabList(String type){
+        return getJsonToList(type);
+    }
+
     @Override
-    public List<Object> getFilters() {
-        return null;
+    public List<Object> getFilters(String type) {
+        return getJsonToList(type);
     }
 }

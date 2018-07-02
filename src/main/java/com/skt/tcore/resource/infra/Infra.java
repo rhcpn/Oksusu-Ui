@@ -8,5 +8,5 @@ public interface Infra {
     List<Object>getFloor();
     List<Object>getRoom();
     List<Object>getList(String parent, String type);
-    List<Object>getFilters();
+    List<Object>getFilters(String type);
 }
