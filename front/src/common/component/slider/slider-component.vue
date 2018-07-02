@@ -1,5 +1,4 @@
 <template>
-  <v-app>
     <v-dialog
       v-model="dialog"
       hide-overlay
@@ -20,10 +19,13 @@
             <div class="right"><v-btn flat icon class="ico-sm" @click.native="closeDialog()"><v-icon class="md-18">close</v-icon></v-btn></div>
           </div>
           <div class="panel-body" v-on:click="showDetailInfo()">
+            <img  v-if="notDetailShow" src="../../../asset/images/common/rack.png"/>
             <div class="container fluid fill-height" v-if="!notDetailShow" >
               <div class="layout row gap-06">
                 <div class="flex md5">
-                  <div class="" style="border:1px solid red;height:100%">Rack</div>
+                  <div class="" style="border:1px solid red;height:100%">
+                    <img src="../../../asset/images/common/rack.png"/>
+                  </div>
                 </div>
                 <div class="flex md7">
                   <div class="" style="height:100%">
@@ -60,12 +62,12 @@
                             </div>
                             <!-- //상단버튼영역 -->
                             <!-- 아코디언 -->
-                            <v-expansion-panel expand v-model="panelShowList">
-                              <v-expansion-panel-content v-for="(item,i) in 5" :key="i">
+                            <v-expansion-panel v-model="panelList" expand>
+                              <v-expansion-panel-content v-for="(item,i) in items" :key="i">
                                 <div slot="header">Item</div>
                                 <v-card>
                                   <v-card-text class="">테스트임 <br>테스트임<br>테스트임<br>테스트임<br>테스트임<br>테스트임
-                                  {{detailInfo}}
+                                  {{item}}
                                   </v-card-text>
                                 </v-card>
                               </v-expansion-panel-content>
@@ -84,8 +86,6 @@
       </div>
       <!-- //slider-container -->
     </v-dialog>
-  </v-app>
-
 </template>
 
 <script>
@@ -99,7 +99,8 @@ export default {
       dialog: false,
       active: null,
       detailInfo: null,
-      panelShowList: [true, true, true, true, true],
+      panelList: [true, true, true, true, true],
+      items: 5,
       rackClass: 'slider-container w500',
       defaultClass: 'slider-container',
       notDetailShow: true
@@ -107,14 +108,11 @@ export default {
   },
   methods: {
     panelAllOpen () {
-      for (var i = 0; i < this.panelShowList.length; i++) {
-        this.panelShowList[i] = true
-      }
+      this.panelList = []
+      this.panelList = [true, true, true, true, true];
     },
     panelAllClose () {
-      for (var i = 0; i < this.panelShowList.length; i++) {
-        this.panelShowList[i] = false
-      }
+      this.panelList = [false, false, false, false, false]
     },
     showDetailInfo (data) {
       this.notDetailShow = false

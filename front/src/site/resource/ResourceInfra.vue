@@ -77,7 +77,8 @@ export default {
   components: {MsfTree},
   data () {
     return {
-      source: [] // 전체 데이터
+      source: [], // 전체 데이터
+      active: null
     }
   },
   methods: {
