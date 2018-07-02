@@ -55,6 +55,8 @@
             >
               <v-card flat>
                 <v-card-text>{{ n }}</v-card-text>
+
+                <v-btn color="primary" v-on:click="sliderOpen()">Open Dialog 1</v-btn>
               </v-card>
             </v-tab-item>
           </v-tabs>
@@ -78,7 +80,12 @@ export default {
       source: [] // 전체 데이터
     }
   },
-  methods: {},
+  methods: {
+    sliderOpen () {
+      this.$eventHub.$emit('slider-open')
+      this.$eventHub.$emit('slider-change-data', {'data': '블라블라라'})
+    }
+  },
   created () {
     this.source = sampleData
   }
