@@ -38,6 +38,10 @@ export default {
       if (this.isOpen === true) {
         this.$eventHub.$emit('menu-open', this.data)
       }
+
+      if (this.data != null && this.data.path != null && this.data.path !== '') {
+        this.$router.push(this.data.path)
+      }
     },
     menuOpenEventHandler: function (currentMenu) {
       if (this.data.name === currentMenu.name) {

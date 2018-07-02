@@ -1,13 +1,13 @@
 <script>
-import Vue from 'vue'
 import axios from 'axios'
 import commonSpinner from './common-spinner'
 
 var _loader
-Vue.component('common-spinner', commonSpinner)
-
 export default {
   name: 'interceptorsHandler',
+  components: {
+    'common-spinner': commonSpinner
+  },
   template: ' ',
   inherit: true,
   created: function () {

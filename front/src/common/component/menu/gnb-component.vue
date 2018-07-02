@@ -14,13 +14,13 @@
 </template>
 
 <script>
-import Vue from 'vue'
 import menuChild from '@/common/component/menu/menu-child-component'
-
-Vue.component('menu-child-component', menuChild)
 
 export default {
   name: 'gnb-component',
+  components: {
+    'menu-child-component': menuChild
+  },
   created: function () {
     let router = this.$router
     if (router == null || router.options == null || router.options.routes == null) {
