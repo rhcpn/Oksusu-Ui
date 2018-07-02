@@ -11,36 +11,22 @@
 /* Reset ***********/
 * {margin:0; padding:0;}
 html,body {height:100%;}
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:middle;}
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {display:block;}
-body {background:#fff; color:#696969; line-height:1;}
-body,input,button,textarea,select {font-family:"Nanum Gothic", "나눔고딕","맑은 고딕", "Malgun Gothic", sans-serif; font-size:12px;}
-a, button, input, select, textarea, img {vertical-align:middle;}
-ul,ol {list-style:none;}
-address, em, cite, i, em, var, dfn {font-style:normal;}
+body {background:#fff; color:#333; font-weight:400; line-height:1;}
+body,input,button,textarea,select {font-family:"Nanum Gothic", "나눔고딕", "Malgun Gothic", Dotum, 돋움, sans-serif; font-size:12px;}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display:block;}
+h1, h2, h3, h4, h5, h6, strong, b {font-weight:700;}
+ul,ol {list-style:none}
+address,em,cite {font-style:normal;}
 hr {display:none;}
-fieldset, img, button {border:0 none;}
-a,a:hover,a:focus,a:active {color:#797979; text-decoration:none;}
-button, label {cursor:pointer;}
-a:focus, button:focus {outline:0;}
+img {border:0 none;}
+button, input, select, textarea, img {vertical-align:middle;}
+a, a:hover, a:focus, a:active {color:#333; text-decoration:none;}
+label {vertical-align:middle; cursor:pointer;}
+button {border:0 none; font-weight:700; cursor:pointer;}
+*, *:before, *:after{-webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box;}
+/**:focus {outline:none !important;}*/
+button:focus {outline:none;}
+sub, sup {font-size:75%; line-height:0; vertical-align:baseline;}
+sup {top:-0.5em;}
+sub {bottom:-0.25em;}
 legend {position:absolute; visibility:hidden; overflow:hidden; width:0; height:0; margin:0; padding:0; font-size:0; line-height:0;}
-pre {word-wrap:break-word; white-space:pre-wrap; font-family:"Nanum Gothic", "나눔고딕","맑은 고딕", "Malgun Gothic", sans-serif;}
-*, *:before, *:after {-webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box;}
-blockquote, q {quotes:none}
-blockquote:before, blockquote:after,
-q:before, q:after {content:'';content:none}
-table {border-collapse:collapse;border-spacing:0}
