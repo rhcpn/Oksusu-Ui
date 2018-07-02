@@ -2,7 +2,7 @@
   <div>
     <h2>Login</h2>
     <form @submit.prevent="onSubmit(email, password)">
-      <input type="text" v-model="email" placeholder="Email Address">
+      <!--<input type="text" v-model="email" placeholder="Email Address">-->
       <input type="password" v-model="password" placeholder="Password">
       <input type="submit" value="Login">
     </form>
@@ -15,7 +15,7 @@ export default {
   name: 'Login',
   data () {
     return {
-      email: '',
+      // email: '',
       password: '',
       msg: ''
     }
