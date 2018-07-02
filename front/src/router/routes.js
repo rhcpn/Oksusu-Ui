@@ -11,7 +11,7 @@ const baseRoutes = [
 ]
 
 const routes = [
-  { path: '/', name: 'A', component: () => import('@/site/modulea/A') },
+  { path: '/', name: 'Resource-Infra', component: () => import('@/site/resource/ResourceInfra') },
   { path: '/B', name: 'B', component: () => import('@/site/moduleb/B') },
   { path: '/C', name: 'C', component: { template: '<div>This is C Page</div>' } },
   { path: '/D', name: 'D', component: PageD },

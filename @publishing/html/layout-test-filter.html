@@ -52,8 +52,31 @@
 				</li>
 			</ul>
 		</div>
+
 		<div class="bottom-cont">
-		하단메뉴
+			<div class="gnb bottom">
+				<!-- Depth1 -->
+				<ul class="gnb-menu">
+					<li><a href="#"><v-icon>settings</v-icon><span>Settings</span><v-icon class="arrow">keyboard_arrow_right</v-icon></a>
+						<!-- Depth2 -->
+						<ul class="gnb-list">
+							<li><a href="#"><span>자원관리</span></a></li>
+							<li><a href="#"><span>알람 정의</span></a></li> 
+							<li><a href="#"><span>알람 공지 설정</span></a></li>
+							<li><a href="#"><span>수집 설정</span></a></li>
+							<li><a href="#"><span>메트릭 설정</span></a></li>
+							<li><a href="#"><span>데이터센터 설정</span></a></li>
+						</ul>
+					</li>
+					<li><a href="#"><v-icon>live_help</v-icon><span>도움말</span><v-icon class="arrow">keyboard_arrow_right</v-icon></a>
+						<!-- Depth2 -->
+						<ul class="gnb-list">
+							<li><a href="#"><span>How to & Tutorials</span></a></li> 
+							<li><a href="#"><span>T-CORE 버전정보</span></a></li> 
+						</ul>
+					</li>
+				</ul>
+			</div>
 		</div>
 	</aside>
 
@@ -206,7 +229,7 @@
 											<tr>
 												<th>반입일</th>
 												<td>
-												<div class="layout gap06">								 
+												<div class="layout row gap06">								 
 													<div class="flex md5">
 													  <v-dialog
 														ref="dialog"
@@ -360,7 +383,7 @@
 
 </div>
   <script src="../js/vue/vue.js"></script>
-  <script src="https://unpkg.com/vuetify/dist/vuetify.js"></script>
+  <script src="../js/vue/vuetify.js"></script>
   <script src="../js/common/jquery.min.js"></script>
   <script src="../js/common/common.js"></script>
   <script>
