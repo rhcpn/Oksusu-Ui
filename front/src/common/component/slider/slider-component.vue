@@ -3,7 +3,7 @@
       v-model="dialog"
       hide-overlay
       transition="dialog-right-transition"
-      scrollable
+      scrollable 
     >
       <!-- 우측 slider-container -->
       <div v-bind:class="[notDetailShow ? rackClass : defaultClass]">
