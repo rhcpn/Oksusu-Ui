@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="msf-tree">
     <VirtualList :size="60" :remain="20" class="list">
       <msf-tree-item v-on:expand="expand" v-on:checkclick="checkclick" v-for="item of list" :key="item.id" :data="item" :checked="item.checked"
             :expanded="item.expanded" :depth="item.depth" :label="item.resourceName" :half-checked="item.halfChecked"/>
@@ -141,10 +141,10 @@ export default {
 </script>
 
 <style>
-  .scrollToIndex {
+  .msf-tree .scrollToIndex {
     padding-bottom: 20px;
   }
-  input {
+  .msf-tree input {
     outline: none;
     padding: .4em .5em;
     width: 55px;
@@ -157,17 +157,17 @@ export default {
     -moz-appearance: none;
     appearance: none;
   }
-  input:focus {
+  .msf-tree input:focus {
     border-color: #6495ed;
   }
-  small {
+  .msf-tree small {
     color: #999;
   }
- .source {
+  .msf-tree .source {
     text-align: center;
     padding-top: 20px;
   }
-  .source a {
+  .msf-tree .source a {
     color: #999;
     text-decoration: none;
     font-weight: 100;

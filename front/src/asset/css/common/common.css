@@ -27,10 +27,10 @@
 }
 
 /* Layout */
-html, body {margin:0; width:100%; height:100%;}
+html {overflow-y:auto;}
 body {min-height:768px;}
 .wrapper {background:#fafafa;}
-.slim-type aside + .content, .fixed-top-cont {transition:.4s cubic-bezier(.4,0,.2,1);}
+.slim-type aside, .content, .fixed-top-cont {transition:.4s cubic-bezier(.4,0,.2,1);}
 
 /* width */
 .w100 {width:100px !important;}
@@ -63,6 +63,11 @@ p {margin-bottom:0;}
 .slim-type .gnb-menu > li .gnb-list {position:absolute; top:0; left:-9999px; width:150px; padding-top:40px; background:#171719; z-index:3;}
 .slim-type .gnb-menu > li .gnb-list a {padding:10px;}
 .slim-type .gnb-menu > li:hover > .gnb-list {display:block !important; left:51px;}
+
+/* slim-type gnb > gnb-menu 하단 */
+.slim-type .gnb.bottom .gnb-menu > li .gnb-list {top:auto; bottom:0; padding-top:0; padding-bottom:40px;}
+.slim-type .gnb.bottom .gnb-menu > li:hover > a > span {top:0;}
+.slim-type .gnb.bottom .gnb-menu > li:hover > a > i.arrow {-webkit-transform:rotate(-90deg); transform:rotate(-90deg);}
 
 /* aside */
 aside {position:fixed; top:0; width:200px; height:100%; background:#24262b url(../../images/common/logo_sk.png) no-repeat 10px 99%; z-index:3;}
@@ -265,8 +270,8 @@ caption {visibility:hidden; overflow:hidden; width:0; height:0; font-size:0; lin
 
 /* filter-tbl */
 .filter-tbl {border:1px solid #c2c2c2;background:#f6f6f6;}
-.filter-tbl table > tbody > tr > th {padding:6px; border-bottom:1px solid #c2c2c2; border-right:1px solid #c2c2c2; text-align:left; font-weight:700;}
-.filter-tbl table > tbody > tr > td {padding:6px; border-bottom:1px solid #c2c2c2; background:#fff; word-wrap:break-word; word-break:break-all; vertical-align:middle;}
+.filter-tbl > table > tbody > tr > th {padding:6px; border-bottom:1px solid #c2c2c2; border-right:1px solid #c2c2c2; text-align:left; font-weight:700;}
+.filter-tbl > table > tbody > tr > td {padding:6px; border-bottom:1px solid #c2c2c2; background:#fff; word-wrap:break-word; word-break:break-all; vertical-align:middle;}
 
 
 .picker__title {background:#6477cd;}

@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <!--<v-app>-->
     <v-dialog
       v-model="dialog"
       hide-overlay
@@ -84,7 +84,7 @@
       </div>
       <!-- //slider-container -->
     </v-dialog>
-  </v-app>
+  <!--</v-app>-->
 
 </template>
 

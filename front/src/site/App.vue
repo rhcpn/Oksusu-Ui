@@ -11,6 +11,7 @@
     <div class="content">
       <div class="content--wrap">
         <div class="container fluid fill-height">
+          <slider-component></slider-component>
           <router-view/>
         </div>
       </div>
@@ -19,7 +20,6 @@
     <!-- Common Components -->
     <common-spinner ref="loader"></common-spinner>
     <interceptors-handler />
-    <slider-component></slider-component>
   </div>
 </template>
 
