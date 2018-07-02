@@ -35,6 +35,24 @@
             <li><a href="#none">Data center1</a></li>
             <li><a href="#none">Data center2</a></li>
           </ul>
+          <v-select class="select-box left w200"
+                    :items="items"
+                    v-model="e1"
+                    label="목록보기"
+                    single-line
+          ></v-select>
+          <div class="right">
+            <div class="input-srh w200">
+              <v-icon>search</v-icon>
+              <v-text-field
+                v-model="search"
+                :rules="searchRules"
+                placeholder="검색어를 입력하세요"
+                required
+              ></v-text-field>
+            </div>
+            <v-btn class="btn-md-cr round">장비필터열기</v-btn>
+          </div>
         </div>
         <div class="panel-body">
           <v-tabs class="sub-tabs"

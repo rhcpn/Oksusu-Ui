@@ -8,6 +8,5 @@ public interface Infra {
     List<Object>getFloor();
     List<Object>getRoom();
     List<Object>getList(String parent, String type);
-    List<Object>getTabs(String parent, String type);
     List<Object>getFilters();
 }
