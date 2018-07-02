@@ -44,6 +44,9 @@ Vue.config.productionTip = false
 Vue.prototype.$http = axios
 Vue.prototype.$message = ConfigMessages
 
+var isAuthenticated = false
+window.isAuthenticated = isAuthenticated
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
@@ -51,6 +54,9 @@ new Vue({
   i18n,
   components: { App },
   template: '<App/>',
+  data: {
+    isAuthenticated
+  },
   methods: {
     changeLocaleLanguage (lang) {
       this.$i18n.locale = lang
