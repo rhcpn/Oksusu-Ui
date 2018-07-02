@@ -51,7 +51,7 @@
                 required
               ></v-text-field>
             </div>
-            <v-btn class="btn-md-cr round" @click="filterOpen()">장비필터{{isFilterOpen? '닫기':'열기'}}</v-btn>
+            <v-btn class="btn-md-cr round" @click="isFilterOpen = !isFilterOpen">장비필터{{isFilterOpen? '닫기':'열기'}}</v-btn>
           </div>
         </div>
         <div class="panel-body">
@@ -114,9 +114,6 @@ export default {
         .catch(e => {
           this.errors.push(e)
         })
-    },
-    filterOpen () {
-      this.isFilterOpen = !this.isFilterOpen
     }
   },
   created () {

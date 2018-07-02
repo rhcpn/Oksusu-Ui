@@ -1,26 +1,16 @@
 <template>
-  <div class="filter-tbl mb-2" v-show="isOpen">
+  <div class="filter-tbl mb-2" v-show="filterOpen">
     <table>
       <colgroup>
         <col style="width:15%">
         <col style="width:auto">
       </colgroup>
-      <tbody>
+      <tbody id="filter">
       <tr>
         <th>항목</th>
         <td>
           <ul class="filter-list">
-            <li class="active"><a href="#none">장비용도</a></li>
-            <li><a href="#none">Host 명</a></li>
-            <li><a href="#none">H/W 타입</a></li>
-            <li><a href="#none">H/W 상태</a></li>
-            <li><a href="#none">서비스대표 IP</a></li>
-            <li><a href="#none">담당자 정보</a></li>
-            <li><a href="#none">Service명</a></li>
-            <li><a href="#none">ERP번호</a></li>
-            <li><a href="#none">바코드 No</a></li>
-            <li><a href="#none">메모</a></li>
-            <li><a href="#none">시리얼번호</a></li>
+            <li v-for="field in data.filterHwFieldList" :id="field.type" :key="field.type" @click="filterHandler(field)"><a href="#none">{{field.name || field.type}}</a></li>
           </ul>
         </td>
       </tr>
@@ -28,12 +18,7 @@
         <th>H/W상태</th>
         <td>
           <ul class="filter-list">
-            <li><a href="#none">사용중</a></li>
-            <li><a href="#none">유휴</a></li>
-            <li class="active"><a href="#none">불휴</a></li>
-            <li><a href="#none">재활용예정</a></li>
-            <li><a href="#none">제각예정</a></li>
-            <li><a href="#none">제각</a></li>
+            <li v-for="status in data.filterHwStatusList" :id="status.type" :key="status.type" @click="filterHandler(status)"><a href="#none">{{status.name || status.type}}</a></li>
           </ul>
         </td>
       </tr>
@@ -41,144 +26,37 @@
         <th>H/W타입</th>
         <td>
           <ul class="filter-list">
-            <li><a href="#none">BM Server</a></li>
-            <li><a href="#none">Rack</a></li>
-            <li class="active"><a href="#none">Switch</a></li>
-            <li><a href="#none">Storage</a></li>
-            <li><a href="#none">ETC</a></li>
-            <li><a href="#none">제각</a></li>
+            <li v-for="hwType in data.filterHwTypeList" :id="hwType.type" :key="hwType.type" @click="filterHandler(hwType)"><a href="#none">{{hwType.name || hwType.type}}</a></li>
           </ul>
-        </td>
-      </tr>
-      <tr>
-        <th>반입일</th>
-        <td>
-          <div class="layout row gap06">
-            <div class="flex md5">
-              <v-dialog
-                ref="dialog"
-                v-model="modal"
-                :return-value.sync="date"
-                persistent
-                lazy
-                full-width
-                width="290px"
-              >
-                <v-text-field
-                  slot="activator"
-                  v-model="date"
-                  prepend-icon="event"
-                  readonly
-                ></v-text-field>
-                <v-date-picker v-model="date" scrollable>
-                  <v-spacer></v-spacer>
-                  <v-btn flat color="primary" @click="modal = false">Cancel</v-btn>
-                  <v-btn flat color="primary" @click="$refs.dialog.save(date)">OK</v-btn>
-                </v-date-picker>
-              </v-dialog>
-            </div>
-            <div class="flex md5">
-              <v-dialog
-                ref="dialog"
-                v-model="modal"
-                :return-value.sync="date"
-                persistent
-                lazy
-                full-width
-                width="290px"
-              >
-                <v-text-field
-                  slot="activator"
-                  v-model="date"
-                  prepend-icon="event"
-                  readonly
-                ></v-text-field>
-                <v-date-picker v-model="date" scrollable>
-                  <v-spacer></v-spacer>
-                  <v-btn flat color="primary" @click="modal = false">Cancel</v-btn>
-                  <v-btn flat color="primary" @click="$refs.dialog.save(date)">OK</v-btn>
-                </v-date-picker>
-              </v-dialog>
-            </div>
-            <div class="flex md2"><v-btn class="btn-md-cr ico"><v-icon>search</v-icon></v-btn></div>
-          </div>
-
-        </td>
-      </tr>
-      <tr>
-        <th>수정일</th>
-        <td>
-          <div class="layout row wrap gap06">
-            <div class="flex md5">
-              <v-dialog
-                ref="dialog"
-                v-model="modal"
-                :return-value.sync="date"
-                persistent
-                lazy
-                full-width
-                width="290px"
-              >
-                <v-text-field
-                  slot="activator"
-                  v-model="date"
-
-                  prepend-icon="event"
-                  readonly
-                ></v-text-field>
-                <v-date-picker v-model="date" scrollable>
-                  <v-spacer></v-spacer>
-                  <v-btn flat color="primary" @click="modal = false">Cancel</v-btn>
-                  <v-btn flat color="primary" @click="$refs.dialog.save(date)">OK</v-btn>
-                </v-date-picker>
-              </v-dialog>
-            </div>
-            <div class="flex md5">
-              <v-dialog
-                ref="dialog"
-                v-model="modal"
-                :return-value.sync="date"
-                persistent
-                lazy
-                full-width
-                width="290px"
-              >
-                <v-text-field
-                  slot="activator"
-                  v-model="date"
-
-                  prepend-icon="event"
-                  readonly
-                ></v-text-field>
-                <v-date-picker v-model="date" scrollable>
-                  <v-spacer></v-spacer>
-                  <v-btn flat color="primary" @click="modal = false">Cancel</v-btn>
-                  <v-btn flat color="primary" @click="$refs.dialog.save(date)">OK</v-btn>
-                </v-date-picker>
-              </v-dialog>
-            </div>
-            <div class="flex md2"><v-btn class="btn-md-cr ico"><v-icon>search</v-icon></v-btn></div>
-          </div>
-
         </td>
       </tr>
       </tbody>
     </table>
     <div class="filter-selected">
-      <v-btn flat class="btn-md"><v-icon>replay</v-icon>전체해제</v-btn>
-      <v-btn flat class="btn-md"><v-icon class="md-18">clear</v-icon>장비용도</v-btn>
-      <v-btn flat class="btn-md"><v-icon class="md-18">clear</v-icon>상태</v-btn>
-      <v-btn flat class="btn-md"><v-icon class="md-18">clear</v-icon>Switch</v-btn>
+      <v-btn flat class="btn-md" @click="removefilter()"><v-icon>replay</v-icon>전체해제</v-btn>
+      <v-btn flat class="btn-md" v-for="item in selectedItem" :key="item.type" @click="removefilter(item)"><v-icon class="md-18">clear</v-icon>{{item.name || item.type}}</v-btn>
 
     </div>
   </div>
 </template>
 
 <script>
-
+var selectedMap = {}
 export default {
   name: 'equipment-filter',
   created: function () {
+    this.$http.get('/resource/infra/filterItemList.json')
+      .then(response => {
+        if (response == null || response.data == null || response.data.data == null) {
+          return
+        }
+        console.log('=================================================================', response.data.data)
+
+        this.data = response.data.data
+      })
+      .catch(e => {
+        this.errors.push(e)
+      })
   },
   props: {
     filterOpen: {
@@ -188,10 +66,40 @@ export default {
   },
   data () {
     return {
-      isOpen: this.filterOpen
+      data: null,
+      selectedItem: []
     }
   },
   methods: {
+    filterHandler (item) {
+      if (item == null) {
+        return
+      }
+
+      let sel = $(`#${item.type}`)
+      if (selectedMap[item.type] == null) {
+        this.selectedItem.push(item)
+        selectedMap[item.type] = item
+        sel.addClass('active')
+      } else {
+        let idx = _.findIndex(this.selectedItem, {type: item.type})
+        this.selectedItem.splice(idx, 1)
+        delete selectedMap[item.type]
+        sel.removeClass('active')
+      }
+    },
+    removefilter (target) {
+      if (target == null) {
+        selectedMap = {}
+        this.selectedItem = []
+        $('#filter li').removeClass('active')
+      } else {
+        let idx = _.findIndex(this.selectedItem, {type: target.type})
+        this.selectedItem.splice(idx, 1)
+        delete selectedMap[target.type]
+        $(`#${target.type}`).removeClass('active')
+      }
+    }
   }
 }
 </script>
