@@ -4,7 +4,7 @@
     <div class="gnb">
       <!-- Menu Depth1 -->
       <ul class="gnb-menu" v-if="menus.length">
-        <menu-child-component v-for="menu in menus" :key="menu.path" :data="menu"></menu-child-component>
+        <menu-child-component v-for="menu in menus" :key="menu.path" :data="menu" v-if="menu.name !== 'Login'"></menu-child-component>
       </ul>
     </div>
     <div class="bottom-cont">
