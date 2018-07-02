@@ -158,7 +158,7 @@ export default {
       var tempAr = []
 
       for (let i = 0; i < this.panelList.length; i++) {
-        if (i == location) { tempAr.push(bool) } else { tempAr.push(this.panelList[i]) }
+        if (i === location) { tempAr.push(bool) } else { tempAr.push(this.panelList[i]) }
       }
       this.panelList = tempAr
     },
