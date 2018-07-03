@@ -57,7 +57,7 @@ public class InfraController {
 
         Map resultMap = new LinkedHashMap<String, Object>();
         resultMap.put("filterList", infraService.getFilterList(search, "filter-search"));
-        resultMap.put("itemNameList", infraService.getItemNameList(type));
+        resultMap.put("itemNameList", infraService.getItemNameList("bm-server"));
 
         js.setData(resultMap);
 

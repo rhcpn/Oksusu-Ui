@@ -28,7 +28,7 @@
 
 /* Layout */
 html {overflow-y:auto;}
-body {min-height:768px;}
+body {}
 .wrapper {background:#fafafa;}
 .slim-type aside, .content, .fixed-top-cont {transition:.4s cubic-bezier(.4,0,.2,1);}
 
