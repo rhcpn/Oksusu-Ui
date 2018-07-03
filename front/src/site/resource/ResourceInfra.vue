@@ -32,18 +32,10 @@
           <ul class="breadcrumbs left" v-for="depth in selectDepthArray">
             <li><a href="#none">{{depth.name}}</a></li>
           </ul>
-          <v-select class="select-box left w200"
-                    :items="items"
-                    v-model="e1"
-                    label="목록보기"
-                    single-line
-          ></v-select>
           <div class="right">
             <div class="input-srh w200">
               <v-icon>search</v-icon>
               <v-text-field
-                v-model="search"
-                :rules="searchRules"
                 placeholder="검색어를 입력하세요"
                 required
               ></v-text-field>
