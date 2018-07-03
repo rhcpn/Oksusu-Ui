@@ -34,10 +34,6 @@
             <li><a href="#none">Data center1</a></li>
             <li><a href="#none">Data center2</a></li>
           </ul>
-          <v-select class="select-box left w200"
-                    label="목록보기"
-                    single-line
-          ></v-select>
           <div class="right">
             <div class="input-srh w200">
               <v-icon>search</v-icon>
