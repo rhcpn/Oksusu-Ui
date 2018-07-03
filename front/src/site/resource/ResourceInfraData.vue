@@ -64,7 +64,6 @@ export default {
     setData: function (data) {
       if (data.length !== 0) {
         dataDepth = '1'
-        console.log(data)
       }
 
       if (data.depth === 2) {
@@ -81,6 +80,7 @@ export default {
         restUrl = '/resource/infra/list.json?type=bm-server'
       } else {
         dataDepth = '1'
+        restUrl = '/resource/infra/datacenter.json'
       }
 
       this.resultDataGrid()
@@ -116,6 +116,42 @@ export default {
           this.rowData = result
 
           this.gridOptions.api.sizeColumnsToFit()
+        })
+        .catch(e => {
+          this.errors.push(e)
+        })
+    },
+    resultDataTabGrid: function (type) {
+      let result = []
+
+      restUrl = '/resource/infra/list.json?type=' + type
+
+      this.$http.get(restUrl)
+        .then(response => {
+          let headerEle = response.data
+          let headerList = Object.keys(headerEle.data)
+          let header
+          if (headerList[1] !== undefined) {
+            header = response.data.data[headerList[1]]
+          }
+
+          let fieldEle = response.data
+          let fieldList = Object.keys(fieldEle.data)
+          let fieldData
+          let field
+          if (fieldList[0] !== undefined) {
+            fieldData = response.data.data[fieldList[0]]
+            if (fieldList[0] !== undefined) {
+              field = Object.keys(fieldData[0])
+            }
+            this.coldef(dataDepth, header, field)
+          }
+
+          for (let i = 0; i < fieldData.length; i++) {
+            result.push(fieldData[i])
+          }
+          this.rowData = []
+          this.rowData = result
         })
         .catch(e => {
           this.errors.push(e)
