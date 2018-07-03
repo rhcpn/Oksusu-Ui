@@ -20,8 +20,6 @@ public class InfraController {
     private InfraService infraService;
 
     /*
-
-        //
      *   hardware list
      * */
     @RequestMapping(value = "/infra/list.json", method = RequestMethod.GET)

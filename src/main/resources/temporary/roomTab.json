@@ -12,7 +12,7 @@
   {
     "name": "Blade Server",
     "count": "450",
-    "type": "bm-server"
+    "type": "blade-server"
   },
   {
     "name": "Switch",
