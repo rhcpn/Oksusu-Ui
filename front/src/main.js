@@ -11,6 +11,9 @@ import 'vuetify/dist/vuetify.min.css'
 import '@/asset/css/common/reset.css'
 import '@/asset/css/common/common.css'
 
+import '../node_modules/ag-grid/dist/styles/ag-grid.css'
+import '../node_modules/ag-grid/dist/styles/ag-theme-balham.css'
+
 // 다국어 설정
 Vue.use(VueI18n)
 const i18n = new VueI18n({
