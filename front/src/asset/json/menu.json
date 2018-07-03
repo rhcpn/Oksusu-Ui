@@ -1,6 +1,8 @@
 [
   { "name": "Main", "auth": true },
   { "name": "Resource-Infra", "auth": true },
+  { "name": "자원관리2", "auth": true },
+  { "name": "알람정의2", "auth": true },
   { "name": "Setting", "auth": true},
   { "name": "자원관리", "auth": true },
   { "name": "알람정의", "auth": true },

@@ -4,7 +4,7 @@
 
     <!-- Menu Depth2 -->
     <ul class="gnb-list" v-if="isFolding || (data.children && isOpen)" :style="{ display: ((isFolding || isOpen)? 'list-item':'none') }">
-      <li class="child-gnb" v-for="child in data.children" :key="child.path" v-on:click="menuActiveHandler($event, 'child')">
+      <li class="child-gnb" v-for="child in data.children" :key="child.path" v-on:click.stop="menuActiveHandler($event, 'child')">
         <a href="#"><span>{{child.name}}</span></a>
       </li>
     </ul>
@@ -17,8 +17,6 @@ export default {
   created: function () {
     this.$eventHub.$on('menu-open', this.menuOpenEventHandler)
     this.$eventHub.$on('menu-folding', this.menuFoldingEventHandler)
-
-    console.log('================================menu child;', this.data)
   },
   props: {
     id: {
@@ -76,9 +74,9 @@ export default {
 
       $(currentTarget).siblings().removeClass('active')
       if (type === 'parent') {
-        $('.gnb-list li').removeClass('active')
+        $(`#${this.id} .gnb-list li`).removeClass('active')
       } else {
-        $(currentTarget).parents(`#${this.id} .parent-gnb`).addClass('active')
+        $(currentTarget).parents('.parent-gnb').addClass('active')
       }
       if (!$(currentTarget).hasClass('active')) {
         $(currentTarget).addClass('active')

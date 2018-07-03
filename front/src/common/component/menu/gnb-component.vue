@@ -59,8 +59,6 @@ export default {
       this.topMenus = menuTypes.top
       this.bottomMenus = menuTypes.bottom
 
-      console.log('=======================menus group by;', menuTypes)
-
       for (let i = 0; i < this.topMenus.length; i++) {
         let route = this.topMenus[i]
         if (route.name === 'Main') {

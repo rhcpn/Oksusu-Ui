@@ -14,7 +14,14 @@ const routes = [
     component: () => import('@/site/Main'),
     position: 'top',
     children: [
-      { path: '/', name: 'Resource-Infra', component: () => import('@/site/resource/ResourceInfra') }
+      { path: '/',
+        name: 'Resource-Infra',
+        component: () => import('@/site/resource/ResourceInfra'),
+        children: [
+          { path: 'aaa', name: '자원관리2', position: 'bottom', component: { template: '<div>This is 자원관리 Page</div>' } },
+          { path: 'bbb', name: '알람정의2', position: 'bottom', component: { template: '<div>This is 알람정의 Page</div>' } }
+        ]
+      }
     ]
   },
   { path: '',
