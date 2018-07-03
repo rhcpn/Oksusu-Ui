@@ -34,9 +34,28 @@
             <li><a href="#none">Data center1</a></li>
             <li><a href="#none">Data center2</a></li>
           </ul>
+          <v-select class="select-box left w200"
+                    :items="items"
+                    v-model="e1"
+                    label="목록보기"
+                    single-line
+          ></v-select>
+          <div class="right">
+            <div class="input-srh w200">
+              <v-icon>search</v-icon>
+              <v-text-field
+                v-model="search"
+                :rules="searchRules"
+                placeholder="검색어를 입력하세요"
+                required
+              ></v-text-field>
+            </div>
+            <v-btn class="btn-md-cr round" @click="isFilterOpen = !isFilterOpen">장비필터{{isFilterOpen? '닫기':'열기'}}</v-btn>
+          </div>
         </div>
 
         <div class="panel-body">
+          <equipment-filter :filterOpen="isFilterOpen"></equipment-filter>
           <resource-infra-data :resultInfo="resultInfo" ref="resourceData"></resource-infra-data>
         </div>
       </div>
@@ -49,9 +68,10 @@
 <script>
 import MsfTree from '../../common/component/tree/MsfTree.vue'
 import ResourceInfraData from './ResourceInfraData.vue'
+import equipmentFilter from './equipment-filter'
 export default {
   name: 'resource-infra',
-  components: {MsfTree, ResourceInfraData},
+  components: {MsfTree, ResourceInfraData, equipmentFilter},
   methods: {
     itemClick: function (item) {
       this.resultInfo = item
@@ -62,7 +82,8 @@ export default {
     return {
       source: [], // 전체 데이터
       resultInfo: [],
-      errors: []
+      errors: [],
+      isFilterOpen: false
     }
   },
   created () {
