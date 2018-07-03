@@ -29,10 +29,8 @@
     <div class="flex md9">
       <div class="panel-wrap">
         <div class="panel-header">
-          <ul class="breadcrumbs left">
-            <li><a href="#none">SK</a></li>
-            <li><a href="#none">Data center1</a></li>
-            <li><a href="#none">Data center2</a></li>
+          <ul class="breadcrumbs left" v-if="selectDepthArray.length" >
+            <li v-for="depth in selectDepthArray" :key="depth.id"><a href="#none">{{depth.name}}</a></li>
           </ul>
           <div class="right">
             <div class="input-srh w200">
@@ -76,10 +74,20 @@ export default {
       }
       this.$refs.resourceData.setData(this.resultInfo)
       this.$refs.tabData.setData(this.resultInfo)
+      this.selectDepthArray = []
+      this.getDepthArray(item)
+      this.selectDepthArray.push(item)
+      console.log(this.selectDepthArray)
     },
     tabItemClick: function (type) {
       this.$refs.resourceData.resultDataTabGrid(type)
       console.log(type)
+    },
+    getDepthArray: function (data) {
+      if (data && data.hasOwnProperty('parent') && data.parent) {
+        this.selectDepthArray.unshift(data.parent)
+        this.getDepthArray(data.parent)
+      }
     }
   },
   data: function () {
@@ -88,7 +96,8 @@ export default {
       resultInfo: [],
       errors: [],
       isFilterOpen: false,
-      tabOpen: false
+      tabOpen: false,
+      selectDepthArray: []
     }
   },
   created () {
@@ -96,6 +105,8 @@ export default {
       .then(response => {
         this.source = response.data.data
         this.$refs.resourceTree[0].setSource(this.source)
+        this.selectDepthArray = []
+        this.selectDepthArray.push(this.source[0])
       })
       .catch(e => {
         this.errors.push(e)

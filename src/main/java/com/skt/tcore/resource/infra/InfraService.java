@@ -73,6 +73,10 @@ public class InfraService implements Infra {
         return getJsonToList(type);
     }
 
+    public List<Object> getFilterList(String search, String type) {
+        return getJsonToList(type);
+    }
+
     public List<Object> getItemNameList(String type) {
 
         GsonJsonParser jsonParser = new GsonJsonParser();

@@ -22,7 +22,7 @@
           </v-menu>
         </li>
         <li>
-          <v-btn flat class="btn-util-logout"><v-icon color="white">power_settings_new</v-icon></v-btn>
+          <v-btn flat class="btn-util-logout" @click="logout"><v-icon color="white">power_settings_new</v-icon></v-btn>
         </li>
       </ul>
     </div>
@@ -60,6 +60,10 @@ export default {
         wrapper.removeClass('slim-type')
       }
       this.$eventHub.$emit('menu-folding', this.isFolding)
+    },
+    logout () {
+      window.isAuthenticated = false
+      this.$router.push('/login')
     }
   }
 }
