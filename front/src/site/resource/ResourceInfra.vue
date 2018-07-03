@@ -105,9 +105,10 @@ export default {
       .then(response => {
         this.source = response.data.data
         this.$refs.resourceTree[0].setSource(this.source)
-        this.selectDepthArray = []
-        this.selectDepthArray.push(this.source)
-        console.log(this.selectDepthArray)
+        setTimeout(function () {
+          this.selectDepthArray = []
+          this.selectDepthArray.push(this.source)
+        }, 200)
       })
       .catch(e => {
         this.errors.push(e)
