@@ -42,7 +42,10 @@ export default {
         restUrl = '/resource/infra/room.json'
       } else if (data.depth === 4) {
         dataDepth = '4'
-        restUrl = '/resource/infra/list.json' //parameter 추가
+        restUrl = '/resource/infra/list.json?type=rack'
+      } else if (data.depth === 5) {
+        dataDepth = '5'
+        restUrl = '/resource/infra/list.json?type=bm-server'
       } else {
         dataDepth = '1'
       }
@@ -58,7 +61,7 @@ export default {
           let headerList = Object.keys(headerEle.data)
           let header
           if (headerList[1] !== undefined) {
-            header = eval('response.data.data.' + headerList[1])
+            header = response.data.data[headerList[1]]
           }
 
           let fieldEle = response.data
@@ -66,7 +69,7 @@ export default {
           let fieldData
           let field
           if (fieldList[0] !== undefined) {
-            fieldData = eval('response.data.data.' + fieldList[0])
+            fieldData = response.data.data[fieldList[0]]
             if (fieldList[0] !== undefined) {
               field = Object.keys(fieldData[0])
             }
