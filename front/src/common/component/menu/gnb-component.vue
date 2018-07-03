@@ -4,13 +4,13 @@
 
     <!-- Top -->
     <div class="gnb">
-      <ul class="gnb-menu" v-if="topMenus.length">
+      <ul class="gnb-menu" v-if="topMenus != null && topMenus.length > 0">
         <menu-child-component id="top" v-for="menu in topMenus" :key="menu.path" :data="menu" v-if="menu.name !== 'Login'"></menu-child-component>
       </ul>
     </div>
 
     <!-- Bottom -->
-    <div class="bottom-cont" v-if="bottomMenus.length">
+    <div class="bottom-cont" v-if="bottomMenus != null && bottomMenus.length > 0">
       <div class="gnb bottom">
         <ul class="gnb-menu">
           <menu-child-component id="bottom" v-for="menu in bottomMenus" :key="menu.path" :data="menu" v-if="menu.name !== 'Login'"></menu-child-component>

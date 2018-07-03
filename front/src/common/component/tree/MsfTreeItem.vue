@@ -1,6 +1,6 @@
 <template>
   <div class="treeitem">
-    <div :style="{ width: data.depth * 10 + 'px'}"></div>
+    <div :style="{ width: data.depth * 20 + 'px'}"></div>
     <div class="expanded" :style="{cursor : hasChild(data) ? 'pointer' : ''}" v-on:click="onClick">{{ hasChild(data)?
       expanded ? '-' : '+' : ''}}
     </div>
@@ -63,7 +63,7 @@ export default {
 
   .treeitem div {
     display: inline-block;
-    height: 30px;
+    height: 20px;
   }
   .treeitem .expanded {
     width: 20px;

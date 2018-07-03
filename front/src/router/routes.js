@@ -8,8 +8,16 @@ const baseRoutes = [
 ]
 
 const routes = [
-  { path: '/', name: 'Resource-Infra', position: 'top', component: () => import('@/site/resource/ResourceInfra') },
-  { path: '/setting',
+  {
+    path: '',
+    name: 'Main',
+    component: () => import('@/site/Main'),
+    position: 'top',
+    children: [
+      { path: '/', name: 'Resource-Infra', component: () => import('@/site/resource/ResourceInfra') }
+    ]
+  },
+  { path: '',
     name: 'Setting',
     position: 'bottom',
     component: { template: '<div>This is Setting Page</div>' },
@@ -20,15 +28,17 @@ const routes = [
       { path: '/d', name: '수집설정', position: 'bottom', component: { template: '<div>This is 수집설정 Page</div>' } },
       { path: '/e', name: '메트릭설정', position: 'bottom', component: { template: '<div>This is 메트릭설정 Page</div>' } },
       { path: '/f', name: '데이터센터설정', position: 'bottom', component: { template: '<div>This is 데이터센터설정 Page</div>' } }
-    ]},
-  { path: '/help',
+    ]
+  },
+  { path: '',
     name: '도움말',
     position: 'bottom',
     component: { template: '<div>This is 도움말 Page</div>' },
     children: [
       { path: '/g', name: 'How to & Tutorials', position: 'bottom', component: { template: '<div>This is How to & Tutorials Page</div>' } },
       { path: '/h', name: 'T-CORE 버전정보', position: 'bottom', component: { template: '<div>This is T-CORE 버전정보 Page</div>' } }
-    ] }
+    ]
+  }
 ]
 
 const MenuData = require('@/asset/json/menu')

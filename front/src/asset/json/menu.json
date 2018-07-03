@@ -1,5 +1,6 @@
 [
-  { "name": "Resource-Infra", "auth": true},
+  { "name": "Main", "auth": true },
+  { "name": "Resource-Infra", "auth": true },
   { "name": "Setting", "auth": true},
   { "name": "도움말", "auth": true}
 ]
