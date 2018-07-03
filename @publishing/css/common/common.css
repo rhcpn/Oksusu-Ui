@@ -286,9 +286,7 @@ caption {visibility:hidden; overflow:hidden; width:0; height:0; font-size:0; lin
 #login-wrap {width:100%; min-width:1230px; height:100vh; background:#fff url(../../images/common/bg_login_back.jpg) repeat-x 0 0;}
 #login-container {position:relative; width:1230px; height:769px; margin:0 auto; background:url(../../images/common/bg_login_view.png) no-repeat 0 47px;}
 #login-container h1 {position:absolute; left:48px; top:47px; width:126px; height:49px; background:url(../../images/common/login_logo_sk.png) no-repeat 0 0; text-indent:-9999px;}
-#login-footer {width:1230px; height:41px; margin:0 auto;}
-#login-footer address {font-size:11px; color:#818181; text-align:center;}
-#login-footer address span {display:inline-block; width:68px; height:25px; margin:0 5px; background:url(../../images/common/login_logo_skf.png) no-repeat 0 100%; font-size:0; vertical-align:bottom;}
+
 .login-area {position:absolute; left:738px; top:296px;}
 .login-area > * {width:314px; }
 .login-area h2 {width:246px; height:53px; margin-bottom:14px; background:url(../../images/common/login_logo_tcore.png) no-repeat 0 0; text-indent:-9999px;}
@@ -298,11 +296,9 @@ caption {visibility:hidden; overflow:hidden; width:0; height:0; font-size:0; lin
 .login-area .login-input .input-group__input {}
 .login-area .login-input input {width:100%; height:100% !important; line-height:20px !important; padding:2px 10px 4px 46px !important; border-radius:5px !important; border:0; font-size:14px; color:#393939;}
 .login-area .login-input i {position:absolute; left:5px; top:7px; width:20px; height:16px;}
-.login-area .login-input .id {background:url(../../images/common/ico_id.png) no-repeat;}
-.login-area .login-input .pw {background:url(../../images/common/ico_pw.png) no-repeat;}
 .login-area .login-btns {margin-bottom:15px;}
 .login-area .login-btns button {display:inline-block; height:41px; line-height:39px; border-radius:5px; font-weight:bold; font-size:14px; color:#fff; letter-spacing:1px;}
-.login-area .login-btns .login {width:257px; border:1px solid #719c27; background:#94b52c url(../../images/common/bg_login_btn.png) no-repeat 6px 50%; text-shadow:0 0 3px #546b1d;}
+.login-area .login-btns .login {width:257px; border:1px solid #719c27; background:#94b52c; text-shadow:0 0 3px #546b1d;}
 .login-area .login-btns .join {width:49px; margin-left:4px; border:1px solid #6b6b6b; background:#8e8e8e; text-shadow:0 0 3px #464646;}
 .login-help {} 
 .login-help .chk-log {float:left;}
