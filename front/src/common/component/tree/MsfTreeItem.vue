@@ -4,8 +4,7 @@
     <div class="expanded" :style="{cursor : hasChild(data) ? 'pointer' : ''}" v-on:click="onClick">{{ hasChild(data)?
       expanded ? '-' : '+' : ''}}
     </div>
-    <!--<div class="checkbox" v-bind:class="isChecked" v-on:click="checkClick"></div>-->
-    <div class="item" v-on:click="checkClick(data)">{{ label }}</div>
+    <div class="item" v-on:click="itemClick(data)">{{ label }}</div>
   </div>
 </template>
 
@@ -24,10 +23,12 @@ export default {
     hasChild: function (data) {
       return data && data.hasOwnProperty('children') && data.children && data.children.length > 0
     },
+    itemClick: function () {
+      this.$emit('itemClick', this.data)
+    },
     checkClick: function () {
       let bool = !this.data.checked
       this.data.checked = bool
-      console.log(this.data)
       this.$emit('checkclick', this.data)
     },
     onClick: function () {
@@ -35,7 +36,6 @@ export default {
       if (!this.hasChild(item)) {
         return
       }
-      console.log(item)
       item.expanded = !item.expanded
       this.$emit('expand', item)
     }
