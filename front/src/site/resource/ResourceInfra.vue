@@ -29,8 +29,8 @@
     <div class="flex md9">
       <div class="panel-wrap">
         <div class="panel-header">
-          <ul class="breadcrumbs left" v-for="depth in selectDepthArray">
-            <li><a href="#none">{{depth.name}}</a></li>
+          <ul class="breadcrumbs left" v-if="selectDepthArray.length" >
+            <li v-for="depth in selectDepthArray"><a href="#none">{{depth.name}}</a></li>
           </ul>
           <div class="right">
             <div class="input-srh w200">
@@ -105,10 +105,9 @@ export default {
       .then(response => {
         this.source = response.data.data
         this.$refs.resourceTree[0].setSource(this.source)
-        setTimeout(function () {
-          this.selectDepthArray = []
-          this.selectDepthArray.push(this.source)
-        }, 200)
+        this.selectDepthArray = []
+        this.selectDepthArray.push(this.source[0])
+
       })
       .catch(e => {
         this.errors.push(e)
