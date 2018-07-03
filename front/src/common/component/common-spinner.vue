@@ -5,24 +5,20 @@
 </template>
 
 <script>
-import Vue from 'vue'
 import loading from 'vue-full-loading'
 
-Vue.component('loading', loading)
-
-var _self
 var _indicatorCount = []
 var _indicatorTime = null
 export default {
   name: 'common-spinner',
+  components: {
+    'loading': loading
+  },
   data () {
     return {
       show: false,
       label: 'Loading...'
     }
-  },
-  created: function () {
-    _self = this
   },
   methods: {
     showIndicator: function () {
@@ -32,7 +28,7 @@ export default {
         if (_indicatorTime == null) {
           _indicatorTime = setInterval(function () {
             _indicatorCount = []
-            _self.hideIndicator()
+            this.hideIndicator()
           }, 60000)
         }
       }

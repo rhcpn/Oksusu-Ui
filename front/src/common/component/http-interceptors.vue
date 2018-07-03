@@ -1,13 +1,13 @@
 <script>
-import Vue from 'vue'
 import axios from 'axios'
 import commonSpinner from './common-spinner'
 
 var _loader
-Vue.component('common-spinner', commonSpinner)
-
 export default {
   name: 'interceptorsHandler',
+  components: {
+    'common-spinner': commonSpinner
+  },
   template: ' ',
   inherit: true,
   created: function () {
@@ -20,7 +20,6 @@ export default {
   },
   methods: {
     requestSuccessHandler: function (config) {
-      console.log('=============request Success ', config, this)
       var loader = true
       if (config && config.data) {
         var p
@@ -50,13 +49,11 @@ export default {
     },
 
     requestErrorHandler: function (err) {
-      console.log('=============request Error; ', err)
       _loader.lazyIndicator()
       return Promise.reject(err)
     },
 
     responseSuccessHandler: function (config) {
-      console.log('=============response Success; ', config)
       _loader.lazyIndicator()
 
       var contentType = config.headers['content-type']
@@ -71,7 +68,6 @@ export default {
     },
 
     responseErrorHandler: function (err) {
-      console.log('=============response Error; ', err)
       _loader.lazyIndicator()
 
       this.ajaxErrorHandler(err)
@@ -79,7 +75,6 @@ export default {
     },
 
     isSuccess: function (response) {
-      console.log('=================into isSuccess')
       if (response == null || response === '' || response === 'undefined') {
         return false
       }

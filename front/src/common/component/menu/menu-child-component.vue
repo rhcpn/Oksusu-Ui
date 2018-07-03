@@ -1,9 +1,9 @@
 <template>
-  <li class="parent-gnb" v-bind:class="{ 'active': isOpen }" @click="openMenu($event)">
+  <li class="parent-gnb" :class="{ 'active': isOpen }" @click="openMenu($event)">
     <a href="#"><v-icon>view_list</v-icon><span>{{data.name}}</span><v-icon class="arrow" v-if="data.children">keyboard_arrow_right</v-icon></a>
 
     <!-- Menu Depth2 -->
-    <ul class="gnb-list" v-if="isFolding || (data.children && isOpen)" v-bind:style="{ display: ((isFolding || isOpen)? 'list-item':'none') }">
+    <ul class="gnb-list" v-if="isFolding || (data.children && isOpen)" :style="{ display: ((isFolding || isOpen)? 'list-item':'none') }">
       <li class="child-gnb" v-for="child in data.children" :key="child.path" v-on:click.stop="menuActiveHandler($event, 'child')">
         <a href="#"><span>{{child.name}}</span></a>
       </li>
@@ -37,6 +37,10 @@ export default {
       this.menuActiveHandler(event, 'parent')
       if (this.isOpen === true) {
         this.$eventHub.$emit('menu-open', this.data)
+      }
+
+      if (this.data != null && this.data.path != null && this.data.path !== '') {
+        this.$router.push(this.data.path)
       }
     },
     menuOpenEventHandler: function (currentMenu) {

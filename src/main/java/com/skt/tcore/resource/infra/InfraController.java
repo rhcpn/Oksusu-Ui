@@ -106,16 +106,31 @@ public class InfraController {
     }
 
     /*
-     *   tab list
+     *   room tab list
      * */
-    @RequestMapping(value = "/infra/tabList.json", method = RequestMethod.GET)
+    @RequestMapping(value = "/infra/roomTabList.json", method = RequestMethod.GET)
     @ResponseBody
-    public JsonResult tabList() {
+    public JsonResult roomTabList() {
         JsonResult js = new JsonResult();
 
         Map resultMap = new HashMap();
-        resultMap.put("roomTabList", infraService.getItemNameList("tab"));
-        resultMap.put("rackTabList", infraService.getItemNameList("rackTab"));
+        resultMap.put("roomTabList", infraService.getTabList("roomTab"));
+
+        js.setData(resultMap);
+
+        return js;
+    }
+
+    /*
+     *   rack tab list
+     * */
+    @RequestMapping(value = "/infra/rackTabList.json", method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResult rackTabList() {
+        JsonResult js = new JsonResult();
+
+        Map resultMap = new HashMap();
+        resultMap.put("rackTabList", infraService.getTabList("rackTab"));
 
         js.setData(resultMap);
 
@@ -124,17 +139,17 @@ public class InfraController {
 
     /*
          필터 검색 항목들
-     *   Filter Seach Item List
+     *   Filter Item List
      * */
-    @RequestMapping(value = "/infra/filterSearchItemList.json", method = RequestMethod.GET)
+    @RequestMapping(value = "/infra/filterItemList.json", method = RequestMethod.GET)
     @ResponseBody
     public JsonResult filterSearchItemList() {
         JsonResult js = new JsonResult();
 
         Map resultMap = new HashMap();
-        String[] itemNames = {"장비명", "Host명", "타입", "상태", "서비스 대표 IP", "담당자", "서비스 명", "시리얼 번호", "메모"};
-        String[] itemType = {"name", "hostName", "type", "status", "mainIpAddr", "operatorName", "serviceName", "serialNumber", "remark"};
-        resultMap.put("filter-hw-field", itemNames);
+        resultMap.put("filterHwFieldList", infraService.getFilters("filter-hw-field"));
+        resultMap.put("filterHwStatusList", infraService.getFilters("filter-hw-status"));
+        resultMap.put("filterHwTypeList", infraService.getFilters("filter-hw-type"));
 
         js.setData(resultMap);
 

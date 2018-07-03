@@ -4,7 +4,7 @@
     <div class="gnb">
       <!-- Menu Depth1 -->
       <ul class="gnb-menu" v-if="menus.length">
-        <menu-child-component v-for="menu in menus" :key="menu.path" :data="menu"></menu-child-component>
+        <menu-child-component v-for="menu in menus" :key="menu.path" :data="menu" v-if="menu.name !== 'Login'"></menu-child-component>
       </ul>
     </div>
     <div class="bottom-cont">
@@ -14,13 +14,13 @@
 </template>
 
 <script>
-import Vue from 'vue'
 import menuChild from '@/common/component/menu/menu-child-component'
-
-Vue.component('menu-child-component', menuChild)
 
 export default {
   name: 'gnb-component',
+  components: {
+    'menu-child-component': menuChild
+  },
   created: function () {
     let router = this.$router
     if (router == null || router.options == null || router.options.routes == null) {

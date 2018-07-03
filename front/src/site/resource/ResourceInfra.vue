@@ -35,8 +35,27 @@
             <li><a href="#none">Data center1</a></li>
             <li><a href="#none">Data center2</a></li>
           </ul>
+          <v-select class="select-box left w200"
+                    :items="items"
+                    v-model="e1"
+                    label="목록보기"
+                    single-line
+          ></v-select>
+          <div class="right">
+            <div class="input-srh w200">
+              <v-icon>search</v-icon>
+              <v-text-field
+                v-model="search"
+                :rules="searchRules"
+                placeholder="검색어를 입력하세요"
+                required
+              ></v-text-field>
+            </div>
+            <v-btn class="btn-md-cr round" @click="isFilterOpen = !isFilterOpen">장비필터{{isFilterOpen? '닫기':'열기'}}</v-btn>
+          </div>
         </div>
         <div class="panel-body">
+          <equipment-filter :filterOpen="isFilterOpen"></equipment-filter>
           <v-tabs class="sub-tabs"
                   v-model="active"
                   color="none"
@@ -72,18 +91,29 @@
 <script>
 import sampleData from '../../asset/json/getResource.json'
 import MsfTree from '../../common/component/tree/MsfTree.vue'
+import equipmentFilter from './equipment-filter'
 export default {
   name: 'resource-infra',
-  components: {MsfTree},
+  components: {MsfTree, equipmentFilter},
   data () {
     return {
-      source: [] // 전체 데이터
+      source: [], // 전체 데이터
+      active: null,
+      dialogData: [],
+      isFilterOpen: false
     }
   },
   methods: {
     sliderOpen () {
-      this.$eventHub.$emit('slider-open')
-      this.$eventHub.$emit('slider-change-data', {'data': '블라블라라'})
+      this.$http.get('/resource/infra/list.json?type=bm-server')
+        .then(response => {
+          this.dialogData = response.data.data.hardwareList[1]
+          this.$eventHub.$emit('slider-open')
+          this.$eventHub.$emit('slider-change-data', this.dialogData)
+        })
+        .catch(e => {
+          this.errors.push(e)
+        })
     }
   },
   created () {
