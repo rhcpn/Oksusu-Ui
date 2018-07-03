@@ -5,7 +5,7 @@
         <col style="width:15%">
         <col style="width:auto">
       </colgroup>
-      <tbody id="filter">
+      <tbody id="filter" v-if="data != null">
       <tr>
         <th>항목</th>
         <td>
@@ -33,8 +33,8 @@
       </tbody>
     </table>
     <div class="filter-selected">
-      <v-btn flat class="btn-md" @click="removefilter()"><v-icon>replay</v-icon>전체해제</v-btn>
-      <v-btn flat class="btn-md" v-for="item in selectedItem" :key="item.type" @click="removefilter(item)"><v-icon class="md-18">clear</v-icon>{{item.name || item.type}}</v-btn>
+      <v-btn flat class="btn-md" @click="removeFilter()"><v-icon>replay</v-icon>전체해제</v-btn>
+      <v-btn flat class="btn-md" v-for="item in selectedItem" :key="item.type" @click="removeFilter(item)"><v-icon class="md-18">clear</v-icon>{{item.name || item.type}}</v-btn>
 
     </div>
   </div>
@@ -50,7 +50,6 @@ export default {
         if (response == null || response.data == null || response.data.data == null) {
           return
         }
-        console.log('=================================================================', response.data.data)
 
         this.data = response.data.data
       })
@@ -87,8 +86,10 @@ export default {
         delete selectedMap[item.type]
         sel.removeClass('active')
       }
+
+      // (TODO) 검색 이벤트 발생
     },
-    removefilter (target) {
+    removeFilter (target) {
       if (target == null) {
         selectedMap = {}
         this.selectedItem = []
@@ -99,6 +100,8 @@ export default {
         delete selectedMap[target.type]
         $(`#${target.type}`).removeClass('active')
       }
+
+      // (TODO) 검색 이벤트 발생
     }
   }
 }

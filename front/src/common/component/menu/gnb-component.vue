@@ -1,14 +1,21 @@
 <template>
   <aside>
     <h1 class="logo"><a href="#none">T-CORE</a></h1>
+
+    <!-- Top -->
     <div class="gnb">
-      <!-- Menu Depth1 -->
-      <ul class="gnb-menu" v-if="menus.length">
-        <menu-child-component v-for="menu in menus" :key="menu.path" :data="menu" v-if="menu.name !== 'Login'"></menu-child-component>
+      <ul class="gnb-menu" v-if="topMenus != null && topMenus.length > 0">
+        <menu-child-component id="top" v-for="(menu, key) in topMenus" :key="key" :data="menu" v-if="menu.name !== 'Login'"></menu-child-component>
       </ul>
     </div>
-    <div class="bottom-cont">
-      하단메뉴
+
+    <!-- Bottom -->
+    <div class="bottom-cont" v-if="bottomMenus != null && bottomMenus.length > 0">
+      <div class="gnb bottom">
+        <ul class="gnb-menu">
+          <menu-child-component id="bottom" v-for="(menu, key) in bottomMenus" :key="key" :data="menu" v-if="menu.name !== 'Login'"></menu-child-component>
+        </ul>
+      </div>
     </div>
   </aside>
 </template>
@@ -16,6 +23,7 @@
 <script>
 import menuChild from '@/common/component/menu/menu-child-component'
 
+var menus = []
 export default {
   name: 'gnb-component',
   components: {
@@ -39,12 +47,26 @@ export default {
   data () {
     return {
       wrapperWidth: this.width,
-      menus: []
+      topMenus: [],
+      bottomMenus: []
     }
   },
   methods: {
     init: function () {
-      this.menus = this.$router.options.routes
+      menus = this.$router.options.routes
+
+      let menuTypes = _.groupBy(menus, 'position')
+      this.topMenus = menuTypes.top
+      this.bottomMenus = menuTypes.bottom
+
+      console.log('=======================menus group by;', menuTypes)
+
+      for (let i = 0; i < this.topMenus.length; i++) {
+        let route = this.topMenus[i]
+        if (route.name === 'Main') {
+          this.topMenus = route.children
+        }
+      }
     }
   }
 }
