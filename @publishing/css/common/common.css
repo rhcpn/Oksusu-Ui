@@ -107,10 +107,14 @@ aside .bottom-cont {position:absolute; bottom:80px; left:0; right:0;}
 .gnb-menu .gnb-list li a {display:block; padding:11px 0 11px 50px;}
 .gnb-menu .gnb-list li a span {display:inline-block; vertical-align:middle;}
 
-/* container */
+/* content */
 .fixed-top-cont {position:fixed; top:0; left:0; right:0; width:100%; height:46px; padding-left:200px; background:#485ab7; box-shadow:0 1px 5px 0 rgba(0,0,0,.3); z-index:2;}
 .content {padding:46px 0 0 200px;}
 .container {position:relative; padding:6px;}
+
+/* layout flex 간격 */
+.layout.row.gap-06 {margin:0 -3px;}
+.layout.row.gap-06 .flex {padding:0 3px;}
 
 /* fixed-top-cont */
 .fixed-top-cont >* {height:100%; color:#fff;}
@@ -129,10 +133,18 @@ aside .bottom-cont {position:absolute; bottom:80px; left:0; right:0;}
 .panel-wrap .panel-header >*:before {content:""; display:inline-block; height:100%; vertical-align:middle;}
 .panel-wrap .panel-body {height:calc(100% - 34px); padding:6px; border-top:none;}
 
-/* layout flex 간격 */
-.layout.row.gap-06 {margin:0 -3px;}
-.layout.row.gap-06 .flex {padding:0 3px;}
+/* util-menu */
+.util-menu:after{content:'';display:block;clear:both;}
+.util-menu li {float:left; height:46px; line-height:46px;}
+.util-menu li >* {vertical-align:top;}
+.util-menu button {height:46px; min-width:30px; margin:0}
+.util-menu .btn-util-logout {width:52px; border-left:1px solid #606fc0;}
 
+/* badge */
+.badge__badge, .badge__badge .icon {font-size:11px;}
+.util-menu .badge__badge {left:-15px; top:8px; height:12px; line-height:12px; }
+.util-menu .badge__badge .bg-red {height:12px; line-height:12px; padding:1px 5px; background:#e15554; border-radius:7px;}
+.util-menu .badge-color1 {height:15px; background:#e15554;}
 /* breadcrumbs */
 .breadcrumbs {padding:0;}
 .breadcrumbs li {font-size:12px;}
@@ -178,24 +190,19 @@ aside .bottom-cont {position:absolute; bottom:80px; left:0; right:0;}
 .btn-gnb-toggle:before {content:"";}
 .btn-gnb-toggle:hover {box-shadow:none;}
 .toolbar__side-icon {color:#fff;}
-
 button[class^="btn-md"] {height:24px;}
 button[class*="-cr"] {border-radius:2px; background:#6477cd; color:#fff;}
 button[class*="-gy"] {border-radius:2px; background:#ededed;}
 button[class^="btn-md"].ico {width:24px;}
 button.round {border-radius:12px;}
+.btn .icon--left {margin-right:6px;}
+.btn .icon--right {margin-left:6px;}
 
 /* Button 정렬 */
 .btns-area {padding:10px 0; background:#fff; text-align:center;}/* 기본 중앙 */
 .btns-area:after {content:''; display:block; clear:both;}
 
-/* util-menu */
-.util-menu:after{content:'';display:block;clear:both;}
-.util-menu li {float:left; height:46px; line-height:46px;}
-.util-menu li >* {vertical-align:top;}
-.util-menu button {height:46px; min-width:30px; margin:0}
-.util-menu .btn-util-logout {width:52px; border-left:1px solid #606fc0;}
-
+/* media */
 @media (max-width:767px){
 	aside {width:0;}
 	aside >* {display:none;}
@@ -209,15 +216,6 @@ button.round {border-radius:12px;}
 	.slim-type .content {padding-left:51px;}
 	
 }
-
-
-.btn .icon--left {margin-right:6px;}
-.btn .icon--right {margin-left:6px;}
-
-.badge__badge, .badge__badge .icon {font-size:11px;}
-.util-menu .badge__badge {left:-15px; top:8px; height:12px; line-height:12px; }
-.util-menu .badge__badge .bg-red {height:12px; line-height:12px; padding:1px 5px; background:#e15554; border-radius:7px;}
-.util-menu .badge-color1 {height:15px; background:#e15554;}
 
 /* 우측 slider-container */
 .slider-container {position:absolute; top:6px; right:0; bottom:6px; width:100%; box-shadow:0 2px 26px 5px rgba(0,0,0,.10); -webkit-transition:.2s cubic-bezier(.4,0,.2,1); transition:.2s cubic-bezier(.4,0,.2,1); z-index:2;}
@@ -273,6 +271,77 @@ caption {visibility:hidden; overflow:hidden; width:0; height:0; font-size:0; lin
 .filter-tbl > table > tbody > tr > th {padding:6px; border-bottom:1px solid #c2c2c2; border-right:1px solid #c2c2c2; text-align:left; font-weight:700;}
 .filter-tbl > table > tbody > tr > td {padding:6px; border-bottom:1px solid #c2c2c2; background:#fff; word-wrap:break-word; word-break:break-all; vertical-align:middle;}
 
-
 .picker__title {background:#6477cd;}
 .picker__body {background:#fff;}
+
+/* dialog */
+.dialog__content {position:absolute;}
+
+/* 임시Rack사이즈 */
+.col-fixed500 {flex-basis:500px !important; max-width:500px !important;}
+.col-fluid500 {flex-basis:calc(100% - 500px) !important; max-width:calc(100% - 500px) !important}
+
+/* 임시Login */
+/* Login New 2017-05-23 MOD : 통합 로그인 */
+#login-wrap {width:100%; min-width:1230px; height:100vh; background:#fff url(../../images/common/bg_login_back.jpg) repeat-x 0 0;}
+#login-container {position:relative; width:1230px; height:769px; margin:0 auto; background:url(../../images/common/bg_login_view.png) no-repeat 0 47px;}
+#login-container h1 {position:absolute; left:48px; top:47px; width:126px; height:49px; background:url(../../images/common/login_logo_sk.png) no-repeat 0 0; text-indent:-9999px;}
+#login-footer {width:1230px; height:41px; margin:0 auto;}
+#login-footer address {font-size:11px; color:#818181; text-align:center;}
+#login-footer address span {display:inline-block; width:68px; height:25px; margin:0 5px; background:url(../../images/common/login_logo_skf.png) no-repeat 0 100%; font-size:0; vertical-align:bottom;}
+.login-area {position:absolute; left:738px; top:296px;}
+.login-area > * {width:314px; }
+.login-area h2 {width:246px; height:53px; margin-bottom:14px; background:url(../../images/common/login_logo_tcore.png) no-repeat 0 0; text-indent:-9999px;}
+.login-area .login-input label {}
+.login-area .login-input.input-group--text-field label {top:2px;}
+.login-area .login-input {position:relative; height:35px; margin-bottom:8px;}
+.login-area .login-input .input-group__input {}
+.login-area .login-input input {width:100%; height:100% !important; line-height:20px !important; padding:2px 10px 4px 46px !important; border-radius:5px !important; border:0; font-size:14px; color:#393939;}
+.login-area .login-input i {position:absolute; left:5px; top:7px; width:20px; height:16px;}
+.login-area .login-input .id {background:url(../../images/common/ico_id.png) no-repeat;}
+.login-area .login-input .pw {background:url(../../images/common/ico_pw.png) no-repeat;}
+.login-area .login-btns {margin-bottom:15px;}
+.login-area .login-btns button {display:inline-block; height:41px; line-height:39px; border-radius:5px; font-weight:bold; font-size:14px; color:#fff; letter-spacing:1px;}
+.login-area .login-btns .login {width:257px; border:1px solid #719c27; background:#94b52c url(../../images/common/bg_login_btn.png) no-repeat 6px 50%; text-shadow:0 0 3px #546b1d;}
+.login-area .login-btns .join {width:49px; margin-left:4px; border:1px solid #6b6b6b; background:#8e8e8e; text-shadow:0 0 3px #464646;}
+.login-help {} 
+.login-help .chk-log {float:left;}
+.login-help .chk-log > [type="checkbox"] + label:before {border:1px solid #aaa;}
+.login-help .chk-log > [type="checkbox"]:checked + label:before {color:#222;}
+.login-help .find-log {float:right;}
+.login-help .find-log a {display:inline-block; height:24px; line-height:24px; color:#2a96b1;}
+.login-help .find-log a:first-child:after {content:"/"; margin:0 5px;}
+.login-help:after {content:""; display:block; clear:both;}
+.login-info {padding:22px 0 0 3px; line-height:16px; color:#212121;}
+
+/* login visual */
+.visual-area {position:absolute; top:165px; left:118px; width:500px; height:500px;}
+.slider-view {position:relative; overflow:hidden; width:256px; height:228px; margin:140px auto;}
+.slider-list {position:absolute;}
+.slider-list:after {display:block; clear:both; content:''}
+.slider-list li {float:left; width:256px; height:228px;}
+
+/* login visual move images */
+[class^="slider-mv"] {font-size:0;}
+.slider-mv1 {background:url(../../images/common/mv1.png) no-repeat 0 0;}
+.slider-mv2 {background:url(../../images/common/mv2.png) no-repeat 0 0;}
+.slider-mv3 {background:url(../../images/common/mv3.png) no-repeat 0 0;}
+.slider-mv4 {background:url(../../images/common/mv4.png) no-repeat 0 0;}
+.slider-mv5 {background:url(../../images/common/mv5.png) no-repeat 0 0;}
+.slider-mv6 {background:url(../../images/common/mv6.png) no-repeat 0 0;}
+.slider-mv7 {background:url(../../images/common/mv7.png) no-repeat 0 0;}
+
+/* login visual move number */
+.slider-number {}
+.slider-number li {}
+.slider-number li [class^="number"] {position:absolute; width:120px; height:95px; font-size:0;}
+.slider-number li [class^="number"].on:after {content:""; position:absolute; top:-10px; left:calc(50% - 13px); width:0; height:0; margin-left:5px; vertical-align:middle; color:#ff6600; border-top:7px dashed; border-right:7px solid transparent; border-left:7px solid transparent;}
+.slider-number li .number1 {top:90px; left:28px; background:url(../../images/common/mv1_sm.png) no-repeat 0 0;}
+.slider-number li .number2 {top:203px; left:-4px; background:url(../../images/common/mv2_sm.png) no-repeat 0 0;}
+.slider-number li .number3 {top:307px; left:9px; background:url(../../images/common/mv3_sm.png) no-repeat 0 0;}
+.slider-number li .number4 {top:387px; left:93px; background:url(../../images/common/mv4_sm.png) no-repeat 0 0;}
+.slider-number li .number5 {top:415px; left:197px; background:url(../../images/common/mv5_sm.png) no-repeat 0 0;}
+.slider-number li .number6 {top:376px; left:294px; background:url(../../images/common/mv6_sm.png) no-repeat 0 0;}
+.slider-number li .number7 {top:280px; left:370px; background:url(../../images/common/mv7_sm.png) no-repeat 0 0;}
+
+fieldset {border:0 none;}
