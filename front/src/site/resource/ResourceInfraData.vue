@@ -16,7 +16,12 @@ export default {
   components: {
     'ag-grid-vue': AgGridVue,
     'LinkComponent': {
-      template: '{{params.value}}<a v-on:click="sliderOpen">실장도 보기<a><a v-on:click="equipmentModify">수정</a><a v-on:click="equipmentDelete">삭제</a>',
+      template: '<div style="display:inline-block" @mouseover="mouseOver" @mouseleave="mouseLeave">{{params.value}} <div v-if="aLinkShow" style="display:inline-block" ><a v-on:click="sliderOpen">실장도 보기 | </a><a v-on:click="equipmentModify">수정 |</a><a v-on:click="equipmentDelete">삭제</a></div></div>',
+      data: function () {
+        return {
+          aLinkShow: false
+        }
+      },
       methods: {
         sliderOpen () {
           this.$http.get('/resource/infra/list.json?type=bm-server').then(response => {
@@ -32,119 +37,124 @@ export default {
         },
         equipmentDelete () {
           console.log('삭제')
+        },
+        mouseOver () {
+          this.aLinkShow = true
+        },
+        mouseLeave () {
+          this.aLinkShow = false
         }
       }
-    },
-    data: function () {
-      return {
-        resultInfo: Object,
-        resultData: [],
-        errors: [],
-        gridOptions: {},
-        columnDefs: [],
-        rowData: [],
-        enableColResize: true,
-        dialogData: []
+    }
+  },
+  data: function () {
+    return {
+      resultInfo: Object,
+      resultData: [],
+      errors: [],
+      gridOptions: {},
+      columnDefs: [],
+      rowData: [],
+      enableColResize: true,
+      dialogData: []
+    }
+  },
+  methods: {
+
+    setData: function (data) {
+      if (data.length !== 0) {
+        dataDepth = '1'
+        console.log(data)
       }
+
+      if (data.depth === 2) {
+        dataDepth = '2'
+        restUrl = '/resource/infra/floor.json'
+      } else if (data.depth === 3) {
+        dataDepth = '3'
+        restUrl = '/resource/infra/room.json'
+      } else if (data.depth === 4) {
+        dataDepth = '4'
+        restUrl = '/resource/infra/list.json?type=rack'
+      } else if (data.depth === 5) {
+        dataDepth = '5'
+        restUrl = '/resource/infra/list.json?type=bm-server'
+      } else {
+        dataDepth = '1'
+      }
+
+      this.resultDataGrid()
     },
-    methods: {
+    resultDataGrid: function () {
+      let result = []
 
-      setData: function (data) {
-        if (data.length !== 0) {
-          dataDepth = '1'
-          console.log(data)
-        }
-
-        if (data.depth === 2) {
-          dataDepth = '2'
-          restUrl = '/resource/infra/floor.json'
-        } else if (data.depth === 3) {
-          dataDepth = '3'
-          restUrl = '/resource/infra/room.json'
-        } else if (data.depth === 4) {
-          dataDepth = '4'
-          restUrl = '/resource/infra/list.json?type=rack'
-        } else if (data.depth === 5) {
-          dataDepth = '5'
-          restUrl = '/resource/infra/list.json?type=bm-server'
-        } else {
-          dataDepth = '1'
-        }
-
-        this.resultDataGrid()
-      },
-      resultDataGrid: function () {
-        let result = []
-
-        this.$http.get(restUrl)
-          .then(response => {
-            let headerEle = response.data
-            let headerList = Object.keys(headerEle.data)
-            let header
-            if (headerList[1] !== undefined) {
-              header = response.data.data[headerList[1]]
-            }
-
-            let fieldEle = response.data
-            let fieldList = Object.keys(fieldEle.data)
-            let fieldData
-            let field
-            if (fieldList[0] !== undefined) {
-              fieldData = response.data.data[fieldList[0]]
-              if (fieldList[0] !== undefined) {
-                field = Object.keys(fieldData[0])
-              }
-              this.coldef(dataDepth, header, field)
-            }
-
-            for (let i = 0; i < fieldData.length; i++) {
-              result.push(fieldData[i])
-            }
-            this.rowData = []
-            this.rowData = result
-          })
-          .catch(e => {
-            this.errors.push(e)
-          })
-      },
-      onGridReady (params) {
-        this.gridApi = params.api
-        this.columnApi = params.columnApi
-      },
-      getSelectedRows () {
-        const selectedNodes = this.gridApi.getSelectedNodes()
-        const selectedData = selectedNodes.map(node => node.data)
-        const selectedDataStringPresentation = selectedData.map(node => node.make + ' ' + node.model).join(', ')
-        alert(`Selected nodes: ${selectedDataStringPresentation}`)
-      },
-      coldef: function (dataDepth, header, field) {
-        this.columnDefs = []
-        for (let i = 0; i < header.length; i++) {
-          this.columnDefs.push({
-            headerName: header[i],
-            field: field[i]
-          })
-          if (i == 1) {
-            this.columnDefs[1].cellRendererFramework = 'LinkComponent'
-            continue
+      this.$http.get(restUrl)
+        .then(response => {
+          let headerEle = response.data
+          let headerList = Object.keys(headerEle.data)
+          let header
+          if (headerList[1] !== undefined) {
+            header = response.data.data[headerList[1]]
           }
-        }
-      }
-    },
-    created () {
-      this.setData(this.resultData ? this.resultData : [])
-    },
-    beforeMount () {
-      this.gridOptions = {
-        context: {
-          componentParent: this
-        }
-      }
 
-      this.setData(this.resultData ? this.resultData : [])
+          let fieldEle = response.data
+          let fieldList = Object.keys(fieldEle.data)
+          let fieldData
+          let field
+          if (fieldList[0] !== undefined) {
+            fieldData = response.data.data[fieldList[0]]
+            if (fieldList[0] !== undefined) {
+              field = Object.keys(fieldData[0])
+            }
+            this.coldef(dataDepth, header, field)
+          }
+
+          for (let i = 0; i < fieldData.length; i++) {
+            result.push(fieldData[i])
+          }
+          this.rowData = []
+          this.rowData = result
+
+          this.gridOptions.api.sizeColumnsToFit()
+        })
+        .catch(e => {
+          this.errors.push(e)
+        })
     },
-    mounted () {
-      this.gridOptions.api.sizeColumnsToFit()
+    onGridReady (params) {
+      this.gridApi = params.api
+      this.columnApi = params.columnApi
+    },
+    getSelectedRows () {
+      const selectedNodes = this.gridApi.getSelectedNodes()
+      const selectedData = selectedNodes.map(node => node.data)
+      const selectedDataStringPresentation = selectedData.map(node => node.make + ' ' + node.model).join(', ')
+      alert(`Selected nodes: ${selectedDataStringPresentation}`)
+    },
+    coldef: function (dataDepth, header, field) {
+      this.columnDefs = []
+      for (let i = 0; i < header.length; i++) {
+        this.columnDefs.push({
+          headerName: header[i],
+          field: field[i]
+        })
+        var depth = parseInt(dataDepth)
+        if (i === 1 && depth >= 4) {
+          this.columnDefs[1].cellRendererFramework = 'LinkComponent'
+          this.columnDefs[1].width = 250
+          continue
+        }
+      }
+    }
+  },
+  created () {
+    this.setData(this.resultData ? this.resultData : [])
+  },
+  beforeMount () {
+    this.gridOptions = {
+      context: {
+        componentParent: this
+      }
     }
   }
 }
