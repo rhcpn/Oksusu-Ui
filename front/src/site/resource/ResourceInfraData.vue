@@ -1,5 +1,6 @@
 <template>
   <ag-grid-vue style="width: 100%; height: 100%;"
+               :gridOptions="gridOptions"
                class="ag-theme-balham"
                :columnDefs="columnDefs"
                :rowData="rowData">
@@ -13,7 +14,38 @@ let dataDepth = '1'
 export default {
   name: 'resource-infra-data',
   components: {
-    'ag-grid-vue': AgGridVue
+    'ag-grid-vue': AgGridVue,
+    'LinkComponent': {
+      template: '<div style="display:inline-block" @mouseover="mouseOver" @mouseleave="mouseLeave">{{params.value}} <div v-if="aLinkShow" style="display:inline-block" ><a v-on:click="sliderOpen">실장도 보기 | </a><a v-on:click="equipmentModify">수정 |</a><a v-on:click="equipmentDelete">삭제</a></div></div>',
+      data: function () {
+        return {
+          aLinkShow: false
+        }
+      },
+      methods: {
+        sliderOpen () {
+          this.$http.get('/resource/infra/list.json?type=bm-server').then(response => {
+            this.dialogData = response.data.data.hardwareList[1]
+            this.$eventHub.$emit('slider-open')
+            this.$eventHub.$emit('slider-change-data', this.dialogData)
+          }).catch(e => {
+            this.errors.push(e)
+          })
+        },
+        equipmentModify () {
+          console.log('수정')
+        },
+        equipmentDelete () {
+          console.log('삭제')
+        },
+        mouseOver () {
+          this.aLinkShow = true
+        },
+        mouseLeave () {
+          this.aLinkShow = false
+        }
+      }
+    }
   },
   data: function () {
     return {
@@ -23,7 +55,8 @@ export default {
       gridOptions: {},
       columnDefs: [],
       rowData: [],
-      enableColResize: true
+      enableColResize: true,
+      dialogData: []
     }
   },
   methods: {
@@ -81,6 +114,8 @@ export default {
           }
           this.rowData = []
           this.rowData = result
+
+          this.gridOptions.api.sizeColumnsToFit()
         })
         .catch(e => {
           this.errors.push(e)
@@ -139,6 +174,12 @@ export default {
           headerName: header[i],
           field: field[i]
         })
+        var depth = parseInt(dataDepth)
+        if (i === 1 && depth >= 4) {
+          this.columnDefs[1].cellRendererFramework = 'LinkComponent'
+          this.columnDefs[1].width = 250
+          continue
+        }
       }
     }
   },
@@ -146,6 +187,11 @@ export default {
     this.setData(this.resultData ? this.resultData : [])
   },
   beforeMount () {
+    this.gridOptions = {
+      context: {
+        componentParent: this
+      }
+    }
   }
 }
 </script>
