@@ -2,5 +2,13 @@
   { "name": "Main", "auth": true },
   { "name": "Resource-Infra", "auth": true },
   { "name": "Setting", "auth": true},
-  { "name": "도움말", "auth": true}
+  { "name": "자원관리", "auth": true },
+  { "name": "알람정의", "auth": true },
+  { "name": "알람공지설정", "auth": true },
+  { "name": "수집설정", "auth": true },
+  { "name": "메트릭설정", "auth": true },
+  { "name": "데이터센터설정", "auth": true },
+  { "name": "도움말", "auth": true },
+  { "name": "How to & Tutorials", "auth": true },
+  { "name": "T-CORE 버전정보", "auth": true }
 ]
