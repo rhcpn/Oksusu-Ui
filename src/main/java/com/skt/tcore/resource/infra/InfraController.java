@@ -38,7 +38,7 @@ public class InfraController {
 
         Map resultMap = new HashMap();
         resultMap.put("hardwareList", infraService.getList(parent, type));
-        resultMap.put("itemNameList", infraService.getItemNameList(type));
+        resultMap.put("zitemNameList", infraService.getItemNameList(type));
 
         js.setData(resultMap);
 
@@ -66,7 +66,7 @@ public class InfraController {
 
         Map resultMap = new HashMap();
         resultMap.put("datacenterList", infraService.getDatacenter());
-        resultMap.put("itemNameList", infraService.getItemNameList("datacenter"));
+        resultMap.put("zitemNameList", infraService.getItemNameList("datacenter"));
 
         js.setData(resultMap);
         return js;
@@ -82,7 +82,7 @@ public class InfraController {
 
         Map resultMap = new HashMap();
         resultMap.put("floorList", infraService.getFloor());
-        resultMap.put("itemNameList", infraService.getItemNameList("floor"));
+        resultMap.put("zitemNameList", infraService.getItemNameList("floor"));
 
         js.setData(resultMap);
         return js;
@@ -98,7 +98,7 @@ public class InfraController {
 
         Map resultMap = new HashMap();
         resultMap.put("roomList", infraService.getRoom());
-        resultMap.put("itemNameList", infraService.getItemNameList("room"));
+        resultMap.put("zitemNameList", infraService.getItemNameList("room"));
 
         js.setData(resultMap);
 
