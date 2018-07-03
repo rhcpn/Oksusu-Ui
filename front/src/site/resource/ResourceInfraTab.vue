@@ -6,7 +6,7 @@
     <v-tab
       v-for="item in tabList"
       :key="item.type"
-      active-class
+      ripple
       @click="tabItemClick(item.type)">
      {{ item.name }}({{ item.count }})
     </v-tab>
