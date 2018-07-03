@@ -56,6 +56,7 @@
 
         <div class="panel-body">
           <equipment-filter :filterOpen="isFilterOpen"></equipment-filter>
+          <resource-infra-tab v-show="tabOpen" v-on:tabItemClick="tabItemClick" ref="tabData"></resource-infra-tab>
           <resource-infra-data :resultInfo="resultInfo" ref="resourceData"></resource-infra-data>
         </div>
       </div>
@@ -67,15 +68,26 @@
 
 <script>
 import MsfTree from '../../common/component/tree/MsfTree.vue'
+import ResourceInfraTab from './ResourceInfraTab.vue'
 import ResourceInfraData from './ResourceInfraData.vue'
 import equipmentFilter from './equipment-filter'
 export default {
   name: 'resource-infra',
-  components: {MsfTree, ResourceInfraData, equipmentFilter},
+  components: {MsfTree, ResourceInfraTab, ResourceInfraData, equipmentFilter},
   methods: {
     itemClick: function (item) {
       this.resultInfo = item
+      if (this.resultInfo.depth === 4 || this.resultInfo.depth === 5) {
+        this.tabOpen = true
+      } else {
+        this.tabOpen = false
+      }
       this.$refs.resourceData.setData(this.resultInfo)
+      this.$refs.tabData.setData(this.resultInfo)
+    },
+    tabItemClick: function (type) {
+      this.$refs.resourceData.resultDataTabGrid(type)
+      console.log(type)
     }
   },
   data: function () {
@@ -83,7 +95,8 @@ export default {
       source: [], // 전체 데이터
       resultInfo: [],
       errors: [],
-      isFilterOpen: false
+      isFilterOpen: false,
+      tabOpen: false
     }
   },
   created () {
