@@ -1,3 +1,4 @@
 [
+  { "name": "Main", "auth": true },
   { "name": "Resource-Infra", "auth": true }
 ]
