@@ -44,7 +44,11 @@ export default {
   },
   methods: {
     init: function () {
-      this.menus = this.$router.options.routes
+      for (let route of this.$router.options.routes) {
+        if (route.name === 'Main') {
+          this.menus = route.children
+        }
+      }
     }
   }
 }
