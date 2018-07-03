@@ -41,6 +41,29 @@ public class InfraController {
         return js;
     }
 
+
+    /*
+     *   filter serach List
+     * */
+    @RequestMapping(value = "/infra/filterList.json", method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResult filterList(String search, String type) {
+        JsonResult js = new JsonResult();
+
+        //default - bm-server
+        if (type == null || type.equals("")) {
+            type = "bm-server";
+        }
+
+        Map resultMap = new LinkedHashMap<String, Object>();
+        resultMap.put("filterList", infraService.getFilterList(search, "filter-search"));
+        resultMap.put("itemNameList", infraService.getItemNameList(type));
+
+        js.setData(resultMap);
+
+        return js;
+    }
+
     /*
      *   navigation tree
      * */
