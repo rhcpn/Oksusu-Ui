@@ -297,9 +297,8 @@ caption {visibility:hidden; overflow:hidden; width:0; height:0; font-size:0; lin
 .login-area .login-input input {width:100%; height:100% !important; line-height:20px !important; padding:2px 10px 4px 46px !important; border-radius:5px !important; border:0; font-size:14px; color:#393939;}
 .login-area .login-input i {position:absolute; left:5px; top:7px; width:20px; height:16px;}
 .login-area .login-btns {margin-bottom:15px;}
-.login-area .login-btns button {display:inline-block; height:41px; line-height:39px; border-radius:5px; font-weight:bold; font-size:14px; color:#fff; letter-spacing:1px;}
-.login-area .login-btns .login {width:257px; border:1px solid #719c27; background:#94b52c; text-shadow:0 0 3px #546b1d;}
-.login-area .login-btns .join {width:49px; margin-left:4px; border:1px solid #6b6b6b; background:#8e8e8e; text-shadow:0 0 3px #464646;}
+.login-area .login-btns button {display:inline-block; height:41px; line-height:39px; border-radius:2px; font-weight:bold; font-size:14px; color:#fff; letter-spacing:1px;}
+.login-area .login-btns .login {width:100%; border:1px solid #719c27; background:#94b52c; text-shadow:0 0 3px #546b1d;}
 .login-help {} 
 .login-help .chk-log {float:left;}
 .login-help .chk-log > [type="checkbox"] + label:before {border:1px solid #aaa;}
@@ -341,3 +340,28 @@ caption {visibility:hidden; overflow:hidden; width:0; height:0; font-size:0; lin
 .slider-number li .number7 {top:280px; left:370px; background:url(../../images/common/mv7_sm.png) no-repeat 0 0;}
 
 fieldset {border:0 none;}
+
+/* treegrid icon */
+.ico-tree {width:18px; height:18px; background:url(../../images/common/bg_ico_tree_rack.png) no-repeat; vertical-align:middle;}
+.ico-tree.i-floor {background-position:0 0;}/* floor */
+.ico-tree.i-non-rack-node {background-position:-18px 0;}/* 미지정 rack/node */ 
+.ico-tree.i-room {background-position:-36px 0;}/* room */
+.ico-tree.i-non-rack {background-position:-54px 0;}/* 미지정 rack */
+.ico-tree.i-non-node {background-position:-72px 0;}/* 미지정 node */
+.ico-tree.i-rack {background-position:-90px 0;}/* rack */
+.ico-tree.i-bm-server {background-position:-108px 0;}/* bm server */
+.ico-tree.i-blade-server {background-position:-126px 0;}/* blade server */
+.ico-tree.i-switch {background-position:-144px 0;}/* switch */
+.ico-tree.i-storage {background-position:-162px 0;}/* storage */
+.ico-tree.i-enclouser {background-position:-180px 0;}/* enclouser */
+.ico-tree.i-etc {background-position:-198px 0;}/* etc */
+.ico-tree.i-pdu {background-position:-216px 0;}/* 분전반 */
+.ico-tree.i-ups {background-position:-234px 0;}/* UPS */
+.ico-tree.i-air {background-position:-252px 0;}/* 항온항습기 */
+.ico-tree.i-use-room {background-position:-270px 0;}/* 사용면적 */
+.ico-tree.i-reserve-room {background-position:-288px 0;}/* 예약면적 */
+.ico-tree.i-disabled {background-position:-306px 0;}/* 사용불가 */
+.ico-tree.i-bm-blade {background-position:-324px 0;}/* 사용불가 */
+
+.treeitem .expanded.open {height:20px; background:url(../../images/common/node-opened.png) no-repeat; vertical-align:middle;}
+.treeitem .expanded.closed {height:20px; background:url(../../images/common/node-closed.png) no-repeat; vertical-align:middle;}
