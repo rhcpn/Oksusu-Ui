@@ -1,6 +1,5 @@
 package com.skt.tcore.resource.infra;
 
-import com.google.gson.Gson;
 import com.mobigen.framework.result.JsonResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 @Slf4j
@@ -32,13 +30,13 @@ public class InfraController {
         JsonResult js = new JsonResult();
 
         //default - bm-server
-        if(type == null || type.equals("")){
+        if (type == null || type.equals("")) {
             type = "bm-server";
         }
 
-        Map resultMap = new HashMap();
+        Map resultMap = new LinkedHashMap<String, Object>();
         resultMap.put("hardwareList", infraService.getList(parent, type));
-        resultMap.put("zitemNameList", infraService.getItemNameList(type));
+        resultMap.put("itemNameList", infraService.getItemNameList(type));
 
         js.setData(resultMap);
 
@@ -64,9 +62,9 @@ public class InfraController {
     public JsonResult datacneter() {
         JsonResult js = new JsonResult();
 
-        Map resultMap = new HashMap();
+        Map resultMap = new LinkedHashMap<String, Object>();
         resultMap.put("datacenterList", infraService.getDatacenter());
-        resultMap.put("zitemNameList", infraService.getItemNameList("datacenter"));
+        resultMap.put("itemNameList", infraService.getItemNameList("datacenter"));
 
         js.setData(resultMap);
         return js;
@@ -80,9 +78,9 @@ public class InfraController {
     public JsonResult floor() {
         JsonResult js = new JsonResult();
 
-        Map resultMap = new HashMap();
+        Map resultMap = new LinkedHashMap<String, Object>();
         resultMap.put("floorList", infraService.getFloor());
-        resultMap.put("zitemNameList", infraService.getItemNameList("floor"));
+        resultMap.put("itemNameList", infraService.getItemNameList("floor"));
 
         js.setData(resultMap);
         return js;
@@ -96,9 +94,10 @@ public class InfraController {
     public JsonResult room() {
         JsonResult js = new JsonResult();
 
-        Map resultMap = new HashMap();
+        Map resultMap = new LinkedHashMap<String, Object>();
+
         resultMap.put("roomList", infraService.getRoom());
-        resultMap.put("zitemNameList", infraService.getItemNameList("room"));
+        resultMap.put("itemNameList", infraService.getItemNameList("room"));
 
         js.setData(resultMap);
 
@@ -113,7 +112,7 @@ public class InfraController {
     public JsonResult roomTabList() {
         JsonResult js = new JsonResult();
 
-        Map resultMap = new HashMap();
+        Map resultMap = new LinkedHashMap<String, Object>();
         resultMap.put("roomTabList", infraService.getTabList("roomTab"));
 
         js.setData(resultMap);
@@ -129,7 +128,7 @@ public class InfraController {
     public JsonResult rackTabList() {
         JsonResult js = new JsonResult();
 
-        Map resultMap = new HashMap();
+        Map resultMap = new LinkedHashMap<String, Object>();
         resultMap.put("rackTabList", infraService.getTabList("rackTab"));
 
         js.setData(resultMap);
@@ -146,7 +145,7 @@ public class InfraController {
     public JsonResult filterSearchItemList() {
         JsonResult js = new JsonResult();
 
-        Map resultMap = new HashMap();
+        Map resultMap = new LinkedHashMap<String, Object>();
         resultMap.put("filterHwFieldList", infraService.getFilters("filter-hw-field"));
         resultMap.put("filterHwStatusList", infraService.getFilters("filter-hw-status"));
         resultMap.put("filterHwTypeList", infraService.getFilters("filter-hw-type"));
