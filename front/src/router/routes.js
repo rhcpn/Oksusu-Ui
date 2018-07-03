@@ -8,7 +8,12 @@ const baseRoutes = [
 ]
 
 const routes = [
-  { path: '/', name: 'Resource-Infra', component: () => import('@/site/resource/ResourceInfra') }
+  { path: '',
+    name: 'Main',
+    component: () => import('@/site/Main'),
+    children: [
+      { path: '/', name: 'Resource-Infra', component: () => import('@/site/resource/ResourceInfra') }
+    ] }
 ]
 
 const MenuData = require('@/asset/json/menu')
@@ -44,7 +49,6 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  // console.log('requireAuth', to, from)
   if (to.name === 'Login') return next()
   if (window.isAuthenticated) return next()
   next({
