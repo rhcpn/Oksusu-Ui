@@ -53,7 +53,7 @@ export default {
           let searchWord = 'rack'
           if (val.indexOf(searchWord) > -1) {
             let arr = val.split(searchWord)
-            val = arr[0] + '<span style="background-color: red">' + searchWord + '</span>' + arr[1]
+            val = arr[0] + '<span style="background-color: yellow">' + searchWord + '</span>' + arr[1]
           }
 
           return val
@@ -208,7 +208,7 @@ export default {
       let searchWord = 'ultra'
       if (val.indexOf(searchWord) > -1) {
         let arr = val.split(searchWord)
-        val = arr[0] + '<span style="background-color: red">' + searchWord + '</span>' + arr[1]
+        val = arr[0] + '<span style="background-color: yellow">' + searchWord + '</span>' + arr[1]
       }
 
       return val
