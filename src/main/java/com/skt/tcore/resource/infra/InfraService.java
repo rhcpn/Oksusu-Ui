@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -37,7 +38,34 @@ public class InfraService implements Infra {
 
     @Override
     public List<Object> getNavigation() {
-        return null;
+        String filename = "navigation-tree";
+
+        GsonJsonParser jsonParser = new GsonJsonParser();
+        return jsonParser.parseList(getFile(filename + ".json"));
+    }
+
+    @Override
+    public List<Object> getDatacenter() {
+        String filename = "datacenter";
+
+        GsonJsonParser jsonParser = new GsonJsonParser();
+        return jsonParser.parseList(getFile(filename + ".json"));
+    }
+
+    @Override
+    public List<Object> getFloor() {
+        String filename = "floor";
+
+        GsonJsonParser jsonParser = new GsonJsonParser();
+        return jsonParser.parseList(getFile(filename + ".json"));
+    }
+
+    @Override
+    public List<Object> getRoom() {
+        String filename = "room";
+
+        GsonJsonParser jsonParser = new GsonJsonParser();
+        return jsonParser.parseList(getFile(filename + ".json"));
     }
 
     @Override
@@ -45,13 +73,22 @@ public class InfraService implements Infra {
         return getJsonToList(type);
     }
 
-    @Override
-    public List<Object> getTabs(String parent, String type) {
-        return null;
+    public List<Object> getFilterList(String search, String type) {
+        return getJsonToList(type);
+    }
+
+    public List<Object> getItemNameList(String type) {
+
+        GsonJsonParser jsonParser = new GsonJsonParser();
+        return jsonParser.parseList(getFile(type + "-itemname.json"));
+    }
+
+    public List<Object> getTabList(String type){
+        return getJsonToList(type);
     }
 
     @Override
-    public List<Object> getFilters() {
-        return null;
+    public List<Object> getFilters(String type) {
+        return getJsonToList(type);
     }
 }

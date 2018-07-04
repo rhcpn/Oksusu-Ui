@@ -1,0 +1,1 @@
+[{"name":"장비명","type":"name"},{"name":"Host명","type":"hostName"},{"name":"타입","type":"type"},{"name":"상태","type":"status"},{"name":"서비스 대표 IP","type":"mainIpAddr"},{"name":"담당자", "type":"operatorName"},{"name":"서비스 명","type":"serviceName"},{"name":"시리얼 번호","type":"serialNumber"},{"name":"메모","type":"remark"}]

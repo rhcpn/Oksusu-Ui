@@ -1,0 +1,52 @@
+[
+  {
+    "name": "BM Server",
+    "count": "450",
+    "type": "bm-server"
+  },
+  {
+    "name": "Blade Server",
+    "count": "450",
+    "type": "blade-server"
+  },
+  {
+    "name": "Switch",
+    "count": "500",
+    "type": "switch"
+  },
+  {
+    "name": "Storage",
+    "count": "550",
+    "type": "storage"
+  },
+  {
+    "name": "Enclosure",
+    "count": "400",
+    "type": "enclosure"
+  },
+  {
+    "name": "ETC(Facility)",
+    "count": "350",
+    "type": "etc-facility"
+  },
+  {
+    "name": "ETC(IT)",
+    "count": "600",
+    "type": "etc-it"
+  },
+  {
+    "name": "UPS",
+    "count": "200",
+    "type": "ups"
+  },
+  {
+    "name": "PDU",
+    "count": "250",
+    "type": "pdu"
+  },
+  {
+    "name": "HVAC",
+    "count": "300",
+    "type": "hvac"
+  }
+]

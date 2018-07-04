@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>T-CORE</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="../css/vue/vuetify.min.css" rel="stylesheet">
+<link href="../css/common/reset.css" rel="stylesheet" type="text/css"><!-- reset --> 
+<link href="../css/common/common.css" rel="stylesheet" type="text/css"><!-- ui --> 
+
+
+</head>
+
+ <body>
+ <div id="app" class="wrapper application--wrap">
+	<aside>
+		<h1 class="logo"><a href="#none">T-CORE</a></h1>
+		<div class="gnb">
+			<!-- Depth1 -->
+			<ul class="gnb-menu">
+				<li><a href="#"><v-icon>view_list</v-icon><span>운영</span><v-icon class="arrow">keyboard_arrow_right</v-icon></a>
+					<!-- Depth2 -->
+					<ul class="gnb-list">
+						<li><a href="#"><span>Resources</span></a></li>
+						<li><a href="#"><span>Jobs</span></a></li> 
+					</ul>
+				</li>
+				<li><a href="#"><v-icon>desktop_windows</v-icon><span>대시보드</span><v-icon class="arrow">keyboard_arrow_right</v-icon></a>
+					<!-- Depth2 -->
+					<ul class="gnb-list">
+						<li><a href="#"><span>Grafana</span></a></li> 
+						<li><a href="#"><span>Custom</span></a></li> 
+					</ul>
+				</li>
+				<li><a href="#"><v-icon>pie_chart</v-icon><span>데이터분석</span><v-icon class="arrow">keyboard_arrow_right</v-icon></a>					
+				<!-- Depth2 -->
+					<ul class="gnb-list">
+						<li><a href="#"><span>analysis</span></a>
+						</li> 
+					</ul>
+				</li>
+				<li><a href="#"><v-icon>people</v-icon><span>Admin</span><v-icon class="arrow">keyboard_arrow_right</v-icon></a>				
+					<!-- Depth2 -->
+					<ul class="gnb-list">
+						<li><a href="#"><span>사용자 관리</span></a></li> 
+						<li><a href="#"><span>System 모니터링</span></a></li> 
+						<li><a href="#"><span>Data store Statistics</span></a></li> 
+					</ul>
+				</li>
+			</ul>
+		</div>
+
+		<div class="bottom-cont">
+			<div class="gnb bottom">
+				<!-- Depth1 -->
+				<ul class="gnb-menu">
+					<li><a href="#"><v-icon>settings</v-icon><span>Settings</span><v-icon class="arrow">keyboard_arrow_right</v-icon></a>
+						<!-- Depth2 -->
+						<ul class="gnb-list">
+							<li><a href="#"><span>자원관리</span></a></li>
+							<li><a href="#"><span>알람 정의</span></a></li> 
+							<li><a href="#"><span>알람 공지 설정</span></a></li>
+							<li><a href="#"><span>수집 설정</span></a></li>
+							<li><a href="#"><span>메트릭 설정</span></a></li>
+							<li><a href="#"><span>데이터센터 설정</span></a></li>
+						</ul>
+					</li>
+					<li><a href="#"><v-icon>live_help</v-icon><span>도움말</span><v-icon class="arrow">keyboard_arrow_right</v-icon></a>
+						<!-- Depth2 -->
+						<ul class="gnb-list">
+							<li><a href="#"><span>How to & Tutorials</span></a></li> 
+							<li><a href="#"><span>T-CORE 버전정보</span></a></li> 
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</aside>
+
+		<div class="fixed-top-cont">
+			<div class="top-left">
+				<v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
+			</div>
+			<div class="top-right">
+				<ul class="util-menu">
+					<li>
+						<v-badge left>
+						  <span slot="badge" class="bg-red">62</span>
+						  <v-icon color="white" class="md-18">notifications</v-icon>
+						</v-badge>
+					</li>
+					<li>
+						<v-menu offset-y>
+						  <v-btn flat small slot="activator"><v-icon left color="white" class="md-18">person</v-icon>User info<v-icon right color="white" class="md-18">expand_more</v-icon></v-btn>
+						  <v-list>
+							<v-list-tile v-for="(item, index) in items" :key="index" @click="">
+							  <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+							</v-list-tile>
+						  </v-list>
+						</v-menu>
+					</li>
+					<li>					
+					  <v-btn flat class="btn-util-logout"><v-icon color="white">power_settings_new</v-icon></v-btn>
+					</li>
+				</ul>
+			</div>	
+		</div>
+			
+		<div class="content">
+			<div class="content--wrap">
+				<div class="container fluid fill-height">
+					<div class="layout row gap-06">
+						<div class="flex md3">
+							<!--<div class="panel-wrap tabs">
+								<!--<div class="panel-header tabs__bar">
+									<div class="tabs__wrapper">
+										<div class="tabs__container">
+											<div class="tabs__div">
+												<a class="tabs__item tabs__item--active">Infra</a>
+											</div>
+											<div class="tabs__div">
+												<a class="tabs__item">Service</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="panel-body">tree</div>
+							</div>-->
+							 <div class="panel-wrap">
+								<v-tabs class="header-tabs"
+								  v-model="active"
+								  color="none"
+								  slider-color="none"
+								>
+								  <v-tab
+									v-for="n in 2"
+									:key="n"
+									ripple
+								  >
+									Item {{ n }}
+								  </v-tab>
+								  <v-tab-item
+									v-for="n in 2"
+									:key="n"
+								  >
+									<v-card flat>
+									  <v-card-text>{{ text }}</v-card-text>
+									</v-card>
+								  </v-tab-item>
+								</v-tabs>
+
+							  </div>
+						</div>
+						<div class="flex md9">
+							<div class="panel-wrap">							
+								<div class="panel-header">
+									<ul class="breadcrumbs left">
+										<li><a href="#none">SK</a></li>
+										<li><a href="#none">Data center1</a></li>
+										<li><a href="#none">Data center2</a></li>
+									</ul>
+									<div class="right">
+										<div class="input-srh w200">
+											<v-icon>search</v-icon>
+											<v-text-field 
+											  v-model="search"
+											  :rules="searchRules"
+											  placeholder="검색어를 입력하세요"
+											  required
+											></v-text-field>
+										</div>
+										<v-btn class="btn-md-cr round">장비필터열기</v-btn>
+									</div>
+								</div>
+								<div class="panel-body">
+								<v-tabs class="sub-tabs"
+								  v-model="active"
+								  color="none"
+								  slider-color="none"
+								>
+								  <v-tab
+									v-for="n in 2"
+									:key="n"
+									ripple
+								  >
+									Item {{ n }}
+								  </v-tab>
+								  <v-tab-item
+									v-for="n in 2"
+									:key="n"
+								  >
+									<v-card flat>
+									  <v-card-text>{{ text }}</v-card-text>
+									</v-card>
+								  </v-tab-item>
+								</v-tabs>
+								
+								</div>
+							</div>
+						
+						</div>
+					</div>
+					<!-- 우측 slider-container -->
+					<div class="slider-container w500">
+						<div class="panel-wrap">
+							<div class="panel-header">
+								<h3 class="header-title left">장비이름(000.00.0.00)</h3>
+								<ul class="breadcrumbs left">
+									<li><a href="#none">판교</a></li>
+									<li><a href="#none">2층</a></li>
+									<li><a href="#none">2층 시스템실</a></li>
+									<li><a href="#none">X,Y</a></li>
+								</ul>
+								<div class="right"><v-btn flat icon class="ico-sm"><v-icon class="md-18">close</v-icon></v-btn></div>
+							</div>
+							<div class="panel-body">
+							
+							Rack
+							</div>
+						</div>
+					</div>
+					<!-- //slider-container -->
+				</div>
+			</div>
+		</div>
+
+</div>
+  <script src="../js/vue/vue.js"></script>
+  <script src="../js/vue/vuetify.js"></script>
+  <script src="../js/common/jquery.min.js"></script>
+  <script src="../js/common/common.js"></script>
+  <script>
+  new Vue({
+	  el: '#app',
+	  data: () => ({
+		drawer: true
+	  }),
+
+	  props: {
+		source: String
+	  }
+
+	})
+  </script>
+
+ </body>
+</html>
