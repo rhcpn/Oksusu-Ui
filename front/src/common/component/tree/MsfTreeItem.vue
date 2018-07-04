@@ -69,7 +69,6 @@ export default {
 
   .treeitem div {
     display: inline-block;
-    height: 20px;
   }
   .treeitem .expanded {
     width: 20px;
@@ -89,6 +88,7 @@ export default {
     background-color: #FFFF00
   }
   .treeitem .item {
-    cursor: pointer
+    cursor: pointer;
+    height:20px;
   }
 </style>

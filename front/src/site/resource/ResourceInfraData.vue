@@ -180,8 +180,24 @@ export default {
           this.columnDefs[1].cellRendererFramework = 'LinkComponent'
           this.columnDefs[1].width = 250
           continue
+        } else {
+          this.columnDefs[i].cellRenderer = this.searchRenderer
         }
       }
+    },
+    searchRenderer (row) {
+      if (row == null || row.value == null) {
+        return
+      }
+
+      let val = String(row.value)
+      let searchWord = 'center'
+      if (val.indexOf(searchWord) > 0) {
+        let arr = val.split(searchWord)
+        val = arr[0] + '<span style="background-color: red">' + searchWord + '</span>' + arr[1]
+      }
+
+      return val
     }
   },
   created () {
