@@ -6,6 +6,8 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -22,7 +24,11 @@ public class InfraService implements Infra {
         String content = "";
 
         try {
-            content = new String(Files.readAllBytes(Paths.get(resource.getFile().getPath())));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(resource.getInputStream(),"UTF-8"));
+            String line = "";
+            while ((line = reader.readLine()) != null) {
+                content += line;
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
