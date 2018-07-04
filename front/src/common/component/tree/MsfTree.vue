@@ -1,6 +1,6 @@
 <template>
   <div>
-    <VirtualList :size="20" :remain="30" class="list" :style="calculateHeight()" >
+    <VirtualList :size="18" :remain="35" class="list" :style="calculateHeight()" >
       <msf-tree-item v-on:expand="expand" v-on:checkClick="checkclick" v-on:itemClick="itemClick" v-for="item of list" :key="item.id" :data="item" :checked="item.checked"
                      :expanded="item.expanded" :depth="item.depth" :label="item.name" :half-checked="item.halfChecked"/>
     </VirtualList>
@@ -204,6 +204,15 @@ export default {
     },
     redraw: function () {
       this.$forceUpdate()
+    },
+    allExpand: function (bool, depth) { // 특정 depth 이상인 것 확장 변경
+      for (let i = 0; i < this.items.length; i++) {
+        let item = this.items[i]
+        if (this.hasChild(item) && item.depth > depth) {
+          item.expanded = bool
+        }
+      }
+      this.refresh()
     }
   },
   data () {
@@ -220,7 +229,6 @@ export default {
   },
   destroyed () {
     window.removeEventListener('resize', this.redraw)
-    console.log('eventremove')
   }
 }
 </script>

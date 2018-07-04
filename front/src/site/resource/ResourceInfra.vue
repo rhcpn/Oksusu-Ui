@@ -105,6 +105,8 @@ export default {
       .then(response => {
         this.source = response.data.data
         this.$refs.resourceTree[0].setSource(this.source)
+        this.$refs.resourceTree[0].allExpand(false, 2)
+
         this.selectDepthArray = []
         this.selectDepthArray.push(this.source[0])
       })
