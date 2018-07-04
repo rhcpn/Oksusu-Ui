@@ -1,5 +1,5 @@
 <template>
-  <li :id="id" class="parent-gnb" :class="{ 'active': isOpen }" @click="openMenu($event)">
+  <li class="parent-gnb" :class="{ 'active': isOpen }" @click="openMenu($event)">
     <a href="#"><v-icon>view_list</v-icon><span>{{data.name}}</span><v-icon class="arrow" v-if="data.children">keyboard_arrow_right</v-icon></a>
 
     <!-- Menu Depth2 -->
@@ -15,14 +15,17 @@
 export default {
   name: 'menu-child-component',
   created: function () {
+    // Default Setting
+    let current = this.$router.history.current
+    if (this.data.name === current.name) {
+      this.isOpen = true
+    }
+
+    // Event Listener
     this.$eventHub.$on('menu-open', this.menuOpenEventHandler)
     this.$eventHub.$on('menu-folding', this.menuFoldingEventHandler)
   },
   props: {
-    id: {
-      type: String,
-      default: ''
-    },
     data: {
       type: Object,
       required: true
@@ -74,7 +77,7 @@ export default {
 
       $(currentTarget).siblings().removeClass('active')
       if (type === 'parent') {
-        $(`#${this.id} .gnb-list li`).removeClass('active')
+        $('.gnb-list li').removeClass('active')
       } else {
         $(currentTarget).parents('.parent-gnb').addClass('active')
       }
