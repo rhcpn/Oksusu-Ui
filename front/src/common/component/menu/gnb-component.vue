@@ -5,7 +5,7 @@
     <!-- Top -->
     <div class="gnb">
       <ul class="gnb-menu" v-if="topMenus != null && topMenus.length > 0">
-        <menu-child-component v-for="(menu, key) in topMenus" :key="key" :data="menu" v-if="menu.name !== 'Login'"></menu-child-component>
+        <menu-child-component v-for="(menu, key) in topMenus" :key="key" :data="menu"></menu-child-component>
       </ul>
     </div>
 
@@ -13,7 +13,7 @@
     <div class="bottom-cont" v-if="bottomMenus != null && bottomMenus.length > 0">
       <div class="gnb bottom">
         <ul class="gnb-menu">
-          <menu-child-component v-for="(menu, key) in bottomMenus" :key="key" :data="menu" v-if="menu.name !== 'Login'"></menu-child-component>
+          <menu-child-component v-for="(menu, key) in bottomMenus" :key="key" :data="menu"></menu-child-component>
         </ul>
       </div>
     </div>
@@ -54,7 +54,6 @@ export default {
   methods: {
     init: function () {
       menus = this.$router.options.routes
-      console.log('=================menus;', this.$router)
 
       let menuTypes = _.groupBy(menus, 'position')
       this.topMenus = menuTypes.top
