@@ -134,7 +134,7 @@ aside .bottom-cont {position:absolute; bottom:80px; left:0; right:0;}
 .panel-wrap .panel-header >*:before {content:""; display:inline-block; height:100%; vertical-align:middle;}
 .panel-wrap .panel-body {width:100%; height:calc(100% - 34px); padding:6px; border-top:none; display:flex; flex-flow:column;}
 .flex-vertical {display:flex; flex-flow:column; height:100%}
-.inner-scroll {-webkit-flex:1; -ms-flex:1; flex:1; overflow:hidden;}  
+.inner-scroll {-ms-flex:1; -webkit-box-flex:1; flex:1; min-height:1px;}  
 
 
 /* util-menu */
