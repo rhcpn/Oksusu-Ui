@@ -1,6 +1,5 @@
 <template>
   <v-tabs class="sub-tabs"
-          v-model="active"
           color="none"
           slider-color="none">
     <v-tab

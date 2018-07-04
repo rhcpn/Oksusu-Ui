@@ -58,7 +58,6 @@
 
         <div class="login-btns">
           <v-btn class="login" @click.prevent="onSubmit">Login</v-btn>
-          <v-btn class="join">Login</v-btn>
         </div>
 
         <p class="login-info">본 솔루션은 <em>Chrome Browser</em>에서 사용하실 수 있습니다.<br>해상도 <em>1920*1024</em>에 최적화 되어 있습니다.</p>
