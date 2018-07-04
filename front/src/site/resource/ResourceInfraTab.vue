@@ -1,6 +1,5 @@
 <template>
   <v-tabs class="sub-tabs"
-          v-model="active"
           color="none"
           slider-color="none">
     <v-tab
@@ -24,7 +23,7 @@ export default {
       tabList: [],
       resultData: [],
       errors: [],
-      active: null
+      searchType: false
     }
   },
   methods: {
@@ -33,12 +32,12 @@ export default {
       this.$emit('tabItemClick', type)
     },
     setData: function (data) {
-      if (data.depth === 4) {
-        dataDepth = '4'
-        restUrl = '/resource/infra/roomTabList.json'
-      } else if (data.depth === 5) {
+      if (data.depth === 5) {
         dataDepth = '5'
         restUrl = '/resource/infra/rackTabList.json'
+      } else {
+        dataDepth = '4'
+        restUrl = '/resource/infra/roomTabList.json'
       }
 
       if (data.depth === 4 || data.depth === 5) {
@@ -48,16 +47,13 @@ export default {
     resultTabData: function () {
       this.$http.get(restUrl)
         .then(response => {
-          this.tabList = null
+          this.tabList = []
           let headerEle = response.data.data
           let headerList = (dataDepth === '4' ? headerEle.roomTabList : headerEle.rackTabList)
 
-          let list = []
           for (let i = 0; i < headerList.length; i++) {
-            list.push(headerList[i])
+            this.tabList.push(headerList[i])
           }
-          this.tabList = list
-          this.active = 0
         })
         .catch(e => {
           this.errors.push(e)
