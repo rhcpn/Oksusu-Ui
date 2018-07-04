@@ -48,7 +48,7 @@
         <div class="panel-body">
           <equipment-filter :filterOpen="isFilterOpen"></equipment-filter>
           <resource-infra-tab v-show="tabOpen" v-on:tabItemClick="tabItemClick" ref="tabData"></resource-infra-tab>
-          <resource-infra-data :resultInfo="resultInfo" ref="resourceData"></resource-infra-data>
+          <div class="inner-scroll"><resource-infra-data :resultInfo="resultInfo" ref="resourceData"></resource-infra-data></div>
         </div>
       </div>
 
