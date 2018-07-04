@@ -129,6 +129,7 @@
 								<div class="panel-body">tree</div>
 							</div>-->
 							 <div class="panel-wrap">
+							 <div class="flex-vertical">
 								<v-tabs class="header-tabs"
 								  v-model="active"
 								  color="none"
@@ -141,16 +142,17 @@
 								  >
 									Item {{ n }}
 								  </v-tab>
+								 
 								  <v-tab-item
 									v-for="n in 2"
 									:key="n"
 								  >
-									<v-card flat>
+									<v-card flat> 
 									  <v-card-text>{{ text }}</v-card-text>
 									</v-card>
 								  </v-tab-item>
 								</v-tabs>
-
+							</div>
 							  </div>
 						</div>
 						<div class="flex md9">
@@ -161,12 +163,14 @@
 										<li><a href="#none">Data center1</a></li>
 										<li><a href="#none">Data center2</a></li>
 									</ul>
-								   <v-select class="select-box left w200"
+									<v-btn icon class="btn-md-tool on"><v-icon>view_module</v-icon></v-btn>
+									<v-btn icon class="btn-md-tool"><v-icon>view_list</v-icon></v-btn>
+								   <!-- <v-select class="select-box left w200"
 									  :items="items"
 									  v-model="e1"
 									  label="목록보기"
 									  single-line
-									></v-select>
+									></v-select>//select-box예시 -->
 									<div class="right">
 										<div class="input-srh w200">
 											<v-icon>search</v-icon>
@@ -202,7 +206,9 @@
 									</v-card>
 								  </v-tab-item>
 								</v-tabs>
-								
+								<v-layout justify-center align-center>
+									<img src="../images/common/top_view.png" alt="" style="width:1334px;height:842px;overflow:hidden">
+								</v-layout>
 								</div>
 							</div>
 						

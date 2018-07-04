@@ -196,11 +196,13 @@ aside .bottom-cont {position:absolute; bottom:80px; left:0; right:0;}
 .toolbar__side-icon {color:#fff;}
 button[class^="btn-md"] {height:24px;}
 button[class*="-cr"] {border-radius:2px; background:#6477cd; color:#fff;}
-button[class*="-gy"] {border-radius:2px; background:#ededed;}
+button[class*="-gy"] {border-radius:2px; background:#ededed linear-gradient(to bottom, #fefefe, #e4e4e4)}
 button[class^="btn-md"].ico {width:24px;}
 button.round {border-radius:12px;}
 .btn .icon--left {margin-right:6px;}
 .btn .icon--right {margin-left:6px;}
+button[class*="-tool"] {border-radius:2px; border:1px solid #afafaf; background:#ededed linear-gradient(to bottom, #fefefe, #e4e4e4)}
+button[class*="-tool"].on {border-color:#819736; background: #9ebb40; box-shadow: inset 0 1px 2px 0 rgba(152,181,56,1); color:#fff}
 
 /* Button 정렬 */
 .btns-area {padding:10px 0; background:#fff; text-align:center;}/* 기본 중앙 */
@@ -375,12 +377,3 @@ fieldset {border:0 none;}
 .treeitem .expanded.open {height:20px; background:url(../../images/common/node-opened.png) no-repeat; vertical-align:middle;}
 .treeitem .expanded.closed {height:20px; background:url(../../images/common/node-closed.png) no-repeat; vertical-align:middle;}
 
-/* Grid theme */
-.ag-theme-balham .ag-root {border-color:#d3d3d3;}
-.ag-theme-balham .ag-header {border-bottom:1px solid #d3d3d3; background-color:#efefef;}
-.ag-theme-balham .ag-header-row, .ag-theme-balham .ag-row {border-bottom:1px solid #d3d3d3;}
-.ag-theme-balham .ag-row-odd {background-color:#f7f7f7;}
-.ag-theme-balham .ag-header-cell::after,
-.ag-theme-balham .ag-header-group-cell::after {border-right:1px solid #d3d3d3;}
-.ag-theme-balham .ag-header-cell:last-child:after, .ag-theme-balham .ag-header-group-cell:last-child:after {border-right:none;}
-.ag-theme-balham .ag-cell-focus {border: 1px solid #5a75c4;}
