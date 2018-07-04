@@ -20,7 +20,7 @@
           </div>
           <div class="panel-body" v-on:click="showDetailInfo()">
             <img  v-if="notDetailShow" src="../../../asset/images/common/rack.png"/>
-            <div class="container fluid fill-height" v-if="!notDetailShow" >
+            <div class="container fluid fill-height" v-show="!notDetailShow" >
               <div class="layout row gap-06">
                 <div class="flex md5 col-fixed500">
                   <div class="">
