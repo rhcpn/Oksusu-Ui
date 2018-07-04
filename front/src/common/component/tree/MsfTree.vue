@@ -1,6 +1,6 @@
 <template>
   <div>
-    <VirtualList :size="60" :remain="20" class="list" >
+    <VirtualList :size="20" :remain="30" class="list" :style="calculateHeight()" >
       <msf-tree-item v-on:expand="expand" v-on:checkClick="checkclick" v-on:itemClick="itemClick" v-for="item of list" :key="item.id" :data="item" :checked="item.checked"
                      :expanded="item.expanded" :depth="item.depth" :label="item.name" :half-checked="item.halfChecked"/>
     </VirtualList>
@@ -160,6 +160,10 @@ export default {
       }
       this.list = this.filteredItems.filter(this.treeFilter)
     },
+    calculateHeight: function () {
+      let w = window.innerHeight - 94 // 94 는 탑부분의 영역
+      return {'height': w + 'px'}
+    },
     getCheckedData: function () {
       var ar = []
       for (let i = 0; i < this.items.length; i++) {
@@ -197,6 +201,9 @@ export default {
       }
       this.items = ar
       this.refresh()
+    },
+    redraw: function () {
+      this.$forceUpdate()
     }
   },
   data () {
@@ -209,6 +216,11 @@ export default {
   created () {
     // 계층 구조로 들어온 목록을 2차원으로 변형 하면서 필요한 프로퍼티를 입력  datas 는 하이라키 구조의 데이터
     this.setSource(this.source ? this.source : [])
+    window.addEventListener('resize', this.redraw)
+  },
+  destroyed () {
+    window.removeEventListener('resize', this.redraw)
+    console.log('eventremove')
   }
 }
 </script>
