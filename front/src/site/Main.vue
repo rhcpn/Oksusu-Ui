@@ -15,10 +15,6 @@
         </div>
       </div>
     </div>
-
-    <!-- Common Components -->
-    <common-spinner ref="loader"></common-spinner>
-    <interceptors-handler />
   </div>
 </template>
 
@@ -26,14 +22,10 @@
 import Vue from 'vue'
 import headerComponent from '@/common/component/header/header-component'
 import gnbComponent from '@/common/component/menu/gnb-component'
-import commonSpinner from '@/common/component/common-spinner'
-import httpInterceptors from '@/common/component/http-interceptors'
 import sliderComponent from '@/common/component/slider/slider-component'
 
 Vue.component('header-component', headerComponent)
 Vue.component('gnb-component', gnbComponent)
-Vue.component('common-spinner', commonSpinner)
-Vue.component('interceptors-handler', httpInterceptors)
 Vue.component('slider-component', sliderComponent)
 
 export default {

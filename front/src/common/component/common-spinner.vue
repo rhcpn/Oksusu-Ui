@@ -1,6 +1,6 @@
 <template>
   <div id="loader">
-    <loading :show="show" :label="label" loader-class="common-spinner-wrapper"></loading>
+    <loading :show="show" :label="label" overlay-class="common-spinner-overlay" loader-class="common-spinner-wrapper"></loading>
   </div>
 </template>
 
@@ -62,5 +62,9 @@ export default {
     display: inline-block;
     right: 50vw;
     bottom: 50vh;
+  }
+
+  .common-spinner-overlay {
+    opacity: 1;
   }
 </style>

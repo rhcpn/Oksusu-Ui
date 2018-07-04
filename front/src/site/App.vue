@@ -1,10 +1,23 @@
 <template>
+  <div>
     <router-view/>
+
+    <!-- Common Components -->
+    <common-spinner ref="loader"></common-spinner>
+    <interceptors-handler />
+  </div>
 </template>
 
 <script>
+import commonSpinner from '@/common/component/common-spinner'
+import httpInterceptors from '@/common/component/http-interceptors'
+
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    'common-spinner': commonSpinner,
+    'interceptors-handler': httpInterceptors
+  }
 }
 </script>
 
