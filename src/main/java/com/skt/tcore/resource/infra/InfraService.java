@@ -21,18 +21,18 @@ public class InfraService implements Infra {
     private String getFile(String filename) {
         String path = PATH_JSON_FILE_PATH + filename;
         Resource resource = new ClassPathResource(path);
-        String content = "";
-
+        StringBuffer buf = new StringBuffer();
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(resource.getInputStream(),"UTF-8"));
             String line = "";
             while ((line = reader.readLine()) != null) {
-                content += line;
+                buf.append(line);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+        String content = buf.toString();
         log.debug("Load JSON =====\r\n" + content);
         return content;
     }
