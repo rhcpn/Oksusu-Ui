@@ -1,7 +1,7 @@
 <template>
   <ag-grid-vue style="width: 100%; height: 100%;"
                :gridOptions="gridOptions"
-               class="ag-theme-balham"
+               class="ag-theme-balham pt-2"
                :columnDefs="columnDefs"
                :rowData="rowData"
                :gridReady="onGridReady"
@@ -17,27 +17,6 @@ export default {
   name: 'resource-infra-data',
   components: {
     'ag-grid-vue': AgGridVue,
-    /* 'SearchComponent': {
-        template: '',
-        data: function () {
-          return {
-            searchWord: '',
-            cellRendererDefault: null
-          }
-        },
-        methods: {
-          searchRenderer (row) {
-            let val = row.value
-            this.searchWord = 'ultra'
-            if (val.indexOf(this.searchWord) > 0) {
-              let arr = val.split(this.searchWord)
-              this.cellRendererDefault = arr[0]
-              // val = arr[0] + '<span style="background-color: #f48fb1">' + searchWord + '</span>' + arr[1]
-            }
-            // this.cellRendererData = val
-          }
-        }
-      }, */
     'LinkComponent': {
       template: '<div style="display:inline-block" @mouseover="mouseOver" @mouseleave="mouseLeave"><span v-html="searchKeyword(params)"></span> <div v-if="aLinkShow" style="display:inline-block" ><a v-on:click="sliderOpen">실장도 보기 | </a><a v-on:click="equipmentModify">수정 |</a><a v-on:click="equipmentDelete">삭제</a></div></div>',
       data: function () {
@@ -73,7 +52,7 @@ export default {
           }
 
           let val = String(row.value)
-          let searchWord = 'rack'
+          let searchWord = 'ultra'
           if (val.indexOf(searchWord) > -1) {
             let arr = val.split(searchWord)
             val = arr[0] + '<span style="background-color: yellow">' + searchWord + '</span>' + arr[1]
@@ -244,7 +223,7 @@ export default {
 
       let val = String(row.value)
       let searchWord = 'ultra'
-      if (val.indexOf(searchWord) > -1) {
+      if (val.indexOf(searchWord) > 0) {
         let arr = val.split(searchWord)
         val = arr[0] + '<span style="background-color: yellow">' + searchWord + '</span>' + arr[1]
       }
