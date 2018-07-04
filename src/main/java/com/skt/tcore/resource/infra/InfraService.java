@@ -6,6 +6,8 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -19,14 +21,18 @@ public class InfraService implements Infra {
     private String getFile(String filename) {
         String path = PATH_JSON_FILE_PATH + filename;
         Resource resource = new ClassPathResource(path);
-        String content = "";
-
+        StringBuffer buf = new StringBuffer();
         try {
-            content = new String(Files.readAllBytes(Paths.get(resource.getFile().getPath())));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(resource.getInputStream(),"UTF-8"));
+            String line = "";
+            while ((line = reader.readLine()) != null) {
+                buf.append(line);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+        String content = buf.toString();
         log.debug("Load JSON =====\r\n" + content);
         return content;
     }

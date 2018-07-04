@@ -22,12 +22,12 @@
             <img  v-if="notDetailShow" src="../../../asset/images/common/rack.png"/>
             <div class="container fluid fill-height" v-if="!notDetailShow" >
               <div class="layout row gap-06">
-                <div class="flex md5">
-                  <div class="" style="border:1px solid red;height:100%">
+                <div class="flex md5 col-fixed500">
+                  <div class="">
                     <img src="../../../asset/images/common/rack.png"/>
                   </div>
                 </div>
-                <div class="flex md7">
+                <div class="flex md7 col-fluid500">
                   <div class="" style="height:100%">
 
                     <v-tabs class="sub-tabs"

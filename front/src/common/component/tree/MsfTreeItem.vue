@@ -1,10 +1,9 @@
 <template>
   <div class="treeitem">
     <div :style="{ width: data.depth * 20 + 'px'}"></div>
-    <div class="expanded" :style="{cursor : hasChild(data) ? 'pointer' : ''}" v-on:click="onClick">{{ hasChild(data)?
-      expanded ? '-' : '+' : ''}}
+    <div class="expanded" :style="{cursor : hasChild(data) ? 'pointer' : ''}" :class="hasChild(data) ? expanded ? 'open' : 'closed' : 'empty'" v-on:click="onClick">
     </div>
-    <div class="item" v-on:click="itemClick(data)">{{ label }}</div>
+    <div class="item" v-on:click="itemClick(data)"><div class="ico-tree" :class="getIcon()"></div><div style="padding-left: 5px"> {{ label }}</div></div>
   </div>
 </template>
 
@@ -20,6 +19,13 @@ export default {
     halfChecked: Boolean
   },
   methods: {
+    getIcon: function () {
+      let data = this.data
+      if (data && data.hasOwnProperty('type') && data.type) {
+        return 'i-' + data.type
+      }
+      return 'i-bm-server'
+    },
     hasChild: function (data) {
       return data && data.hasOwnProperty('children') && data.children && data.children.length > 0
     },
@@ -63,7 +69,6 @@ export default {
 
   .treeitem div {
     display: inline-block;
-    height: 20px;
   }
   .treeitem .expanded {
     width: 20px;
@@ -73,6 +78,9 @@ export default {
     height: 20px;
     border:1px solid #CCCCCC
   }
+  .treeitem .empty {
+    width:10px;
+  }
   .checked {
     background-color: #00FF00
   }
@@ -80,6 +88,7 @@ export default {
     background-color: #FFFF00
   }
   .treeitem .item {
-    cursor: pointer
+    cursor: pointer;
+    height:20px;
   }
 </style>

@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div id="app" class="wrapper application--wrap">
     <!-- GNB -->
-    <gnb-component>sp</gnb-component>
+    <gnb-component></gnb-component>
 
     <!-- Header-->
     <header-component :menuFolding="false"></header-component>

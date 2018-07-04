@@ -174,6 +174,7 @@ export default {
           headerName: header[i],
           field: field[i]
         })
+
         var depth = parseInt(dataDepth)
         if (i === 1 && depth >= 4) {
           this.columnDefs[1].cellRendererFramework = 'LinkComponent'

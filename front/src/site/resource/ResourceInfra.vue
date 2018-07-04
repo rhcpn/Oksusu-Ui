@@ -30,7 +30,7 @@
       <div class="panel-wrap">
         <div class="panel-header">
           <ul class="breadcrumbs left" v-if="selectDepthArray.length" >
-            <li v-for="depth in selectDepthArray"><a href="#none">{{depth.name}}</a></li>
+            <li v-for="depth in selectDepthArray" :key="depth.id"><a href="#none">{{depth.name}}</a></li>
           </ul>
           <div class="right">
             <div class="input-srh w200">
@@ -105,9 +105,10 @@ export default {
       .then(response => {
         this.source = response.data.data
         this.$refs.resourceTree[0].setSource(this.source)
+        this.$refs.resourceTree[0].allExpand(false, 2)
+
         this.selectDepthArray = []
         this.selectDepthArray.push(this.source[0])
-
       })
       .catch(e => {
         this.errors.push(e)
