@@ -201,8 +201,8 @@ button[class^="btn-md"].ico {width:24px;}
 button.round {border-radius:12px;}
 .btn .icon--left {margin-right:6px;}
 .btn .icon--right {margin-left:6px;}
-button[class*="-tool"] {border-radius:2px; border:1px solid #afafaf; background:#ededed linear-gradient(to bottom, #fefefe, #e4e4e4)}
-button[class*="-tool"].on {border-color:#819736; background: #9ebb40; box-shadow: inset 0 1px 2px 0 rgba(152,181,56,1); color:#fff}
+button[class*="-tool"] {width:40px; border-radius:2px; box-shadow:0 3px 1px -2px rgba(0,0,0,.2) !important; border:1px solid #afafaf; background:#ededed;}
+button[class*="-tool"].on {border-color:#819736; background:#9ebb40; color:#fff}
 
 /* Button 정렬 */
 .btns-area {padding:10px 0; background:#fff; text-align:center;}/* 기본 중앙 */
