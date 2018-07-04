@@ -36,6 +36,7 @@
             <div class="input-srh w200">
               <v-icon>search</v-icon>
               <v-text-field
+                @keyup.enter="searchInfo()"
                 placeholder="검색어를 입력하세요"
                 required
               ></v-text-field>
@@ -65,15 +66,26 @@ export default {
   name: 'resource-infra',
   components: {MsfTree, ResourceInfraTab, ResourceInfraData, equipmentFilter},
   methods: {
-    itemClick: function (item) {
-      this.resultInfo = item
-      if (this.resultInfo.depth === 4 || this.resultInfo.depth === 5) {
-        this.tabOpen = true
-      } else {
-        this.tabOpen = false
+    itemClick: function (item, searchType) {
+      if (searchType === undefined) {
+        searchType = false
       }
-      this.$refs.resourceData.setData(this.resultInfo)
-      this.$refs.tabData.setData(this.resultInfo)
+
+      this.resultInfo = item
+
+      if (!searchType) {
+        if (this.resultInfo.depth === 4 || this.resultInfo.depth === 5) {
+          this.tabOpen = true
+          this.$refs.tabData.setData(this.resultInfo)
+        } else {
+          this.tabOpen = false
+        }
+      } else {
+        this.resultInfo.depth = 4
+      }
+
+      this.$refs.resourceData.setData(this.resultInfo, searchType)
+
       this.selectDepthArray = []
       this.getDepthArray(item)
       this.selectDepthArray.push(item)
@@ -88,6 +100,12 @@ export default {
         this.selectDepthArray.unshift(data.parent)
         this.getDepthArray(data.parent)
       }
+    },
+    searchInfo: function () {
+      this.tabOpen = false
+      // this.searchType = true
+      // this.tabItemClick('bm-server')
+      this.itemClick(this.resultInfo, true)
     }
   },
   data: function () {
@@ -97,7 +115,8 @@ export default {
       errors: [],
       isFilterOpen: false,
       tabOpen: false,
-      selectDepthArray: []
+      selectDepthArray: [],
+      searchType: false
     }
   },
   created () {

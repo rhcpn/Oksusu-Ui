@@ -22,7 +22,8 @@ export default {
     return {
       tabList: [],
       resultData: [],
-      errors: []
+      errors: [],
+      searchType: false
     }
   },
   methods: {
@@ -31,12 +32,12 @@ export default {
       this.$emit('tabItemClick', type)
     },
     setData: function (data) {
-      if (data.depth === 4) {
-        dataDepth = '4'
-        restUrl = '/resource/infra/roomTabList.json'
-      } else if (data.depth === 5) {
+      if (data.depth === 5) {
         dataDepth = '5'
         restUrl = '/resource/infra/rackTabList.json'
+      } else {
+        dataDepth = '4'
+        restUrl = '/resource/infra/roomTabList.json'
       }
 
       if (data.depth === 4 || data.depth === 5) {

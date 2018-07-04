@@ -1,9 +1,11 @@
 <template>
   <ag-grid-vue style="width: 100%; height: 100%;"
                :gridOptions="gridOptions"
-               class="ag-theme-balham"
+               class="ag-theme-balham pt-2"
                :columnDefs="columnDefs"
-               :rowData="rowData">
+               :rowData="rowData"
+               :gridReady="onGridReady"
+  >
   </ag-grid-vue>
 </template>
 <script>
@@ -50,7 +52,7 @@ export default {
           }
 
           let val = String(row.value)
-          let searchWord = 'rack'
+          let searchWord = 'ultra'
           if (val.indexOf(searchWord) > -1) {
             let arr = val.split(searchWord)
             val = arr[0] + '<span style="background-color: yellow">' + searchWord + '</span>' + arr[1]
@@ -70,36 +72,43 @@ export default {
       columnDefs: [],
       rowData: [],
       enableColResize: true,
-      dialogData: []
+      dialogData: [],
+      searchType: false
     }
   },
   methods: {
 
-    setData: function (data) {
+    setData: function (data, searchType) {
       if (data.length !== 0) {
         dataDepth = '1'
       }
+      this.searchType = searchType
 
-      if (data.depth === 2) {
-        dataDepth = '2'
-        restUrl = '/resource/infra/floor.json'
-      } else if (data.depth === 3) {
-        dataDepth = '3'
-        restUrl = '/resource/infra/room.json'
-      } else if (data.depth === 4) {
-        dataDepth = '4'
-        restUrl = '/resource/infra/list.json?type=rack'
-      } else if (data.depth === 5) {
-        dataDepth = '5'
-        restUrl = '/resource/infra/list.json?type=bm-server'
+      if (!this.searchType) {
+        if (data.depth === 2) {
+          dataDepth = '2'
+          restUrl = '/resource/infra/floor.json'
+        } else if (data.depth === 3) {
+          dataDepth = '3'
+          restUrl = '/resource/infra/room.json'
+        } else if (data.depth === 4) {
+          dataDepth = '4'
+          restUrl = '/resource/infra/list.json?type=rack'
+        } else if (data.depth === 5) {
+          dataDepth = '5'
+          restUrl = '/resource/infra/list.json?type=bm-server'
+        } else {
+          dataDepth = '1'
+          restUrl = '/resource/infra/datacenter.json'
+        }
       } else {
-        dataDepth = '1'
-        restUrl = '/resource/infra/datacenter.json'
+        dataDepth = '4'
+        restUrl = '/resource/infra/filterList.json'
       }
 
-      this.resultDataGrid()
+      this.resultDataGrid(this.searchType)
     },
-    resultDataGrid: function () {
+    resultDataGrid: function (searchType) {
       let result = []
 
       this.$http.get(restUrl)
@@ -111,16 +120,13 @@ export default {
             header = response.data.data[headerList[1]]
           }
 
-          let fieldEle = response.data
-          let fieldList = Object.keys(fieldEle.data)
           let fieldData
           let field
-          if (fieldList[0] !== undefined) {
-            fieldData = response.data.data[fieldList[0]]
-            if (fieldList[0] !== undefined) {
+          if (headerList[0] !== undefined) {
+            fieldData = response.data.data[headerList[0]]
+            if (headerList[0] !== undefined) {
               field = Object.keys(fieldData[0])
             }
-            this.coldef(dataDepth, header, field)
           }
 
           for (let i = 0; i < fieldData.length; i++) {
@@ -129,6 +135,10 @@ export default {
           this.rowData = []
           this.rowData = result
 
+          this.coldef(dataDepth, header, field, searchType)
+
+          this.gridOptions.api.refreshCells()
+          this.gridOptions.api.refreshView()
           this.gridOptions.api.sizeColumnsToFit()
         })
         .catch(e => {
@@ -166,6 +176,7 @@ export default {
           }
           this.rowData = []
           this.rowData = result
+          this.gridOptions.api.refreshView()
         })
         .catch(e => {
           this.errors.push(e)
@@ -181,13 +192,19 @@ export default {
       const selectedDataStringPresentation = selectedData.map(node => node.make + ' ' + node.model).join(', ')
       alert(`Selected nodes: ${selectedDataStringPresentation}`)
     },
-    coldef: function (dataDepth, header, field) {
+    coldef: function (dataDepth, header, field, searchType) {
       this.columnDefs = []
       for (let i = 0; i < header.length; i++) {
         this.columnDefs.push({
           headerName: header[i],
           field: field[i]
         })
+
+        if (searchType) {
+          // this.columnDefs[2].colId = 'params' + i
+          // this.columnDefs[i].cellRendererFramework = 'SearchComponent'
+          // console.log(this.columnDefs[i].cellRenderer)
+        }
 
         var depth = parseInt(dataDepth)
         if (i === 1 && depth >= 4) {
@@ -206,7 +223,7 @@ export default {
 
       let val = String(row.value)
       let searchWord = 'ultra'
-      if (val.indexOf(searchWord) > -1) {
+      if (val.indexOf(searchWord) > 0) {
         let arr = val.split(searchWord)
         val = arr[0] + '<span style="background-color: yellow">' + searchWord + '</span>' + arr[1]
       }
