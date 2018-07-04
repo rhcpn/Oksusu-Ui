@@ -16,7 +16,7 @@ export default {
   components: {
     'ag-grid-vue': AgGridVue,
     'LinkComponent': {
-      template: '<div style="display:inline-block" @mouseover="mouseOver" @mouseleave="mouseLeave">{{searchKeyword(params)}} <div v-if="aLinkShow" style="display:inline-block" ><a v-on:click="sliderOpen">실장도 보기 | </a><a v-on:click="equipmentModify">수정 |</a><a v-on:click="equipmentDelete">삭제</a></div></div>',
+      template: '<div style="display:inline-block" @mouseover="mouseOver" @mouseleave="mouseLeave"><span v-html="searchKeyword(params)"></span> <div v-if="aLinkShow" style="display:inline-block" ><a v-on:click="sliderOpen">실장도 보기 | </a><a v-on:click="equipmentModify">수정 |</a><a v-on:click="equipmentDelete">삭제</a></div></div>',
       data: function () {
         return {
           aLinkShow: false
@@ -44,18 +44,17 @@ export default {
         mouseLeave () {
           this.aLinkShow = false
         },
-        searchKeyword (params) {
-          if (params == null || params.value == null) {
+        searchKeyword (row) {
+          if (row == null || row.value == null) {
             return
           }
-          let val = String(params.value)
+
+          let val = String(row.value)
           let searchWord = 'rack'
-          if (val.indexOf(searchWord) > 0) {
+          if (val.indexOf(searchWord) > -1) {
             let arr = val.split(searchWord)
             val = arr[0] + '<span style="background-color: red">' + searchWord + '</span>' + arr[1]
           }
-
-          console.log(val)
 
           return val
         }
@@ -206,8 +205,8 @@ export default {
       }
 
       let val = String(row.value)
-      let searchWord = 'rack'
-      if (val.indexOf(searchWord) > 0) {
+      let searchWord = 'ultra'
+      if (val.indexOf(searchWord) > -1) {
         let arr = val.split(searchWord)
         val = arr[0] + '<span style="background-color: red">' + searchWord + '</span>' + arr[1]
       }
