@@ -375,3 +375,12 @@ fieldset {border:0 none;}
 .treeitem .expanded.open {height:20px; background:url(../../images/common/node-opened.png) no-repeat; vertical-align:middle;}
 .treeitem .expanded.closed {height:20px; background:url(../../images/common/node-closed.png) no-repeat; vertical-align:middle;}
 
+/* Grid theme */
+.ag-theme-balham .ag-root {border-color:#d3d3d3;}
+.ag-theme-balham .ag-header {border-bottom:1px solid #d3d3d3; background-color:#efefef;}
+.ag-theme-balham .ag-header-row, .ag-theme-balham .ag-row {border-bottom:1px solid #d3d3d3;}
+.ag-theme-balham .ag-row-odd {background-color:#f7f7f7;}
+.ag-theme-balham .ag-header-cell::after,
+.ag-theme-balham .ag-header-group-cell::after {border-right:1px solid #d3d3d3;}
+.ag-theme-balham .ag-header-cell:last-child:after, .ag-theme-balham .ag-header-group-cell:last-child:after {border-right:none;}
+.ag-theme-balham .ag-cell-focus {border: 1px solid #5a75c4;}
