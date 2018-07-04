@@ -1,5 +1,6 @@
 <template>
   <v-tabs class="sub-tabs"
+          v-model="active"
           color="none"
           slider-color="none">
     <v-tab
@@ -22,7 +23,8 @@ export default {
     return {
       tabList: [],
       resultData: [],
-      errors: []
+      errors: [],
+      active: null
     }
   },
   methods: {
@@ -46,13 +48,16 @@ export default {
     resultTabData: function () {
       this.$http.get(restUrl)
         .then(response => {
-          this.tabList = []
+          this.tabList = null
           let headerEle = response.data.data
           let headerList = (dataDepth === '4' ? headerEle.roomTabList : headerEle.rackTabList)
 
+          let list = []
           for (let i = 0; i < headerList.length; i++) {
-            this.tabList.push(headerList[i])
+            list.push(headerList[i])
           }
+          this.tabList = list
+          this.active = 0
         })
         .catch(e => {
           this.errors.push(e)
