@@ -65,7 +65,7 @@
                             <v-expansion-panel v-model="panelList" expand>
                               <v-expansion-panel-content v-for="(item,i) in panelItems" :key="i" value="item === 1">
                                 <div slot="header">{{item}}</div>
-                                <v-card>
+                                <v-card ng-if="detailInfo.length>0">
                                   <v-card-text class="">
                                     아이디:{{detailInfo.id}}<br>
                                     장비명:{{detailInfo.name}}<br>
@@ -129,7 +129,7 @@ export default {
     return {
       dialog: false,
       active: null,
-      detailInfo: null,
+      detailInfo: {},
       panelList: [true, true, true],
       panelItems: ['장비 기본정보'],
       tabItems: ['장비정보', '알람정보'],
@@ -152,7 +152,7 @@ export default {
     closeDialog () {
       this.dialog = false
       this.notDetailShow = true
-      this.detailInfo = null
+      this.detailInfo = {}
     },
     setPanelData: function (location, bool) {
       var tempAr = []
