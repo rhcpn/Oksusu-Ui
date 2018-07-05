@@ -3,4 +3,6 @@ package-lock.json
 .idea
 *.iml
 target/
+front/test/e2e/reports/
+front/selenium-debug.log
 /src/main/resources/static/
