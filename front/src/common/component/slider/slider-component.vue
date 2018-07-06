@@ -51,9 +51,11 @@
                             <!-- 상단버튼영역 -->
                             <div class="btns-area">
                               <div class="left">
-                                <v-btn class="btn-md-cr" @click="openBasicInfo">장비기본정보</v-btn><!--
-                                <v-btn class="btn-md-cr" @click="openGeneralInfo">장비일반정보</v-btn>
-                                <v-btn class="btn-md-cr" @click="openOperationalInfo">장비운영정보</v-btn>-->
+                                <v-btn class="btn-md-cr" @click="openBasicInfo">기본 정보</v-btn>
+                                <v-btn class="btn-md-cr" @click="openGeneralInfo">일반 정보</v-btn>
+                                <v-btn class="btn-md-cr" @click="openOperationalInfo">구성 정보</v-btn>
+                                <v-btn class="btn-md-cr" @click="openGeneralInfo">유지보수 정보</v-btn>
+                                <v-btn class="btn-md-cr" @click="openOperationalInfo">담당자 정보</v-btn>
                               </div>
                               <div class="right"><!--
                                 <v-btn class="btn-md-cr" @click.native="panelAllOpen">전체펼치기</v-btn>
@@ -131,7 +133,7 @@ export default {
       active: null,
       detailInfo: {},
       panelList: [true, true, true],
-      panelItems: ['장비 기본정보'],
+      panelItems: ['기본 정보', ' 일반 정보', '구성 정보', '유지보수 정보', '담당자 정보'],
       tabItems: ['장비정보', '알람정보'],
       rackClass: 'slider-container w500',
       defaultClass: 'slider-container',
