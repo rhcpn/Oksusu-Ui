@@ -7,15 +7,15 @@
                 slider-color="none"
         >
           <v-tab
-            v-for="n in 2"
-            :key="n"
+            v-for="tab in tabList"
+            :key="tab"
             ripple
           >
-            Item {{ n }}
+            {{tab}}
           </v-tab>
           <v-tab-item
-            v-for="n in 2"
-            :key="n"
+            v-for="tab in tabList"
+            :key="tab"
           >
             <v-card flat>
               <v-card-text><msf-tree :source="source" v-on:itemClick="itemClick" ref="resourceTree"></msf-tree></v-card-text>
@@ -116,7 +116,8 @@ export default {
       isFilterOpen: false,
       tabOpen: false,
       selectDepthArray: [],
-      searchType: false
+      searchType: false,
+      tabList: ['Infra', 'Service']
     }
   },
   created () {
