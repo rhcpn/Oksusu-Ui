@@ -32,8 +32,8 @@
           <ul class="breadcrumbs left" v-if="selectDepthArray.length" >
             <li v-for="depth in selectDepthArray" :key="depth.id"><a href="#none">{{depth.name}}</a></li>
           </ul>
-          <v-btn class="btn-md-tool" v-if="resultInfo.type === 'floor' || resultInfo.type === 'room'" v-bind:class="{ on: viewType == 'list' }" @click="viewType = 'list'"><v-icon>view_list</v-icon></v-btn>
-          <v-btn class="btn-md-tool" v-if="resultInfo.type === 'floor' || resultInfo.type === 'room'" v-bind:class="{ on: viewType == 'img' }" @click="viewType = 'img'"><v-icon>view_module</v-icon></v-btn>
+          <v-btn class="btn-md-tool" v-if="isViewTypeEnable()" v-bind:class="{ on: viewType == 'list' }" @click="viewType = 'list'"><v-icon>view_list</v-icon></v-btn>
+          <v-btn class="btn-md-tool" v-if="isViewTypeEnable()" v-bind:class="{ on: viewType == 'img' }" @click="viewType = 'img'"><v-icon>view_module</v-icon></v-btn>
           <div class="right">
             <div class="input-srh w200">
               <v-icon>search</v-icon>
@@ -116,6 +116,9 @@ export default {
       // this.searchType = true
       // this.tabItemClick('bm-server')
       this.itemClick(this.resultInfo, true)
+    },
+    isViewTypeEnable: function () {
+      return this.resultInfo.type && this.resultInfo.type !== 'datacenter' && this.resultInfo.type !== 'floor'
     }
   },
   data: function () {
