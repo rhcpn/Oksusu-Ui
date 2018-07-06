@@ -193,9 +193,12 @@ export default {
     openPanelAndScrollMove (panelType, index) {
       this.panelList[index] = true
       this.$forceUpdate()
+      var panel = $('#' + panelType + 'Panel')
+      var topPositon = panel.offset().top + panel.outerHeight()
 
-      var topPositon = $('#' + panelType + 'Panel').offset().top
-      $('#scroll').scrollTop(topPositon)
+      setTimeout(function () {
+        $('#scroll').scrollTop(topPositon)
+      }, 300)
     }
   },
   created () {
