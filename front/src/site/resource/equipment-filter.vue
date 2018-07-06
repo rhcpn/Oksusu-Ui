@@ -1,6 +1,6 @@
 <template>
-  <div class="filter-tbl mb-2" v-show="filterOpen">
-    <table>
+  <div class="filter-tbl mb-2" v-show="filterOpen || (selectedItem && selectedItem.length > 0)">
+    <table v-show="filterOpen">
       <colgroup>
         <col style="width:15%">
         <col style="width:auto">

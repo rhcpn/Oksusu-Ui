@@ -1,10 +1,10 @@
 <template>
   <li class="parent-gnb" :class="{ 'active': isOpen }" @click="openMenu($event)">
-    <a href="#"><v-icon>view_list</v-icon><span>{{data.name}}</span><v-icon class="arrow" v-if="data.children">keyboard_arrow_right</v-icon></a>
+    <a href="#"><v-icon>{{data.iconClass}}</v-icon><span>{{data.name}}</span><v-icon class="arrow" v-if="data.children">keyboard_arrow_right</v-icon></a>
 
     <!-- Menu Depth2 -->
     <ul class="gnb-list" v-if="isFolding || (data.children && isOpen)" :style="{ display: ((isFolding || isOpen)? 'list-item':'none') }">
-      <li class="child-gnb" v-for="child in data.children" :key="child.path" v-on:click.stop="menuActiveHandler($event, 'child')">
+      <li class="child-gnb" v-for="child in data.children" :key="child.path + child.name" v-on:click.stop="menuActiveHandler($event, 'child')">
         <a href="#"><span>{{child.name}}</span></a>
       </li>
     </ul>
@@ -17,8 +17,16 @@ export default {
   created: function () {
     // Default Setting
     let current = this.$router.history.current
-    if (this.data.name === current.name) {
+    if (current == null || current.matched == null) {
+      return
+    }
+
+    let matched = _.groupBy(current.matched, 'name')
+    if (matched.hasOwnProperty(this.data.name)) {
       this.isOpen = true
+      setTimeout(function () {
+        $("li.child-gnb:contains('" + current.name + "')").addClass('active')
+      }, 300)
     }
 
     // Event Listener

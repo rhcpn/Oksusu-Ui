@@ -58,13 +58,6 @@ export default {
       let menuTypes = _.groupBy(menus, 'position')
       this.topMenus = menuTypes.top
       this.bottomMenus = menuTypes.bottom
-
-      for (let i = 0; i < this.topMenus.length; i++) {
-        let route = this.topMenus[i]
-        if (route.name === 'Main') {
-          this.topMenus = route.children
-        }
-      }
     }
   }
 }
