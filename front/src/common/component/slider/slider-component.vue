@@ -179,6 +179,9 @@ export default {
     this.$eventHub.$on('slider-change-data', (data) => {
       this.detailInfo = data
     })
+    this.$eventHub.$on('slider-detail-show', () => {
+      this.notDetailShow = false
+    })
   }
 }
 </script>
