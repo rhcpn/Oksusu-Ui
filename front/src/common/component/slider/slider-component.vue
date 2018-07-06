@@ -4,9 +4,11 @@
       hide-overlay
       transition="dialog-right-transition"
       scrollable
+      class="dialog-rack"
+      v-bind:class="[notDetailShow ? rackClass : defaultClass]"
     >
       <!-- 우측 slider-container -->
-      <div v-bind:class="[notDetailShow ? rackClass : defaultClass]">
+      <div class="slider-container">
         <div class="panel-wrap">
           <div class="panel-header">
             <h3 class="header-title left">장비이름(000.00.0.00)</h3>
@@ -170,8 +172,8 @@ export default {
       panelList: [true, true, true, true, true],
       panelItems: ['기본 정보', ' 일반 정보', '구성 정보', '유지보수 정보', '담당자 정보'],
       tabItems: ['장비정보', '알람정보'],
-      rackClass: 'slider-container w500',
-      defaultClass: 'slider-container',
+      rackClass: 'size-sm',
+      defaultClass: '',
       notDetailShow: true
     }
   },
