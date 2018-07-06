@@ -7,14 +7,14 @@
                 slider-color="none"
         >
           <v-tab
-            v-for="n in 2"
+            v-for="n in tabList"
             :key="n"
             ripple
           >
-            Item {{ n }}
+            {{ n }}
           </v-tab>
           <v-tab-item
-            v-for="n in 2"
+            v-for="n in tabList"
             :key="n"
           >
             <v-card flat>
@@ -130,7 +130,8 @@ export default {
       tabOpen: false,
       selectDepthArray: [],
       searchType: false,
-      viewType: 'list'
+      viewType: 'list',
+      tabList: ['Infra', 'Service']
     }
   },
   created () {
