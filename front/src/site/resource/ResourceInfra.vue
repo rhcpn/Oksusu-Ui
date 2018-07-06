@@ -7,15 +7,15 @@
                 slider-color="none"
         >
           <v-tab
-            v-for="tab in tabList"
-            :key="tab"
+            v-for="n in 2"
+            :key="n"
             ripple
           >
-            {{tab}}
+            Item {{ n }}
           </v-tab>
           <v-tab-item
-            v-for="tab in tabList"
-            :key="tab"
+            v-for="n in 2"
+            :key="n"
           >
             <v-card flat>
               <v-card-text><msf-tree :source="source" v-on:itemClick="itemClick" ref="resourceTree"></msf-tree></v-card-text>
@@ -32,6 +32,8 @@
           <ul class="breadcrumbs left" v-if="selectDepthArray.length" >
             <li v-for="depth in selectDepthArray" :key="depth.id"><a href="#none">{{depth.name}}</a></li>
           </ul>
+          <v-btn icon class="btn-md-tool" v-bind:class="{ on: viewType == 'list' }" @click="viewType = 'list'"><v-icon>view_module</v-icon></v-btn>
+          <v-btn icon class="btn-md-tool" v-bind:class="{ on: viewType == 'img' }" @click="viewType = 'img'"><v-icon>view_list</v-icon></v-btn>
           <div class="right">
             <div class="input-srh w200">
               <v-icon>search</v-icon>
@@ -48,7 +50,12 @@
         <div class="panel-body">
           <equipment-filter :filterOpen="isFilterOpen"></equipment-filter>
           <resource-infra-tab v-show="tabOpen" v-on:tabItemClick="tabItemClick" ref="tabData"></resource-infra-tab>
-          <resource-infra-data :resultInfo="resultInfo" ref="resourceData"></resource-infra-data>
+          <div class="inner-scroll" v-show="viewType == 'list'"><resource-infra-data :resultInfo="resultInfo" ref="resourceData"></resource-infra-data></div>
+          <div class="inner-scroll" v-show="viewType == 'img'">
+            <v-layout justify-center align-center>
+              <img src="@/asset/images/common/top_view.png" alt="" style="width:1334px;height:842px;overflow:hidden">
+            </v-layout>
+          </div>
         </div>
       </div>
 
@@ -117,7 +124,7 @@ export default {
       tabOpen: false,
       selectDepthArray: [],
       searchType: false,
-      tabList: ['Infra', 'Service']
+      viewType: 'list'
     }
   },
   created () {
