@@ -10,13 +10,85 @@ const baseRoutes = [
 const routes = [
   {
     path: '',
-    name: 'Main',
+    name: '운영',
+    iconClass: 'view_list',
     component: () => import('@/site/Main'),
     position: 'top',
     children: [
       { path: '/',
-        name: 'Resource-Infra',
+        name: '자원관리',
         component: () => import('@/site/resource/ResourceInfra')
+      },
+      { path: '',
+        name: '작업관리'
+      }
+    ]
+  },
+  {
+    path: '',
+    name: '대시보드',
+    iconClass: 'desktop_windows',
+    position: 'top',
+    children: [
+      { path: '',
+        name: 'Grafana'
+      },
+      { path: '',
+        name: 'Custom'
+      }
+    ]
+  },
+  {
+    path: '',
+    name: '데이터분석',
+    iconClass: 'pie_chart',
+    position: 'top'
+  },
+  {
+    path: '',
+    name: '관리자',
+    iconClass: 'people',
+    position: 'top',
+    children: [
+      { path: '',
+        name: '사용자 관리'
+      },
+      { path: '',
+        name: '시스템 모니터링'
+      }
+    ]
+  },
+  {
+    path: '',
+    name: '설정',
+    iconClass: 'settings',
+    position: 'bottom',
+    children: [
+      { path: '',
+        name: '자원 관리',
+        children: [
+          { path: '',
+            name: 'Infra'
+          },
+          { path: '',
+            name: 'Service'
+          }
+        ]
+      },
+      { path: '',
+        name: '알람 정의'
+      },
+      { path: '',
+        name: '알람 공지 설정'
+      },
+      { path: '',
+        name: '수집 설정'
+      },
+      { path: '',
+        name: '메트릭 설정'
+      },
+      { path: '',
+        name: '데이터 센터 설정'
       }
     ]
   }
