@@ -67,7 +67,7 @@
 
                             <div class="scroll-y p100 hfluid50" id="scroll">
                             <!-- 아코디언 -->
-                              <v-expansion-panel expand >
+                              <v-expansion-panel expand ref="expandPanelGroup" >
                                 <v-expansion-panel-content v-model="panelList[0]" id="defaultPanel">
                                   <div slot="header">{{panelItems[0]}}</div>
                                   <v-card ng-if="detailInfo.length>0">
@@ -248,7 +248,12 @@ export default {
   },
   methods: {
     panelAllOpen () {
-      this.panelList = [...Array(this.panelItems.length).keys()].map(_ => true)
+      // this.panelList = [...Array(this.panelItems.length).keys()].map(_ => true)
+      for (var i = 0; i < this.panelItems.length; i++) {
+        let uid = this.$refs.expandPanelGroup[0].items[i].uid
+        console.log(this.$refs.expandPanelGroup[0].items[i].toggle(uid))
+        this.$refs.expandPanelGroup[0].panelClick(uid)
+      }
     },
     panelAllClose () {
       this.panelList = []
@@ -275,6 +280,7 @@ export default {
   created () {
     this.$eventHub.$on('slider-open', () => {
       this.dialog = true
+      //this.panelAllOpen()
     })
     this.$eventHub.$on('slider-change-data', (data) => {
       this.detailInfo = data
