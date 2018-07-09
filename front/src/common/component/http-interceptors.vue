@@ -42,7 +42,8 @@ export default {
       }
 
       if (loader) {
-        _loader.showIndicator()
+        // _loader.showIndicator()
+        _loader.lazyIndicator(1000000)
       }
 
       return config || Promise.when(config)

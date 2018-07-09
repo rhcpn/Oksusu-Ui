@@ -29,7 +29,7 @@ export default {
           _indicatorTime = setInterval(function () {
             _indicatorCount = []
             this.hideIndicator()
-          }, 60000)
+          }, 6000)
         }
       }
 
@@ -46,10 +46,11 @@ export default {
       this.show = false
     },
     lazyIndicator: function (lazySeconds) {
-      if (lazySeconds == null || _.isNumber(lazySeconds) || lazySeconds < 0) {
+      if (lazySeconds == null || !_.isNumber(lazySeconds) || lazySeconds < 0) {
         lazySeconds = 300
       }
 
+      this.showIndicator()
       setTimeout(this.hideIndicator, lazySeconds)
     }
   }
@@ -62,6 +63,10 @@ export default {
     display: inline-block;
     right: 50vw;
     bottom: 50vh;
+  }
+
+  .common-spinner-wrapper .wrapper {
+    background: none !important;
   }
 
   .common-spinner-overlay {
