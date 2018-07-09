@@ -8,7 +8,7 @@
       v-bind:class="[notDetailShow ? rackClass : defaultClass]"
     >
       <!-- 우측 slider-container -->
-      <div class="slider-container">
+      <div class="slider-container" style="position:absolute; top:6px; right:0; bottom:6px; width:100%; box-shadow:0 2px 26px 5px rgba(0,0,0,.10); -webkit-transition:.2s cubic-bezier(.4,0,.2,1); transition:.2s cubic-bezier(.4,0,.2,1); z-index:2;">
         <div class="panel-wrap">
           <div class="panel-header">
             <h3 class="header-title left">장비이름(000.00.0.00)</h3>
@@ -21,18 +21,17 @@
             <div class="right"><v-btn flat icon class="ico-sm" @click.native="closeDialog()"><v-icon class="md-18">close</v-icon></v-btn></div>
           </div>
           <div class="panel-body" v-on:click="showDetailInfo()">
-            <img  v-if="notDetailShow" src="../../../asset/images/common/rack.png"/>
+            <img  v-if="notDetailShow" src="../../../asset/images/common/rack.png">
             <div class="container fluid fill-height" v-show="!notDetailShow" >
               <div class="layout row gap-06">
                 <div class="flex md5 col-fixed500">
                   <div class="">
-                    <img src="../../../asset/images/common/rack.png"/>
+                    <img src="../../../asset/images/common/rack.png" alt="" style="width:478px;height:820px">
                   </div>
                 </div>
-                <div class="flex md7 col-fluid500" style="overflow-y:scroll" id="scroll">
-                  <div class="" style="height:100%">
+                <div class="flex md7 col-fluid500">
 
-                    <v-tabs class="sub-tabs"
+                    <v-tabs class="sub-tabs" style="height:100%"
                             v-model="active"
                             color="none"
                             slider-color="none"
@@ -48,7 +47,7 @@
                         v-for="n in 1"
                         :key="n"
                       >
-                        <v-card flat>
+                        <v-card>
                           <v-card-text>
                             <!-- 상단버튼영역 -->
                             <div class="btns-area">
@@ -65,45 +64,116 @@
                               </div>
                             </div>
                             <!-- //상단버튼영역 -->
+
+                            <div class="scroll-y p100 hfluid50" id="scroll">
                             <!-- 아코디언 -->
-                            <div>
                               <v-expansion-panel expand >
                                 <v-expansion-panel-content v-model="panelList[0]" id="defaultPanel">
                                   <div slot="header">{{panelItems[0]}}</div>
                                   <v-card ng-if="detailInfo.length>0">
-                                    <v-card-text class="">
-                                      아이디:{{detailInfo.id}}<br>
-                                      장비명:{{detailInfo.name}}<br>
-                                      장비높이:{{detailInfo.unitSize}}<br>
-                                      홀번호 :{{detailInfo.holeNo}}<br>
-                                      상태 :{{detailInfo.status}}<br>
-                                      제조사 :{{detailInfo.manufacturer}}<br>
-                                      모델 :{{detailInfo.modelNo}}<br>
-                                      시리얼 번호 :{{detailInfo.serialNumber}}<br>
-                                      서비스 군 :{{detailInfo.serviceGroup}}<br>
-                                      서비스 명 :{{detailInfo.serviceName}}<br>
-                                      장비무게(Kg) :{{detailInfo.devTotalAmount}}<br>
-                                      발열량(Btu/Hr) :{{detailInfo.heatValue}}<br>
-                                      전원수량(개) :{{detailInfo.powerCount}}<br>
-                                      장비전원(W) :{{detailInfo.systemPower}}<br>
-                                      Host명 :{{detailInfo.hostName}}<br>
-                                      CPU프로세서수(CPU) :{{detailInfo.cpuCnt}}<br>
-                                      CPU전체 코어수(Core) :{{detailInfo.totalCpuCoreCnt}}<br>
-                                      Memory 갯수 :{{detailInfo.memCnt}}<br>
-                                      Memory 용량(GB) :{{detailInfo.totalMemCapcacity}}<br>
-                                      Disk 갯수 :{{detailInfo.hddCnt}}<br>
-                                      Disk 용량(GB) :{{detailInfo.totalHddCapacity}}<br>
-                                      서비스 대표 IP :{{detailInfo.mainIpAddr}}<br>
-                                      Port IP :{{detailInfo.nicNo}}<br>
-                                      OS 명 :{{detailInfo.osName}}<br>
-                                      OS 버전 :{{detailInfo.osVersion}}<br>
-                                      입고일 :{{detailInfo.stockEquipmentComeAt}}<br>
-                                      폐기 예정일 :{{detailInfo.disposeAt}}<br>
-                                      메모 :{{detailInfo.remark}}<br>
-                                      CPU모델명 :{{detailInfo.specType}}<br>
-                                      프로세서 당 코어 수 :{{detailInfo.coreCount}}<br>
-                                      담당자 :{{detailInfo.operatorName}}<br>
-                                      타입 :{{detailInfo.type}}<br>
+                                    <v-card-text>
+                                      <!-- data-tbl -->
+                                      <div class="data-tbl border-type">
+                                        <table>
+                                          <colgroup>
+                                            <col style="width:15%">
+                                            <col style="width:auto">
+                                            <col style="width:15%">
+                                            <col style="width:auto">
+                                            <col style="width:15%">
+                                            <col style="width:auto">
+                                          </colgroup>
+                                          <tbody>
+                                          <tr>
+                                            <th>아이디</th>
+                                            <td>{{detailInfo.id}}</td>
+                                            <th>장비명</th>
+                                            <td>{{detailInfo.name}}</td>
+                                            <th>장비높이</th>
+                                            <td>{{detailInfo.unitSize}}</td>
+                                          </tr>
+                                          <tr>
+                                            <th>홀번호</th>
+                                            <td>{{detailInfo.holeNo}}</td>
+                                            <th>상태</th>
+                                            <td>{{detailInfo.status}}</td>
+                                            <th>제조사</th>
+                                            <td>{{detailInfo.manufacturer}}</td>
+                                          </tr>
+                                          <tr>
+                                            <th>모델</th>
+                                            <td>{{detailInfo.modelNo}}</td>
+                                            <th>시리얼 번호</th>
+                                            <td>{{detailInfo.serialNumber}}</td>
+                                            <th>서비스 군</th>
+                                            <td>{{detailInfo.serviceGroup}}</td>
+                                          </tr>
+                                          <tr>
+                                            <th>서비스 명</th>
+                                            <td>{{detailInfo.serviceName}}</td>
+                                            <th>장비무게(Kg)</th>
+                                            <td>{{detailInfo.devTotalAmount}}</td>
+                                            <th>발열량(Btu/Hr)</th>
+                                            <td>{{detailInfo.heatValue}}</td>
+                                          </tr>
+                                          <tr>
+                                            <th>전원수량(개)</th>
+                                            <td>{{detailInfo.powerCount}}</td>
+                                            <th>장비전원(W)</th>
+                                            <td>{{detailInfo.systemPower}}</td>
+                                            <th>Host명</th>
+                                            <td>{{detailInfo.hostName}}</td>
+                                          </tr>
+                                          <tr>
+                                            <th>CPU프로세서수(CPU)</th>
+                                            <td>{{detailInfo.cpuCnt}}</td>
+                                            <th>CPU전체 코어수(Core)</th>
+                                            <td>{{detailInfo.totalCpuCoreCnt}}</td>
+                                            <th>Memory 갯수</th>
+                                            <td>{{detailInfo.memCnt}}</td>
+                                          </tr>
+                                          <tr>
+                                            <th>Memory 용량(GB)</th>
+                                            <td>{{detailInfo.totalMemCapcacity}}</td>
+                                            <th>Disk 갯수</th>
+                                            <td>{{detailInfo.hddCnt}}</td>
+                                            <th>Disk 용량(GB)</th>
+                                            <td>{{detailInfo.totalHddCapacity}}</td>
+                                          </tr>
+                                          <tr>
+                                            <th>서비스 대표 IP</th>
+                                            <td>{{detailInfo.mainIpAddr}}</td>
+                                            <th>Port IP</th>
+                                            <td>{{detailInfo.nicNo}}</td>
+                                            <th>OS 명</th>
+                                            <td>{{detailInfo.osName}}</td>
+                                          </tr>
+                                          <tr>
+                                            <th>OS 버전</th>
+                                            <td>{{detailInfo.osVersion}}</td>
+                                            <th>입고일</th>
+                                            <td>{{detailInfo.stockEquipmentComeAt}}</td>
+                                            <th>폐기 예정일</th>
+                                            <td>{{detailInfo.disposeAt}}</td>
+                                          </tr>
+                                          <tr>
+                                            <th>CPU모델명</th>
+                                            <td>{{detailInfo.specType}}</td>
+                                            <th>프로세서 당 코어 수</th>
+                                            <td>{{detailInfo.coreCount}}</td>
+                                            <th>담당자</th>
+                                            <td>{{detailInfo.operatorName}}</td>
+                                          </tr>
+                                          <tr>
+                                            <th>타입</th>
+                                            <td>{{detailInfo.type}}</td>
+                                            <th>메모</th>
+                                            <td colspan="3">{{detailInfo.remark}}</td>
+                                          </tr>
+                                          </tbody>
+                                        </table>
+                                      </div>
+                                      <!-- //data-tbl -->
                                     </v-card-text>
                                   </v-card>
                                 </v-expansion-panel-content>
@@ -153,7 +223,6 @@
             </div>
           </div>
         </div>
-      </div>
       <!-- //slider-container -->
     </v-dialog>
 </template>
@@ -196,7 +265,7 @@ export default {
       this.panelList[index] = true
       this.$forceUpdate()
       var panel = $('#' + panelType + 'Panel')
-      var topPositon = panel.offset().top + panel.outerHeight()
+      var topPositon = panel.offset().top
 
       setTimeout(function () {
         $('#scroll').scrollTop(topPositon)
