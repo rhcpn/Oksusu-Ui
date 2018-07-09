@@ -86,7 +86,29 @@ public class InfraService implements Infra {
     public List<Object> getItemNameList(String type) {
 
         GsonJsonParser jsonParser = new GsonJsonParser();
-        return jsonParser.parseList(getFile(type + "-itemname.json"));
+        List<Object> list = jsonParser.parseList(getFile(type + "-itemname.json"));
+
+        List<Object> resultList = new ArrayList<Object>();
+        String[] displayNoneList = {"아이디", "타입", "위치정보"};
+        for (int i=0 ; i < list.size(); i++){
+            String name  = (String) list.get(i);
+
+            InfraModel infraModel = new InfraModel();
+            infraModel.setName(name);
+
+            for(int j=0; j < displayNoneList.length; j++){
+                if(name.equals(displayNoneList[j])){
+                    infraModel.setHide(true);
+                    break;
+                }else{
+                    infraModel.setHide(false);
+                }
+            }
+
+            resultList.add(infraModel);
+        }
+
+        return resultList;
     }
 
     public List<Object> getTabList(String type){
