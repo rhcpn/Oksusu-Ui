@@ -29,7 +29,7 @@ export default {
           _indicatorTime = setInterval(function () {
             _indicatorCount = []
             this.hideIndicator()
-          }, 6000)
+          }, 60000)
         }
       }
 
@@ -50,7 +50,6 @@ export default {
         lazySeconds = 300
       }
 
-      this.showIndicator()
       setTimeout(this.hideIndicator, lazySeconds)
     }
   }
