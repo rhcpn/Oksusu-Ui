@@ -248,12 +248,8 @@ export default {
   },
   methods: {
     panelAllOpen () {
-      // this.panelList = [...Array(this.panelItems.length).keys()].map(_ => true)
-      for (var i = 0; i < this.panelItems.length; i++) {
-        let uid = this.$refs.expandPanelGroup[0].items[i].uid
-        console.log(this.$refs.expandPanelGroup[0].items[i].toggle(uid))
-        this.$refs.expandPanelGroup[0].panelClick(uid)
-      }
+      this.panelList = []
+      this.panelList = [...Array(this.panelItems.length).keys()].map(_ => true)
     },
     panelAllClose () {
       this.panelList = []
@@ -265,6 +261,7 @@ export default {
       this.dialog = false
       this.notDetailShow = true
       this.detailInfo = {}
+      this.panelList = []
     },
     openPanelAndScrollMove (panelType, index) {
       this.panelList[index] = true
@@ -280,7 +277,7 @@ export default {
   created () {
     this.$eventHub.$on('slider-open', () => {
       this.dialog = true
-      //this.panelAllOpen()
+      setTimeout(this.panelAllOpen, 1000)
     })
     this.$eventHub.$on('slider-change-data', (data) => {
       this.detailInfo = data
