@@ -1,7 +1,7 @@
 [
   {
     "id": "2001",
-    "name": "Floor1",
+    "name": "1층",
     "availableCount": "1000",
     "usedCount": "2000",
     "serverCount": "3000",
@@ -15,7 +15,7 @@
   },
   {
     "id": "2002",
-    "name": "Floor2",
+    "name": "2층",
     "availableCount": "1000",
     "usedCount": "2000",
     "serverCount": "3000",
@@ -29,7 +29,7 @@
   },
   {
     "id": "2003",
-    "name": "Floor3",
+    "name": "3층",
     "availableCount": "1000",
     "usedCount": "2000",
     "serverCount": "3000",
@@ -43,7 +43,7 @@
   },
   {
     "id": "2004",
-    "name": "Floor4",
+    "name": "4층",
     "availableCount": "1000",
     "usedCount": "2000",
     "serverCount": "3000",
@@ -57,7 +57,7 @@
   },
   {
     "id": "2005",
-    "name": "Floor5",
+    "name": "5층",
     "availableCount": "1000",
     "usedCount": "2000",
     "serverCount": "3000",
@@ -71,7 +71,7 @@
   },
   {
     "id": "2006",
-    "name": "Floor6",
+    "name": "6층",
     "availableCount": "1000",
     "usedCount": "2000",
     "serverCount": "3000",
@@ -85,7 +85,7 @@
   },
   {
     "id": "2007",
-    "name": "Floor7",
+    "name": "7층",
     "availableCount": "1000",
     "usedCount": "2000",
     "serverCount": "3000",
@@ -99,7 +99,7 @@
   },
   {
     "id": "2008",
-    "name": "Floor8",
+    "name": "8층",
     "availableCount": "1000",
     "usedCount": "2000",
     "serverCount": "3000",
@@ -113,7 +113,7 @@
   },
   {
     "id": "2009",
-    "name": "Floor9",
+    "name": "9층",
     "availableCount": "1000",
     "usedCount": "2000",
     "serverCount": "3000",
@@ -127,7 +127,7 @@
   },
   {
     "id": "2010",
-    "name": "Floor10",
+    "name": "10층",
     "availableCount": "1000",
     "usedCount": "2000",
     "serverCount": "3000",
