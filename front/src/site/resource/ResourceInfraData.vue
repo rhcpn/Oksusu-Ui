@@ -4,6 +4,8 @@
                class="ag-theme-balham pt-2"
                :columnDefs="columnDefs"
                :rowData="rowData"
+               rowSelection="single"
+               :cellClicked="getSelectedRows"
                :gridReady="onGridReady"
   >
   </ag-grid-vue>
@@ -133,9 +135,10 @@ export default {
             }
           }
 
-          for (let i = 0; i < fieldData.length; i++) {
-            result.push(fieldData[i])
-          }
+          // for (let i = 0; i < fieldData.length; i++) {
+          // result.push(fieldData[i])
+          result = fieldData
+          // }
           this.rowData = []
           this.rowData = result
 
@@ -163,23 +166,25 @@ export default {
             header = response.data.data[headerList[1]]
           }
 
-          let fieldEle = response.data
-          let fieldList = Object.keys(fieldEle.data)
           let fieldData
           let field
-          if (fieldList[0] !== undefined) {
-            fieldData = response.data.data[fieldList[0]]
-            if (fieldList[0] !== undefined) {
+          if (headerList[0] !== undefined) {
+            fieldData = response.data.data[headerList[0]]
+            if (headerList[0] !== undefined) {
               field = Object.keys(fieldData[0])
             }
-            this.coldef(dataDepth, header, field)
           }
 
-          for (let i = 0; i < fieldData.length; i++) {
-            result.push(fieldData[i])
-          }
+          // for (let i = 0; i < fieldData.length; i++) {
+          // result.push(fieldData[i])
+          result = fieldData
+          // }
           this.rowData = []
           this.rowData = result
+
+          this.coldef(dataDepth, header, field)
+
+          this.gridOptions.api.refreshCells()
           this.gridOptions.api.refreshView()
         })
         .catch(e => {
@@ -190,11 +195,12 @@ export default {
       this.gridApi = params.api
       this.columnApi = params.columnApi
     },
-    getSelectedRows () {
-      const selectedNodes = this.gridApi.getSelectedNodes()
-      const selectedData = selectedNodes.map(node => node.data)
-      const selectedDataStringPresentation = selectedData.map(node => node.make + ' ' + node.model).join(', ')
-      alert(`Selected nodes: ${selectedDataStringPresentation}`)
+    getSelectedRows: function () {
+      let selectedNodes
+      let selectedData
+      selectedNodes = this.gridApi.getSelectedNodes()
+      selectedData = selectedNodes.map(node => node.data)
+      this.$emit('selectedData', selectedData[0])
     },
     coldef: function (dataDepth, header, field, searchType) {
       this.columnDefs = []
