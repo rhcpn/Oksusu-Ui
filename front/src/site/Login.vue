@@ -84,9 +84,9 @@ export default {
       this.redirect()
     },
     redirect () {
-      let returnPath = this.$route.query.redirect || '/'
-      // 리다이렉트 처리
-      this.$router.push(returnPath)
+      // let returnPath = this.$route.query.redirect || '/'
+      // this.$router.push(returnPath)
+      this.$router.push('/')
     }
   }
 }

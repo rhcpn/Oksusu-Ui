@@ -3,17 +3,18 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-const baseRoutes = [
+const BASE_ROUTES = [
+  { path: '', name: 'Main', component: () => import('@/site/Main') },
   { path: '/login', name: 'Login', component: () => import('@/site/Login') }
 ]
 
-const routes = [
+const ROUTES = [
   {
     path: '',
     name: '운영',
     iconClass: 'view_list',
-    component: () => import('@/site/Main'),
     position: 'top',
+    component: { template: '<router-view/>' },
     children: [
       { path: '/',
         name: '자원관리',
@@ -29,12 +30,15 @@ const routes = [
     name: '대시보드',
     iconClass: 'desktop_windows',
     position: 'top',
+    component: { template: '<div>dashboard<router-view/></div>' },
     children: [
-      { path: '',
-        name: 'Grafana'
+      { path: '/dashboard/grafana',
+        name: 'Grafana',
+        component: { template: '<div>grafana</div>' }
       },
-      { path: '',
-        name: 'Custom'
+      { path: '/dashboard/custom',
+        name: 'Custom',
+        component: { template: '<div>custom</div>' }
       }
     ]
   },
@@ -97,9 +101,9 @@ const routes = [
 const MenuData = require('@/asset/json/menu')
 
 function initRouter () {
-  let router = addRoute(routes)
-  router = router.concat(baseRoutes)
-  return router
+  let router = addRoute(ROUTES)
+  BASE_ROUTES[0].children = router
+  return BASE_ROUTES
 }
 
 function addRoute (routes) {

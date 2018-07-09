@@ -53,11 +53,19 @@ export default {
   },
   methods: {
     init: function () {
-      menus = this.$router.options.routes
-
-      let menuTypes = _.groupBy(menus, 'position')
-      this.topMenus = menuTypes.top
-      this.bottomMenus = menuTypes.bottom
+      // menus = this.$router.options.routes
+      // Main에 할당된 menu만 보여준다
+      for (let i = 0; i < this.$router.options.routes.length; i++) {
+        if (this.$router.options.routes[i].name === 'Main') {
+          menus = this.$router.options.routes[i].children
+          break
+        }
+      }
+      if (menus && menus.length) {
+        let menuTypes = _.groupBy(menus, 'position')
+        this.topMenus = menuTypes.top
+        this.bottomMenus = menuTypes.bottom
+      }
     }
   }
 }
