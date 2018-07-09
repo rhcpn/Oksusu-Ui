@@ -50,7 +50,7 @@
         <div class="panel-body">
           <equipment-filter :filterOpen="isFilterOpen"></equipment-filter>
           <resource-infra-tab v-show="tabOpen" v-on:tabItemClick="tabItemClick" ref="tabData"></resource-infra-tab>
-          <div class="inner-scroll" v-show="viewType == 'list'"><resource-infra-data :resultInfo="resultInfo" ref="resourceData"></resource-infra-data></div>
+          <div class="inner-scroll" v-show="viewType == 'list'"><resource-infra-data :resultInfo="resultInfo" v-on:selectedData="selectedData" ref="resourceData"></resource-infra-data></div>
           <div class="inner-scroll" v-show="viewType == 'img'">
             <v-layout justify-center align-center>
               <img src="@/asset/images/common/top_view.png" alt="" style="width:1334px;height:842px;overflow:hidden">
@@ -103,7 +103,6 @@ export default {
     },
     tabItemClick: function (type) {
       this.$refs.resourceData.resultDataTabGrid(type)
-      console.log(type)
     },
     getDepthArray: function (data) {
       if (data && data.hasOwnProperty('parent') && data.parent) {
@@ -119,6 +118,9 @@ export default {
     },
     isViewTypeEnable: function () {
       return this.resultInfo.type && this.resultInfo.type !== 'datacenter' && this.resultInfo.type !== 'floor'
+    },
+    selectedData: function (data) {
+      this.$refs.resourceTree[0].setActive(data.name, 'name')
     }
   },
   data: function () {
