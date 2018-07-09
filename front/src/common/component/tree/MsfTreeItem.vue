@@ -3,7 +3,7 @@
     <div :style="{ width: data.depth * 20 + 'px'}"></div>
     <div class="expanded" :style="{cursor : hasChild(data) ? 'pointer' : ''}" :class="hasChild(data) ? expanded ? 'open' : 'closed' : 'empty'" v-on:click="onClick">
     </div>
-    <div class="item" v-on:click="itemClick(data)"><div class="ico-tree" :class="getIcon()"></div><div style="padding-left: 5px"> {{ label }}</div></div>
+    <div class="item" :class="isActive" v-on:click="itemClick(data)"><div class="ico-tree" :class="getIcon()"></div><div style="padding-left: 5px"> {{ label }}</div></div>
   </div>
 </template>
 
@@ -57,6 +57,12 @@ export default {
           return ''
         }
       }
+    },
+    isActive: function () {
+      if (this.checked) {
+        return 'active'
+      }
+      return ''
     }
 
   }

@@ -107,12 +107,23 @@ export default {
     },
     itemClick: function (item) { // 아이템 클릭 이벤트 버블링
       this.$emit('itemClick', item)
+      for (let i = 0; i < this.items.length; i++) {
+        let obj = this.items[i]
+        obj.checked = false
+      }
+      item.checked = true
+      this.refresh()
+    },
+    setActive: function (value, field) {
+      for (let i = 0; i < this.items.length; i++) {
+        let item = this.items[i]
+        if (item[field] === value) { item.checked = true } else { item.checked = false }
+      }
     },
     setCheckType: function (item) {
       let idx = this.items.indexOf(item)
       let isAllChecked = true
       let isAllUnChecked = true
-
       for (let i = idx + 1; i < this.items.length; i++) {
         let obj = this.items[i]
         if (obj.depth <= item.depth) { break }

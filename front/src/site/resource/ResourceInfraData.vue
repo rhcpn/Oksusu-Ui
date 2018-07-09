@@ -200,7 +200,8 @@ export default {
       this.columnDefs = []
       for (let i = 0; i < header.length; i++) {
         this.columnDefs.push({
-          headerName: header[i],
+          headerName: header[i].name,
+          hide: header[i].hide,
           field: field[i]
         })
 
