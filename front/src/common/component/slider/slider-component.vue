@@ -8,7 +8,7 @@
       v-bind:class="[notDetailShow ? rackClass : defaultClass]"
     >
       <!-- 우측 slider-container -->
-      <div class="slider-container" style="position:absolute; top:6px; right:0; bottom:6px; width:100%; box-shadow:0 2px 26px 5px rgba(0,0,0,.10); -webkit-transition:.2s cubic-bezier(.4,0,.2,1); transition:.2s cubic-bezier(.4,0,.2,1); z-index:2;">
+      <div class="slider-container" style="width:100%;">
         <div class="panel-wrap">
           <div class="panel-header">
             <h3 class="header-title left">장비이름(000.00.0.00)</h3>
@@ -20,8 +20,8 @@
             </ul>
             <div class="right"><v-btn flat icon class="ico-sm" @click.native="closeDialog()"><v-icon class="md-18">close</v-icon></v-btn></div>
           </div>
-          <div class="panel-body" v-on:click="showDetailInfo()">
-            <img  v-if="notDetailShow" src="../../../asset/images/common/rack.png">
+          <div class="panel-body">
+            <img  v-if="notDetailShow" src="../../../asset/images/common/rack.png" v-on:click="showDetailInfo()">
             <div class="container fluid fill-height" v-show="!notDetailShow" >
               <div class="layout row gap-06">
                 <div class="flex md5 col-fixed500">
@@ -67,10 +67,10 @@
 
                             <div class="scroll-y p100 hfluid50" id="scroll">
                             <!-- 아코디언 -->
-                              <v-expansion-panel expand >
+                              <v-expansion-panel expand>
                                 <v-expansion-panel-content v-model="panelList[0]" id="defaultPanel">
                                   <div slot="header">{{panelItems[0]}}</div>
-                                  <v-card ng-if="detailInfo.length>0">
+                                  <v-card>
                                     <v-card-text>
                                       <!-- data-tbl -->
                                       <div class="data-tbl border-type">
@@ -248,18 +248,23 @@ export default {
   },
   methods: {
     panelAllOpen () {
+      this.panelList = []
       this.panelList = [...Array(this.panelItems.length).keys()].map(_ => true)
     },
     panelAllClose () {
       this.panelList = []
+      console.log('닫힘 ')
     },
-    showDetailInfo (data) {
+    showDetailInfo () {
       this.notDetailShow = false
+      this.$forceUpdate()
+      this.panelAllOpen()
     },
     closeDialog () {
       this.dialog = false
       this.notDetailShow = true
       this.detailInfo = {}
+      this.panelList = []
     },
     openPanelAndScrollMove (panelType, index) {
       this.panelList[index] = true
@@ -280,7 +285,7 @@ export default {
       this.detailInfo = data
     })
     this.$eventHub.$on('slider-detail-show', () => {
-      this.notDetailShow = false
+      this.showDetailInfo()
     })
   }
 }
