@@ -8,7 +8,7 @@
       v-bind:class="[notDetailShow ? rackClass : defaultClass]"
     >
       <!-- 우측 slider-container -->
-      <div class="slider-container" style="position:absolute; top:6px; right:0; bottom:6px; width:100%; box-shadow:0 2px 26px 5px rgba(0,0,0,.10); -webkit-transition:.2s cubic-bezier(.4,0,.2,1); transition:.2s cubic-bezier(.4,0,.2,1); z-index:2;">
+      <div class="slider-container" style="width:100%;">
         <div class="panel-wrap">
           <div class="panel-header">
             <h3 class="header-title left">장비이름(000.00.0.00)</h3>
