@@ -20,8 +20,8 @@
             </ul>
             <div class="right"><v-btn flat icon class="ico-sm" @click.native="closeDialog()"><v-icon class="md-18">close</v-icon></v-btn></div>
           </div>
-          <div class="panel-body" v-on:click="showDetailInfo()">
-            <img  v-if="notDetailShow" src="../../../asset/images/common/rack.png">
+          <div class="panel-body">
+            <img  v-if="notDetailShow" src="../../../asset/images/common/rack.png" v-on:click="showDetailInfo()">
             <div class="container fluid fill-height" v-show="!notDetailShow" >
               <div class="layout row gap-06">
                 <div class="flex md5 col-fixed500">
@@ -67,10 +67,10 @@
 
                             <div class="scroll-y p100 hfluid50" id="scroll">
                             <!-- 아코디언 -->
-                              <v-expansion-panel expand ref="expandPanelGroup" >
+                              <v-expansion-panel expand>
                                 <v-expansion-panel-content v-model="panelList[0]" id="defaultPanel">
                                   <div slot="header">{{panelItems[0]}}</div>
-                                  <v-card ng-if="detailInfo.length>0">
+                                  <v-card>
                                     <v-card-text>
                                       <!-- data-tbl -->
                                       <div class="data-tbl border-type">
@@ -253,9 +253,12 @@ export default {
     },
     panelAllClose () {
       this.panelList = []
+      console.log('닫힘 ')
     },
-    showDetailInfo (data) {
+    showDetailInfo () {
       this.notDetailShow = false
+      this.$forceUpdate()
+      this.panelAllOpen()
     },
     closeDialog () {
       this.dialog = false
@@ -277,13 +280,12 @@ export default {
   created () {
     this.$eventHub.$on('slider-open', () => {
       this.dialog = true
-      setTimeout(this.panelAllOpen, 1000)
     })
     this.$eventHub.$on('slider-change-data', (data) => {
       this.detailInfo = data
     })
     this.$eventHub.$on('slider-detail-show', () => {
-      this.notDetailShow = false
+      this.showDetailInfo()
     })
   }
 }
