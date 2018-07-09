@@ -119,6 +119,7 @@ export default {
         let item = this.items[i]
         if (item[field] === value) { item.checked = true } else { item.checked = false }
       }
+      this.refresh()
     },
     setCheckType: function (item) {
       let idx = this.items.indexOf(item)
