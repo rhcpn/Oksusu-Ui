@@ -1,7 +1,7 @@
 [
   {
     "id": "1001",
-    "name": "Data center1",
+    "name": "Data center 1",
     "availableCount": "1000",
     "usedCount": "2000",
     "serverCount": "3000",
@@ -15,7 +15,7 @@
   },
   {
     "id": "1002",
-    "name": "Data center2",
+    "name": "Data center 2",
     "availableCount": "1000",
     "usedCount": "2000",
     "serverCount": "3000",
@@ -29,7 +29,7 @@
   },
   {
     "id": "1003",
-    "name": "Data center3",
+    "name": "Data center 3",
     "availableCount": "1000",
     "usedCount": "2000",
     "serverCount": "3000",
@@ -43,7 +43,7 @@
   },
   {
     "id": "1004",
-    "name": "Data center4",
+    "name": "Data center 4",
     "availableCount": "1000",
     "usedCount": "2000",
     "serverCount": "3000",
@@ -57,7 +57,7 @@
   },
   {
     "id": "1005",
-    "name": "Data center5",
+    "name": "Data center 5",
     "availableCount": "1000",
     "usedCount": "2000",
     "serverCount": "3000",
@@ -71,7 +71,7 @@
   },
   {
     "id": "1006",
-    "name": "Data center6",
+    "name": "Data center 6",
     "availableCount": "1000",
     "usedCount": "2000",
     "serverCount": "3000",
@@ -85,7 +85,7 @@
   },
   {
     "id": "1007",
-    "name": "Data center7",
+    "name": "Data center 7",
     "availableCount": "1000",
     "usedCount": "2000",
     "serverCount": "3000",
@@ -99,7 +99,7 @@
   },
   {
     "id": "1008",
-    "name": "Data center8",
+    "name": "Data center 8",
     "availableCount": "1000",
     "usedCount": "2000",
     "serverCount": "3000",
@@ -113,7 +113,7 @@
   },
   {
     "id": "1009",
-    "name": "Data center9",
+    "name": "Data center 9",
     "availableCount": "1000",
     "usedCount": "2000",
     "serverCount": "3000",
@@ -127,7 +127,7 @@
   },
   {
     "id": "1010",
-    "name": "Data center10",
+    "name": "Data center 10",
     "availableCount": "1000",
     "usedCount": "2000",
     "serverCount": "3000",
