@@ -4,7 +4,6 @@
           slider-color="none">
     <v-tab
       v-for="item in tabList"
-      v-model="active"
       :key="item.type"
       :id="item.type"
       ripple
@@ -53,9 +52,6 @@ export default {
           let headerEle = response.data.data
           let headerList = (dataDepth === '4' ? headerEle.roomTabList : headerEle.rackTabList)
 
-          /* for (let i = 0; i < headerList.length; i++) {
-            this.tabList.push(headerList[i])
-          } */
           this.tabList = headerList
         })
         .catch(e => {
