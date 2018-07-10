@@ -4,7 +4,6 @@
           slider-color="none">
     <v-tab
       v-for="item in tabList"
-      v-model="active"
       :key="item.type"
       :id="item.type"
       ripple
