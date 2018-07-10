@@ -5,7 +5,12 @@ Vue.use(VueRouter)
 
 const BASE_ROUTES = [
   { path: '', name: 'Main', component: () => import('@/site/Main') },
-  { path: '/login', name: 'Login', component: () => import('@/site/Login') }
+  { path: '/login', name: 'Login', component: () => import('@/site/Login') },
+  {
+    path: '*',
+    name: '404',
+    component: { template: '<div><v-layout justify-center align-center><h2>Page Not Found</h2></v-layout></div>' }
+  }
 ]
 
 const ROUTES = [
@@ -101,9 +106,9 @@ const ROUTES = [
 const MenuData = require('@/asset/json/menu')
 
 function initRouter () {
-  let router = addRoute(ROUTES)
-  BASE_ROUTES[0].children = router
-  return BASE_ROUTES
+  let router = addChildren(addRoute(ROUTES))
+  console.log(router)
+  return router
 }
 
 function addRoute (routes) {
@@ -126,12 +131,23 @@ function addRoute (routes) {
   return list
 }
 
+function addChildren (children) {
+  let router = []
+  for (let route of BASE_ROUTES) {
+    if (route.name === 'Main') {
+      route.children = children
+    }
+    router.push(route)
+  }
+  return router
+}
+
 const router = new VueRouter({
   routes: initRouter()
 })
 
 router.beforeEach((to, from, next) => {
-  // console.log('requireAuth', to, from)
+  console.log('requireAuth', to, from)
   if (to.name === 'Login') return next()
   if (window.isAuthenticated) return next()
   next({
