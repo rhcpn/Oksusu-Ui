@@ -39,6 +39,7 @@
               <v-icon>search</v-icon>
               <v-text-field
                 @keyup.enter="searchInfo()"
+                v-model="searchWord"
                 placeholder="검색어를 입력하세요"
                 required
               ></v-text-field>
@@ -87,9 +88,7 @@ export default {
         } else {
           this.tabOpen = false
         }
-      } else {
-        this.resultInfo.depth = 4
-      }
+      } else {}
 
       this.$refs.resourceData.setData(this.resultInfo, searchType)
 
@@ -102,6 +101,7 @@ export default {
       this.viewType = 'list'
     },
     tabItemClick: function (type) {
+      this.gridTabType = type
       this.$refs.resourceData.resultDataTabGrid(type)
     },
     getDepthArray: function (data) {
@@ -112,9 +112,25 @@ export default {
     },
     searchInfo: function () {
       this.tabOpen = false
-      // this.searchType = true
-      // this.tabItemClick('bm-server')
-      this.itemClick(this.resultInfo, true)
+      if (this.resultInfo.length === 0) {
+        if (this.$data.searchWord.length === 0) {
+          this.$refs.resourceData.setData(this.resultInfo, false)
+        } else {
+          this.$refs.resourceData.setData(this.resultInfo, true)
+        }
+      } else {
+        if (this.$data.searchWord.length === 0) {
+          if (this.resultInfo.depth === 1 || this.resultInfo.depth === 2 || this.resultInfo.depth === 3) {
+            this.$refs.resourceData.setData(this.resultInfo, false)
+          } else {
+            this.tabOpen = true
+            this.$refs.tabData.setData(this.resultInfo)
+            this.$refs.resourceData.resultDataTabGrid(this.gridTabType)
+          }
+        } else {
+          this.$refs.resourceData.setData(this.resultInfo, true)
+        }
+      }
     },
     isViewTypeEnable: function () {
       return this.resultInfo.type && this.resultInfo.type !== 'datacenter' && this.resultInfo.type !== 'floor'
@@ -133,7 +149,10 @@ export default {
       selectDepthArray: [],
       searchType: false,
       viewType: 'list',
-      tabList: ['Infra', 'Service']
+      tabList: ['Infra', 'Service'],
+      searchWord: '',
+      gridTabType: ''
+
     }
   },
   created () {

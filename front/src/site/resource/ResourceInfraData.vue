@@ -99,6 +99,7 @@ export default {
           restUrl = '/resource/infra/room.json'
         } else if (data.depth === 4) {
           dataDepth = '4'
+          // if (type === '') {
           restUrl = '/resource/infra/list.json?type=rack'
         } else if (data.depth === 5) {
           dataDepth = '5'
@@ -108,7 +109,6 @@ export default {
           restUrl = '/resource/infra/datacenter.json'
         }
       } else {
-        dataDepth = '4'
         restUrl = '/resource/infra/filterList.json'
       }
 
@@ -183,9 +183,6 @@ export default {
           this.rowData = result
 
           this.coldef(dataDepth, header, field)
-
-          this.gridOptions.api.refreshCells()
-          this.gridOptions.api.refreshView()
         })
         .catch(e => {
           this.errors.push(e)
