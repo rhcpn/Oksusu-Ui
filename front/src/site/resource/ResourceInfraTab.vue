@@ -4,7 +4,9 @@
           slider-color="none">
     <v-tab
       v-for="item in tabList"
+      v-model="active"
       :key="item.type"
+      :id="item.type"
       ripple
       @click="tabItemClick(item.type)">
      {{ item.name }}({{ item.count }})
@@ -28,7 +30,7 @@ export default {
   },
   methods: {
     tabItemClick: function (type) {
-      console.log(type)
+      console.log('tabItem= ' + type)
       this.$emit('tabItemClick', type)
     },
     setData: function (data) {
@@ -51,9 +53,10 @@ export default {
           let headerEle = response.data.data
           let headerList = (dataDepth === '4' ? headerEle.roomTabList : headerEle.rackTabList)
 
-          for (let i = 0; i < headerList.length; i++) {
+          /* for (let i = 0; i < headerList.length; i++) {
             this.tabList.push(headerList[i])
-          }
+          } */
+          this.tabList = headerList
         })
         .catch(e => {
           this.errors.push(e)
@@ -62,8 +65,6 @@ export default {
   },
   created () {
     this.setData(this.resultData ? this.resultData : [])
-  },
-  beforeMount () {
   }
 }
 </script>
