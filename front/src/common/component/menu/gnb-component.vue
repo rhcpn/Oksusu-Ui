@@ -55,9 +55,9 @@ export default {
     init: function () {
       // menus = this.$router.options.routes
       // Main에 할당된 menu만 보여준다
-      for (let i = 0; i < this.$router.options.routes.length; i++) {
-        if (this.$router.options.routes[i].name === 'Main') {
-          menus = this.$router.options.routes[i].children
+      for (let route of this.$router.options.routes) {
+        if (route.name === 'Main') {
+          menus = route.children
           break
         }
       }
