@@ -5,9 +5,9 @@
                :columnDefs="columnDefs"
                :rowData="rowData"
                rowSelection="single"
-               :cellClicked="getSelectedRows"
                :gridReady="onGridReady"
   >
+    <!-- :cellClicked="getSelectedRows" -->
   </ag-grid-vue>
 </template>
 <script>
