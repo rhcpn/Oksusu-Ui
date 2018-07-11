@@ -15,20 +15,18 @@ const BASE_ROUTES = [
 
 const ROUTES = [
   {
-    path: '',
-    name: '운영',
+    path: '/',
+    name: 'Inventory',
     iconClass: 'view_list',
     position: 'top',
-    component: { template: '<router-view/>' },
-    children: [
-      { path: '/',
-        name: '자원관리',
-        component: () => import('@/site/resource/ResourceInfra')
-      },
-      { path: '',
-        name: '작업관리'
-      }
-    ]
+    component: () => import('@/site/resource/ResourceInfra')
+  },
+  {
+    path: '',
+    name: '작업관리',
+    iconClass: 'view_list',
+    position: 'top',
+    component: { template: '<router-view/>' }
   },
   {
     path: '',
