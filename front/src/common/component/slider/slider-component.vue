@@ -12,14 +12,21 @@
         <div class="panel-wrap">
           <div class="panel-header">
             <h3 class="header-title left"></h3>
-            <ul class="breadcrumbs left">
+            <ul class="breadcrumbs left" v-show="notDetailShow">
               <li><a href="#none">기본정보</a></li>
-              <li v-show="!notDetailShow"><a href="#none">상세정보</a></li>
+            </ul>
+            <ul class="breadcrumbs left" v-show="!notDetailShow">
+              <li><a href="#none">상세정보</a></li>
             </ul>
             <div class="right"><v-btn flat icon class="ico-sm" @click.native="closeDialog()"><v-icon class="md-18">close</v-icon></v-btn></div>
           </div>
           <div class="panel-body">
-            <img  v-if="notDetailShow" src="../../../asset/images/common/rack.png" v-on:click="showDetailInfo()">
+            <!--<img  v-if="notDetailShow" src="../../../asset/images/common/rack.png" v-on:click="showDetailInfo()">-->
+            <div class="rack-case"  v-if="notDetailShow" src="../../../asset/images/common/rack.png" v-on:click="showDetailInfo()">
+              <div class="top"></div>
+              <div class="middle"><img src="../../../asset/images/common/rack.png" alt=""></div>
+              <div class="bottom"></div>
+            </div>
             <div class="container fluid fill-height" v-show="!notDetailShow" >
               <div class="layout row gap-06">
                 <div class="flex md5 col-fixed500">
