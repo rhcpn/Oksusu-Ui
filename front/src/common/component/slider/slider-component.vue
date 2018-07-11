@@ -25,9 +25,14 @@
             <div class="container fluid fill-height" v-show="!notDetailShow" >
               <div class="layout row gap-06">
                 <div class="flex md5 col-fixed500">
-                  <div class="">
-                    <img src="../../../asset/images/common/rack.png" alt="" style="width:478px;height:820px">
-                  </div>
+                  <!--<div class="">-->
+                    <!--<img src="../../../asset/images/common/rack.png" alt="" style="width:478px;height:820px">-->
+                    <div class="rack-case">
+                      <div class="top"></div>
+                      <div class="middle"><img src="../../../asset/images/common/rack.png" alt=""></div>
+                      <div class="bottom"></div>
+                    </div>
+                  <!--</div>-->
                 </div>
                 <div class="flex md7 col-fluid500">
 
