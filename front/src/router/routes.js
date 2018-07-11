@@ -17,14 +17,14 @@ const ROUTES = [
   {
     path: '/',
     name: '인벤토리',
-    iconClass: 'view_list',
+    iconClass: 'dns',
     position: 'top',
     component: () => import('@/site/resource/ResourceInfra')
   },
   {
     path: '',
     name: '작업관리',
-    iconClass: 'view_list',
+    iconClass: 'description',
     position: 'top',
     component: { template: '<router-view/>' }
   },

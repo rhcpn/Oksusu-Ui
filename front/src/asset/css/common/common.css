@@ -10,20 +10,20 @@
 
 /* Font Nanum Gothic */
 @font-face {
-  font-family:"Nanum Gothic";
-  src:url('../../font/NanumGothic.eot');
-  src:local('※'),url('../../font/NanumGothic.ttf') format('truetype');
-  src:local('※'),url('../../font/NanumGothic.woff') format('woff');
-  font-weight: 400;
-  font-style: normal;
+	font-family:"Nanum Gothic";
+	src:url('../../font/NanumGothic.eot');
+	src:local('※'),url('../../font/NanumGothic.ttf') format('truetype');
+	src:local('※'),url('../../font/NanumGothic.woff') format('woff');
+	font-weight: 400;
+	font-style: normal;
 }
 @font-face {
-  font-family:"Nanum Gothic";
-  src:url('../../font/NanumGothicBold.eot');
-  src:local('※'),url('../../font/NanumGothicBold.ttf') format('truetype');
-  src:local('※'),url('../../font/NanumGothicBold.woff') format('woff');
-  font-weight: 700;
-  font-style: normal;
+	font-family:"Nanum Gothic";
+	src:url('../../font/NanumGothicBold.eot');
+	src:local('※'),url('../../font/NanumGothicBold.ttf') format('truetype');
+	src:local('※'),url('../../font/NanumGothicBold.woff') format('woff');
+	font-weight: 700;
+	font-style: normal;
 }
 
 /* Layout */
@@ -97,12 +97,12 @@ aside .bottom-cont {position:absolute; bottom:80px; left:0; right:0;}
 .gnb-menu > li.active > a {color:#899cff;}
 .gnb-menu > li.active > a:before  {content:""; position:absolute; top:0; left:0; bottom:0; display:inline-block; border-left:3px solid #687ff4;  -webkit-animation:gnbactiveline .5s; animation: gnbactiveline .5s;}
 @-webkit-keyframes gnbactiveline {
-  from {bottom: 40px;}
-  to {bottom: 0;}
+	from {bottom: 40px;}
+	to {bottom: 0;}
 }
 @keyframes gnbactiveline {
-  from {bottom: 40px;}
-  to {bottom: 0;}
+	from {bottom: 40px;}
+	to {bottom: 0;}
 }
 .gnb-menu > li.active i.arrow {-webkit-transform:rotate(90deg); transform:rotate(90deg);}
 
@@ -222,16 +222,16 @@ button[class*="-tool"].on {border-color:#819736; background:#9ebb40; color:#fff}
 
 /* media */
 @media (max-width:767px){
-  aside {width:0;}
-  aside >* {display:none;}
-  .content {padding-left:0;}
-  .fixed-top-cont {padding-left:0;}
-  .slim-type aside >* {display:block;}
+	aside {width:0;}
+	aside >* {display:none;}
+	.content {padding-left:0;}
+	.fixed-top-cont {padding-left:0;}
+	.slim-type aside >* {display:block;}
 
 }
 @media (min-width:768px) and (max-width:1024px){
-  .slim-type aside {width:51px;}
-  .slim-type .content {padding-left:51px;}
+	.slim-type aside {width:51px;}
+	.slim-type .content {padding-left:51px;}
 
 }
 
@@ -405,10 +405,9 @@ fieldset {border:0 none;}
 .treeitem .expanded.open {height:20px; background:url(../../images/common/node-opened.png) no-repeat 50% 50%;}
 .treeitem .expanded.closed {height:20px; background:url(../../images/common/node-closed.png) no-repeat 50% 50%;}
 
-.box-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-}
+.box-center {display:flex; justify-content:center; align-items:center; align-content:center;}
 .box-center img {overflow:hidden;}
+.rack-case {width:476px; height:100%;}
+.rack-case .top {height:30px; background:url(../../images/common/rack_top.png) no-repeat 0 0;}
+.rack-case .middle {height:calc(100% - 83px); padding:6px; overflow:hidden; background:url(../../images/common/rack_back.png) repeat-y 0 0;}
+.rack-case .bottom {height:53px; background:url(../../images/common/rack_bottom.png) no-repeat 0 0;}
