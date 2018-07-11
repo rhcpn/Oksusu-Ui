@@ -1,6 +1,6 @@
 [
   { "name": "운영", "auth": true },
-  { "name": "Inventory", "auth": true },
+  { "name": "인벤토리", "auth": true },
   { "name": "작업관리", "auth": true },
   { "name": "대시보드", "auth": true },
   { "name": "Grafana", "auth": true },

@@ -16,7 +16,7 @@ const BASE_ROUTES = [
 const ROUTES = [
   {
     path: '/',
-    name: 'Inventory',
+    name: '인벤토리',
     iconClass: 'view_list',
     position: 'top',
     component: () => import('@/site/resource/ResourceInfra')
