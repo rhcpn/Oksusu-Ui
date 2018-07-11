@@ -62,8 +62,9 @@ export default {
       this.$eventHub.$emit('menu-folding', this.isFolding)
     },
     logout () {
-      window.isAuthenticated = false
-      this.$router.push('/login')
+      this.$store.dispatch('LogOut').then(() => {
+        location.reload()
+      })
     }
   }
 }

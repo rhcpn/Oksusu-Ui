@@ -69,6 +69,7 @@ import MsfTree from '../../common/component/tree/MsfTree.vue'
 import ResourceInfraTab from './ResourceInfraTab.vue'
 import ResourceInfraData from './ResourceInfraData.vue'
 import equipmentFilter from './equipment-filter'
+import { getNavigation } from '@/api/resourceInfra'
 export default {
   name: 'resource-infra',
   components: {MsfTree, ResourceInfraTab, ResourceInfraData, equipmentFilter},
@@ -137,18 +138,16 @@ export default {
     }
   },
   created () {
-    this.$http.get('/resource/infra/navigation.json')
-      .then(response => {
-        this.source = response.data.data
-        this.$refs.resourceTree[0].setSource(this.source)
-        this.$refs.resourceTree[0].allExpand(false, 2)
+    getNavigation().then(response => {
+      this.source = response.data.data
+      this.$refs.resourceTree[0].setSource(this.source)
+      this.$refs.resourceTree[0].allExpand(false, 2)
 
-        this.selectDepthArray = []
-        this.selectDepthArray.push(this.source[0])
-      })
-      .catch(e => {
-        this.errors.push(e)
-      })
+      this.selectDepthArray = []
+      this.selectDepthArray.push(this.source[0])
+    }).catch(e => {
+      this.errors.push(e)
+    })
   }
 }
 </script>

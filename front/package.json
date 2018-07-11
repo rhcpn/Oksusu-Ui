@@ -24,6 +24,7 @@
     "globby": "^8.0.1",
     "highcharts": "^6.1.0",
     "jquery": "^3.3.1",
+    "material-design-icons-iconfont": "^3.0.3",
     "moment": "^2.22.1",
     "node-sass": "^4.9.0",
     "path": "^0.12.7",
@@ -39,7 +40,8 @@
     "vue-virtual-scroll-list": "^1.2.5",
     "vuelidate": "^0.7.4",
     "vuetify": "1.0.x",
-    "material-design-icons-iconfont": "^3.0.3"
+    "vuex": "^3.0.1",
+    "js-cookie": "2.2.0"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.4.3",
