@@ -54,7 +54,8 @@
           <div class="inner-scroll" v-show="viewType == 'list'"><resource-infra-data :resultInfo="resultInfo" v-on:selectedData="selectedData" ref="resourceData"></resource-infra-data></div>
           <div class="inner-scroll" v-show="viewType == 'img'">
             <v-layout justify-center align-center>
-              <img src="@/asset/images/common/top_view.png" alt="" style="width:1334px;height:842px;overflow:hidden">
+              <img src="@/asset/images/common/top_view.png" alt="" style="width:1334px;height:842px;overflow:hidden" v-if="isViewTypeImageSelected() === false">
+              <img src="@/asset/images/common/top_view_selected.png" alt="" style="width:1339px;height:842px;overflow:hidden" v-if="isViewTypeImageSelected() === true  ">
             </v-layout>
           </div>
         </div>
@@ -80,7 +81,6 @@ export default {
       }
 
       this.resultInfo = item
-
       if (!searchType) {
         if (this.resultInfo.depth === 4 || this.resultInfo.depth === 5) {
           this.tabOpen = true
@@ -134,6 +134,9 @@ export default {
     },
     isViewTypeEnable: function () {
       return this.resultInfo.type && this.resultInfo.type !== 'datacenter' && this.resultInfo.type !== 'floor'
+    },
+    isViewTypeImageSelected: function () {
+      return this.resultInfo.type === 'rack'
     },
     selectedData: function (data) {
       this.$refs.resourceTree[0].setActive(data.name, 'name')
