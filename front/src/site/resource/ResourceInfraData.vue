@@ -20,7 +20,7 @@ export default {
   components: {
     'ag-grid-vue': AgGridVue,
     'LinkComponent': {
-      template: '<div style="display:inline-block" @mouseover="mouseOver" @mouseleave="mouseLeave"><span v-html="searchKeyword(params)" @click="sliderOpen(true)"></span> <div v-if="aLinkShow" style="display:inline-block" ><a @click="sliderOpen(false)">실장도 보기</a></div></div>',
+      template: '<div style="display:inline-block" @mouseover="mouseOver" @mouseleave="mouseLeave"><span v-html="searchKeyword(params)" @click="sliderOpen"></span> <div v-if="aLinkShow" style="display:inline-block" ><a @click="sliderOpen">상세정보 보기</a></div></div>',
       data: function () {
         return {
           aLinkShow: false
@@ -32,10 +32,7 @@ export default {
             this.dialogData = response.data.data.hardwareList[1]
             this.$eventHub.$emit('slider-open')
             this.$eventHub.$emit('slider-change-data', this.dialogData)
-
-            if (show) {
-              this.$eventHub.$emit('slider-detail-show')
-            }
+            this.$eventHub.$emit('slider-detail-show')
           }).catch(e => {
             this.errors.push(e)
           })
