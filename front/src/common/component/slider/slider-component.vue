@@ -11,12 +11,10 @@
       <div class="slider-container" style="width:100%;">
         <div class="panel-wrap">
           <div class="panel-header">
-            <h3 class="header-title left">장비이름(000.00.0.00)</h3>
+            <h3 class="header-title left"></h3>
             <ul class="breadcrumbs left">
-              <li><a href="#none">판교</a></li>
-              <li><a href="#none">2층</a></li>
-              <li><a href="#none">2층 시스템실</a></li>
-              <li><a href="#none">X,Y</a></li>
+              <li><a href="#none">기본정보</a></li>
+              <li v-show="!notDetailShow"><a href="#none">상세정보</a></li>
             </ul>
             <div class="right"><v-btn flat icon class="ico-sm" @click.native="closeDialog()"><v-icon class="md-18">close</v-icon></v-btn></div>
           </div>
@@ -186,7 +184,7 @@
                                   <div slot="header">{{panelItems[1]}}</div>
                                   <v-card>
                                     <v-card-text class="">
-                                      테스트임 <br>테스트임<br>테스트임<br>테스트임<br>테스트임<br>테스트임
+                                      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
                                     </v-card-text>
                                   </v-card>
                                 </v-expansion-panel-content>
@@ -194,7 +192,7 @@
                                   <div slot="header">{{panelItems[2]}}</div>
                                   <v-card>
                                     <v-card-text class="">
-                                      테스트임 <br>테스트임<br>테스트임<br>테스트임<br>테스트임<br>테스트임
+                                       <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
                                     </v-card-text>
                                   </v-card>
                                 </v-expansion-panel-content>
@@ -202,7 +200,7 @@
                                   <div slot="header">{{panelItems[3]}}</div>
                                   <v-card>
                                     <v-card-text class="">
-                                      테스트임 <br>테스트임<br>테스트임<br>테스트임<br>테스트임<br>테스트임
+                                       <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
                                     </v-card-text>
                                   </v-card>
                                 </v-expansion-panel-content>
@@ -210,7 +208,7 @@
                                   <div slot="header">{{panelItems[4]}}</div>
                                   <v-card>
                                     <v-card-text class="">
-                                      테스트임 <br>테스트임<br>테스트임<br>테스트임<br>테스트임<br>테스트임
+                                       <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
                                     </v-card-text>
                                   </v-card>
                                 </v-expansion-panel-content>
@@ -274,12 +272,7 @@ export default {
     openPanelAndScrollMove (panelType, index) {
       this.panelList[index] = true
       this.$forceUpdate()
-      var panel = $('#' + panelType + 'Panel')
-      var topPositon = panel.offset().top
-
-      setTimeout(function () {
-        $('#scroll').scrollTop(topPositon)
-      }, 300)
+      location.href = '#' + panelType + 'Panel'
     }
   },
   created () {
