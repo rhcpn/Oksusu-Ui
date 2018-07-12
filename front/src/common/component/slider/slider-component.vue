@@ -23,9 +23,10 @@
           <div class="panel-body">
             <!--<img  v-if="notDetailShow" src="../../../asset/images/common/rack.png" v-on:click="showDetailInfo()">-->
             <div class="rack-case"  v-if="notDetailShow" src="../../../asset/images/common/rack.png" v-on:click="showDetailInfo()">
-              <div class="top"></div>
+              <!--<div class="top"></div>
               <div class="middle"><img src="../../../asset/images/common/rack.png" alt=""></div>
-              <div class="bottom"></div>
+              <div class="bottom"></div>-->
+              <img src="../../../asset/images/common/rack.png" alt="" style="width:480px;height:1052px">
             </div>
             <div class="container fluid fill-height" v-show="!notDetailShow" >
               <div class="layout row gap-06">
@@ -33,9 +34,10 @@
                   <!--<div class="">-->
                     <!--<img src="../../../asset/images/common/rack.png" alt="" style="width:478px;height:820px">-->
                     <div class="rack-case">
-                      <div class="top"></div>
+                      <!--<div class="top"></div>
                       <div class="middle"><img src="../../../asset/images/common/rack.png" alt=""></div>
-                      <div class="bottom"></div>
+                      <div class="bottom"></div>-->
+                      <img src="../../../asset/images/common/rack.png" alt="" style="width:480px;height:1052px">
                     </div>
                   <!--</div>-->
                 </div>
