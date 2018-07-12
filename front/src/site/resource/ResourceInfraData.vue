@@ -20,37 +20,25 @@ export default {
   components: {
     'ag-grid-vue': AgGridVue,
     'LinkComponent': {
-      template: '<div style="display:inline-block" @mouseover="mouseOver" @mouseleave="mouseLeave"><span v-html="searchKeyword(params)" @click="sliderOpen(true)"></span> <div v-if="aLinkShow" style="display:inline-block" ><a @click="sliderOpen(false)" v-if="rackShowlink()">실장도 보기</a><a @click="sliderOpen(true)" v-if="bmServerShowlink()">상세정보 보기</a></div></div>',
+      template: '<div style="display:inline-block; width:100%"><span v-html="searchKeyword(params)" @click="sliderOpen()"></span> <div style="display:inline-block; " class="right" ><v-btn class="btn-sm-cr"  @click="sliderOpen()" v-if="rackShowlink()">기본</v-btn><v-btn class="btn-sm-cr" @click="sliderOpen()" v-if="bmServerShowlink()">상세</v-btn></div></div>',
       data: function () {
         return {
-          aLinkShow: false
         }
       },
       methods: {
-        sliderOpen (show) {
+        sliderOpen () {
+          var dep = parseInt(dataDepth)
           this.$http.get('/resource/infra/list.json?type=bm-server').then(response => {
             this.dialogData = response.data.data.hardwareList[1]
             this.$eventHub.$emit('slider-open')
             this.$eventHub.$emit('slider-change-data', this.dialogData)
-            if (show) {
+            if (dep === 5) {
               this.$eventHub.$emit('slider-detail-show')
             }
             // console.log(dataDepth)
           }).catch(e => {
             this.errors.push(e)
           })
-        },
-        equipmentModify () {
-          console.log('수정')
-        },
-        equipmentDelete () {
-          console.log('삭제')
-        },
-        mouseOver () {
-          this.aLinkShow = true
-        },
-        mouseLeave () {
-          this.aLinkShow = false
         },
         searchKeyword (row) {
           if (row == null || row.value == null) {
