@@ -168,7 +168,7 @@
                                     <argument>run</argument>
                                     <argument>build</argument>
                                 </arguments>
-                                <workingDirectory>${basedir}/front</workingDirectory>
+                                <workingDirectory>./front</workingDirectory>
                             </configuration>
                         </execution>
                 </executions>
