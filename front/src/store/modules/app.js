@@ -1,6 +1,7 @@
+import Cookies from 'js-cookie'
 const app = {
   state: {
-    language: 'kr'
+    language: Cookies.get('language') || 'en' // this.$store.getters.language
   },
   mutations: {
     SET_LANGUAGE: (state, language) => {
@@ -8,7 +9,7 @@ const app = {
     }
   },
   actions: {
-    setLanguage ({ commit }, language) {
+    setLanguage ({ commit }, language) { // this.$store.dispatch('setLanguage', lang)
       commit('SET_LANGUAGE', language)
     }
   }
