@@ -80,13 +80,20 @@ export default {
   methods: {
     onSubmit (email, password) {
       // TODO. login check 하는 로직 추가
-      window.isAuthenticated = true
-      this.redirect()
+      if (!this.id) {
+        this.id = 'admin'
+      }
+      this.$store.dispatch('loginByUsername', { 'username': this.id, 'password': this.password }).then(() => {
+        this.$router.push({ path: '/' })
+      }).catch(e => {
+        console.log(e)
+      })
+      // window.isAuthenticated = true
+      // this.redirect()
     },
     redirect () {
       // let returnPath = this.$route.query.redirect || '/'
       // this.$router.push(returnPath)
-      this.$router.push('/')
     }
   }
 }

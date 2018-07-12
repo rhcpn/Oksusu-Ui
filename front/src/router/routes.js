@@ -3,17 +3,22 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-const BASE_ROUTES = [
+export const BASE_ROUTES = [
   { path: '', name: 'Main', component: () => import('@/site/Main') },
   { path: '/login', name: 'Login', component: () => import('@/site/Login') },
   {
     path: '*',
     name: '404',
     component: { template: '<div><v-layout justify-center align-center><h2>Page Not Found</h2></v-layout></div>' }
+  },
+  {
+    path: '/401',
+    name: '401',
+    component: { template: '<div><v-layout justify-center align-center><h2>Access denied</h2></v-layout></div>' }
   }
 ]
 
-const ROUTES = [
+export const ROUTES = [
   {
     path: '/',
     name: '인벤토리',
@@ -26,7 +31,8 @@ const ROUTES = [
     name: '작업관리',
     iconClass: 'description',
     position: 'top',
-    component: { template: '<router-view/>' }
+    component: { template: '<router-view/>' },
+    meta: { roles: ['admin'] }
   },
   {
     path: '',
@@ -37,7 +43,8 @@ const ROUTES = [
     children: [
       { path: '/dashboard/grafana',
         name: 'Grafana',
-        component: { template: '<div>grafana</div>' }
+        component: { template: '<div>grafana</div>' },
+        meta: { roles: ['admin'] }
       },
       { path: '/dashboard/custom',
         name: 'Custom',
@@ -49,7 +56,8 @@ const ROUTES = [
     path: '',
     name: '데이터분석',
     iconClass: 'pie_chart',
-    position: 'top'
+    position: 'top',
+    meta: { roles: ['admin'] }
   },
   {
     path: '',
@@ -58,7 +66,8 @@ const ROUTES = [
     position: 'top',
     children: [
       { path: '',
-        name: '사용자 관리'
+        name: '사용자 관리',
+        meta: { roles: ['admin'] }
       },
       { path: '',
         name: '시스템 모니터링'
@@ -142,16 +151,6 @@ function addChildren (children) {
 
 const router = new VueRouter({
   routes: initRouter()
-})
-
-router.beforeEach((to, from, next) => {
-  console.log('requireAuth', to, from)
-  if (to.name === 'Login') return next()
-  if (window.isAuthenticated) return next()
-  next({
-    path: '/login',
-    query: { redirect: to.fullPath }
-  })
 })
 
 export default router

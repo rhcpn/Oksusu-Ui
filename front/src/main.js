@@ -1,11 +1,14 @@
 import Vue from 'vue'
 import App from '@/site/App'
 import router from '@/router/routes'
+import store from './store'
 import axios from 'axios'
 import VueI18n from 'vue-i18n'
 import Vuetify from 'vuetify'
 import messages from '@/common/component/messages-handler'
 import ConfigMessages from '@/resource/config/messages'
+
+import './permission'
 
 import 'vuetify/dist/vuetify.min.css'
 import '@/asset/css/common/reset.css'
@@ -54,6 +57,7 @@ window.isAuthenticated = isAuthenticated
 new Vue({
   el: '#app',
   router,
+  store,
   i18n,
   components: { App },
   template: '<App/>',
