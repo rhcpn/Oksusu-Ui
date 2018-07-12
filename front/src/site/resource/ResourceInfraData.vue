@@ -20,7 +20,7 @@ export default {
   components: {
     'ag-grid-vue': AgGridVue,
     'LinkComponent': {
-      template: '<div style="display:inline-block; width:100%"><span v-html="searchKeyword(params)" @click="sliderOpen()"></span> <div style="display:inline-block; " class="right" ><v-btn class="btn-sm-cr"  @click="sliderOpen()" v-if="rackShowlink()">기본</v-btn><v-btn class="btn-sm-cr" @click="sliderOpen()" v-if="bmServerShowlink()">상세</v-btn></div></div>',
+      template: '<div class="flex-center"><span v-html="searchKeyword(params)" @click="sliderOpen()"></span> <button type="button" class="btn-sm-cr btn in-right"  @click="sliderOpen()" v-if="rackShowlink()"><div class=" btn__content">기본</div></button><button type="button" class="btn-sm-cr btn in-right" @click="sliderOpen()" v-if="bmServerShowlink()"><div class=" btn__content">상세</div></button></div>',
       data: function () {
         return {
         }
