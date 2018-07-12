@@ -18,7 +18,7 @@ const user = {
     }
   },
   actions: {
-    GetUserInfo ({ commit, state }) {
+    getUserInfo ({ commit, state }) {
       return new Promise((resolve, reject) => {
         getUserInfo(state.token).then(response => {
           if (!response.data) {
@@ -34,7 +34,7 @@ const user = {
         })
       })
     },
-    LoginByUsername ({ commit }, userInfo) {
+    loginByUsername ({ commit }, userInfo) {
       const username = userInfo.username.trim()
       return new Promise((resolve, reject) => {
         loginByUsername(username, userInfo.password).then(response => {
@@ -47,7 +47,7 @@ const user = {
         })
       })
     },
-    LogOut ({ commit, state }) {
+    logOut ({ commit, state }) {
       return new Promise((resolve, reject) => {
         logout(state.token).then(() => {
           commit('SET_TOKEN', '')
@@ -60,7 +60,7 @@ const user = {
         })
       })
     },
-    FedLogOut ({ commit }) {
+    fedLogOut ({ commit }) {
       return new Promise(resolve => {
         commit('SET_TOKEN', '')
         removeToken()

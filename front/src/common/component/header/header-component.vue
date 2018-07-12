@@ -62,7 +62,7 @@ export default {
       this.$eventHub.$emit('menu-folding', this.isFolding)
     },
     logout () {
-      this.$store.dispatch('LogOut').then(() => {
+      this.$store.dispatch('logOut').then(() => {
         location.reload()
       })
     }

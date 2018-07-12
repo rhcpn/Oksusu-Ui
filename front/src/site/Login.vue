@@ -81,7 +81,7 @@ export default {
     onSubmit (email, password) {
       // TODO. login check 하는 로직 추가
 
-      this.$store.dispatch('LoginByUsername', { 'username': this.id, 'password': this.password }).then(() => {
+      this.$store.dispatch('loginByUsername', { 'username': this.id, 'password': this.password }).then(() => {
         this.$router.push({ path: '/' })
       }).catch(e => {
         console.log(e)

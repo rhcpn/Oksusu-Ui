@@ -23,16 +23,15 @@ router.beforeEach((to, from, next) => {
     if (to.path === '/login') {
       next({ path: '/' })
     } else {
-      console.log(store.getters.roles)
       if (store.getters.roles.length === 0) {
-        store.dispatch('GetUserInfo').then(res => {
+        store.dispatch('getUserInfo').then(res => {
           const roles = res.data.data.roles
-          store.dispatch('GenerateRoutes', { roles }).then(() => {
+          store.dispatch('generateRoutes', { roles }).then(() => {
             router.addRoutes(store.getters.addRouters)
             next({ ...to, replace: true })
           })
         }).catch(() => {
-          store.dispatch('FedLogOut').then(() => {
+          store.dispatch('fedLogOut').then(() => {
             alert('인증에 실패했습니다. 다시 로그인해주세요')
             next({ path: '/login' })
           })
