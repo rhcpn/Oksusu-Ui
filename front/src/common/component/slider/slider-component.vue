@@ -11,23 +11,35 @@
       <div class="slider-container" style="width:100%;">
         <div class="panel-wrap">
           <div class="panel-header">
-            <h3 class="header-title left">장비이름(000.00.0.00)</h3>
-            <ul class="breadcrumbs left">
-              <li><a href="#none">판교</a></li>
-              <li><a href="#none">2층</a></li>
-              <li><a href="#none">2층 시스템실</a></li>
-              <li><a href="#none">X,Y</a></li>
+            <h3 class="header-title left"></h3>
+            <ul class="breadcrumbs left" v-show="notDetailShow">
+              <li><a href="#none">기본정보</a></li>
+            </ul>
+            <ul class="breadcrumbs left" v-show="!notDetailShow">
+              <li><a href="#none">상세정보</a></li>
             </ul>
             <div class="right"><v-btn flat icon class="ico-sm" @click.native="closeDialog()"><v-icon class="md-18">close</v-icon></v-btn></div>
           </div>
           <div class="panel-body">
-            <img  v-if="notDetailShow" src="../../../asset/images/common/rack.png" v-on:click="showDetailInfo()">
+            <!--<img  v-if="notDetailShow" src="../../../asset/images/common/rack.png" v-on:click="showDetailInfo()">-->
+            <div class="rack-case"  v-if="notDetailShow" src="../../../asset/images/common/rack.png" v-on:click="showDetailInfo()">
+              <!--<div class="top"></div>
+              <div class="middle"><img src="../../../asset/images/common/rack.png" alt=""></div>
+              <div class="bottom"></div>-->
+              <img src="../../../asset/images/common/rack.png" alt="" style="width:480px;height:1052px">
+            </div>
             <div class="container fluid fill-height" v-show="!notDetailShow" >
               <div class="layout row gap-06">
                 <div class="flex md5 col-fixed500">
-                  <div class="">
-                    <img src="../../../asset/images/common/rack.png" alt="" style="width:478px;height:820px">
-                  </div>
+                  <!--<div class="">-->
+                    <!--<img src="../../../asset/images/common/rack.png" alt="" style="width:478px;height:820px">-->
+                    <div class="rack-case">
+                      <!--<div class="top"></div>
+                      <div class="middle"><img src="../../../asset/images/common/rack.png" alt=""></div>
+                      <div class="bottom"></div>-->
+                      <img src="../../../asset/images/common/rack.png" alt="" style="width:480px;height:1052px">
+                    </div>
+                  <!--</div>-->
                 </div>
                 <div class="flex md7 col-fluid500">
 
@@ -181,7 +193,7 @@
                                   <div slot="header">{{panelItems[1]}}</div>
                                   <v-card>
                                     <v-card-text class="">
-                                      테스트임 <br>테스트임<br>테스트임<br>테스트임<br>테스트임<br>테스트임
+                                      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
                                     </v-card-text>
                                   </v-card>
                                 </v-expansion-panel-content>
@@ -189,7 +201,7 @@
                                   <div slot="header">{{panelItems[2]}}</div>
                                   <v-card>
                                     <v-card-text class="">
-                                      테스트임 <br>테스트임<br>테스트임<br>테스트임<br>테스트임<br>테스트임
+                                       <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
                                     </v-card-text>
                                   </v-card>
                                 </v-expansion-panel-content>
@@ -197,7 +209,7 @@
                                   <div slot="header">{{panelItems[3]}}</div>
                                   <v-card>
                                     <v-card-text class="">
-                                      테스트임 <br>테스트임<br>테스트임<br>테스트임<br>테스트임<br>테스트임
+                                       <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
                                     </v-card-text>
                                   </v-card>
                                 </v-expansion-panel-content>
@@ -205,7 +217,7 @@
                                   <div slot="header">{{panelItems[4]}}</div>
                                   <v-card>
                                     <v-card-text class="">
-                                      테스트임 <br>테스트임<br>테스트임<br>테스트임<br>테스트임<br>테스트임
+                                       <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
                                     </v-card-text>
                                   </v-card>
                                 </v-expansion-panel-content>
@@ -269,12 +281,7 @@ export default {
     openPanelAndScrollMove (panelType, index) {
       this.panelList[index] = true
       this.$forceUpdate()
-      var panel = $('#' + panelType + 'Panel')
-      var topPositon = panel.offset().top
-
-      setTimeout(function () {
-        $('#scroll').scrollTop(topPositon)
-      }, 300)
+      location.href = '#' + panelType + 'Panel'
     }
   },
   created () {

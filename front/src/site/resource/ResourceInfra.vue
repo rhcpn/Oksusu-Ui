@@ -54,7 +54,8 @@
           <div class="inner-scroll" v-show="viewType == 'list'"><resource-infra-data :resultInfo="resultInfo" v-on:selectedData="selectedData" ref="resourceData"></resource-infra-data></div>
           <div class="inner-scroll" v-show="viewType == 'img'">
             <v-layout justify-center align-center>
-              <img src="@/asset/images/common/top_view.png" alt="" style="width:1334px;height:842px;overflow:hidden">
+              <img src="@/asset/images/common/top_view.png" alt="" style="width:1334px;height:842px;overflow:hidden" v-if="isViewTypeImageSelected() === false">
+              <img src="@/asset/images/common/top_view_selected.png" alt="" style="width:1339px;height:842px;overflow:hidden" v-if="isViewTypeImageSelected() === true  ">
             </v-layout>
           </div>
         </div>
@@ -70,6 +71,7 @@ import MsfTree from '../../common/component/tree/MsfTree.vue'
 import ResourceInfraTab from './ResourceInfraTab.vue'
 import ResourceInfraData from './ResourceInfraData.vue'
 import equipmentFilter from './equipment-filter'
+import { getNavigation } from '@/api/resourceInfra'
 export default {
   name: 'resource-infra',
   components: {MsfTree, ResourceInfraTab, ResourceInfraData, equipmentFilter},
@@ -80,7 +82,6 @@ export default {
       }
 
       this.resultInfo = item
-
       if (!searchType) {
         if (this.resultInfo.depth === 4 || this.resultInfo.depth === 5) {
           this.tabOpen = true
@@ -135,6 +136,9 @@ export default {
     isViewTypeEnable: function () {
       return this.resultInfo.type && this.resultInfo.type !== 'datacenter' && this.resultInfo.type !== 'floor'
     },
+    isViewTypeImageSelected: function () {
+      return this.resultInfo.type === 'rack'
+    },
     selectedData: function (data) {
       this.$refs.resourceTree[0].setActive(data.name, 'name')
     }
@@ -156,18 +160,16 @@ export default {
     }
   },
   created () {
-    this.$http.get('/resource/infra/navigation.json')
-      .then(response => {
-        this.source = response.data.data
-        this.$refs.resourceTree[0].setSource(this.source)
-        this.$refs.resourceTree[0].allExpand(false, 2)
+    getNavigation().then(response => {
+      this.source = response.data.data
+      this.$refs.resourceTree[0].setSource(this.source)
+      this.$refs.resourceTree[0].allExpand(false, 2)
 
-        this.selectDepthArray = []
-        this.selectDepthArray.push(this.source[0])
-      })
-      .catch(e => {
-        this.errors.push(e)
-      })
+      this.selectDepthArray = []
+      this.selectDepthArray.push(this.source[0])
+    }).catch(e => {
+      this.errors.push(e)
+    })
   }
 }
 </script>

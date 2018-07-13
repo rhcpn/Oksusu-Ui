@@ -20,37 +20,25 @@ export default {
   components: {
     'ag-grid-vue': AgGridVue,
     'LinkComponent': {
-      template: '<div style="display:inline-block" @mouseover="mouseOver" @mouseleave="mouseLeave"><span v-html="searchKeyword(params)" @click="sliderOpen(true)"></span> <div v-if="aLinkShow" style="display:inline-block" ><a @click="sliderOpen(false)">실장도 보기</a></div></div>',
+      template: '<div class="flex-center"><span v-html="searchKeyword(params)" @click="sliderOpen()"></span> <button type="button" class="btn-sm-cr btn in-right"  @click="sliderOpen()" v-if="rackShowlink()"><div class=" btn__content">기본</div></button><button type="button" class="btn-sm-cr btn in-right" @click="sliderOpen()" v-if="bmServerShowlink()"><div class=" btn__content">상세</div></button></div>',
       data: function () {
         return {
-          aLinkShow: false
         }
       },
       methods: {
-        sliderOpen (show) {
+        sliderOpen () {
+          var dep = parseInt(dataDepth)
           this.$http.get('/resource/infra/list.json?type=bm-server').then(response => {
             this.dialogData = response.data.data.hardwareList[1]
             this.$eventHub.$emit('slider-open')
             this.$eventHub.$emit('slider-change-data', this.dialogData)
-
-            if (show) {
+            if (dep === 5) {
               this.$eventHub.$emit('slider-detail-show')
             }
+            // console.log(dataDepth)
           }).catch(e => {
             this.errors.push(e)
           })
-        },
-        equipmentModify () {
-          console.log('수정')
-        },
-        equipmentDelete () {
-          console.log('삭제')
-        },
-        mouseOver () {
-          this.aLinkShow = true
-        },
-        mouseLeave () {
-          this.aLinkShow = false
         },
         searchKeyword (row) {
           if (row == null || row.value == null) {
@@ -65,6 +53,28 @@ export default {
           }
 
           return val
+        },
+        rackShowlink () {
+          var show = false
+          var dep = parseInt(dataDepth)
+
+          // rack
+          if (dep === 4) {
+            show = true
+          }
+
+          return show
+        },
+        bmServerShowlink () {
+          var show = false
+          var dep = parseInt(dataDepth)
+
+          // bmserver
+          if (dep === 5) {
+            show = true
+          }
+
+          return show
         }
       }
     }

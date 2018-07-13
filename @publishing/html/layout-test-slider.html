@@ -20,13 +20,10 @@
 		<h1 class="logo"><a href="#none">T-CORE</a></h1>
 		<div class="gnb">
 			<!-- Depth1 -->
-			<ul class="gnb-menu">
-				<li><a href="#"><v-icon>view_list</v-icon><span>운영</span><v-icon class="arrow">keyboard_arrow_right</v-icon></a>
-					<!-- Depth2 -->
-					<ul class="gnb-list">
-						<li><a href="#"><span>Resources</span></a></li>
-						<li><a href="#"><span>Jobs</span></a></li> 
-					</ul>
+			<ul class="gnb-menu"> 
+				<li><a href="#"><v-icon>dns</v-icon><span>인벤토리</span></a>
+				</li>
+				<li><a href="#"><v-icon>description</v-icon><span>작업관리</span></a>
 				</li>
 				<li><a href="#"><v-icon>desktop_windows</v-icon><span>대시보드</span><v-icon class="arrow">keyboard_arrow_right</v-icon></a>
 					<!-- Depth2 -->
@@ -42,7 +39,7 @@
 						</li> 
 					</ul>
 				</li>
-				<li><a href="#"><v-icon>people</v-icon><span>Admin</span><v-icon class="arrow">keyboard_arrow_right</v-icon></a>				
+				<li><a href="#"><v-icon>people</v-icon><span>관리자</span><v-icon class="arrow">keyboard_arrow_right</v-icon></a>				
 					<!-- Depth2 -->
 					<ul class="gnb-list">
 						<li><a href="#"><span>사용자 관리</span></a></li> 
@@ -203,8 +200,8 @@
 						
 						</div>
 					</div>
-					<!-- 우측 slider-container -->
-					<div class="slider-container w500">
+					<!-- 우측 slider-container 실제는 Dialog내부에 들어감 -->
+					<div class="slider-container w500" style="position:absolute; top:6px; right:0; bottom:6px; width:100%; box-shadow:0 2px 26px 5px rgba(0,0,0,.10); -webkit-transition:.2s cubic-bezier(.4,0,.2,1); transition:.2s cubic-bezier(.4,0,.2,1); z-index:2;">
 						<div class="panel-wrap">
 							<div class="panel-header">
 								<h3 class="header-title left">장비이름(000.00.0.00)</h3>
@@ -217,8 +214,11 @@
 								<div class="right"><v-btn flat icon class="ico-sm"><v-icon class="md-18">close</v-icon></v-btn></div>
 							</div>
 							<div class="panel-body">
-							
-							Rack
+								<div class="rack-case">
+									<div class="top"></div>
+									<div class="middle"><img src="../images/common/rack.png" alt=""></div>
+									<div class="bottom"></div>
+								</div>
 							</div>
 						</div>
 					</div>

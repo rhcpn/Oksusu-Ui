@@ -51,6 +51,7 @@ body {}
 p {margin-bottom:0;}
 .scroll-y {overflow-x:hidden !important; overflow-y:auto !important;}
 .scroll-x {overflow-y:hidden !important; overflow-x:auto !important;}
+fieldset {border:0 none;}
 
 /* slim-type > header, container */
 .slim-type aside {width:51px; background:#24262b url(../../images/common/logo_sk_sm.png) no-repeat 50% 99%;}
@@ -133,11 +134,12 @@ aside .bottom-cont {position:absolute; bottom:80px; left:0; right:0;}
 .fixed-top-cont .top-left:before{content:""; display:inline-block; height:100%; vertical-align:middle;}
 
 /* container > layout  > panel */
-.panel-wrap {width:100%; height:100%;     min-height: 200px; border:1px solid #c2c2c2; background:#fff; box-shadow:0 1px 3px rgba(0,0,0,0.2);}
-.panel-wrap .panel-header {height:34px; padding:4px 10px; border-bottom:1px solid #c2c2c2; background:#f1f1f1; box-shadow:0 1px 0 0 rgba(238,238,238,1);}
-.panel-wrap .panel-header >* {height:100%;}
+.panel-wrap {width:100%; height:100%; min-height:200px; border:1px solid #c2c2c2; background:#fff; box-shadow:0 1px 3px rgba(0,0,0,0.2);}
+.panel-wrap .panel-header {display:flex; align-items:center; height:34px; padding:0 10px; border-bottom:1px solid #c2c2c2; background:#f1f1f1; box-shadow:0 1px 0 0 rgba(238,238,238,1);}
 .panel-wrap .panel-header .header-title {padding:0 10px 0 0; color:#111; font-weight:700; font-size:12px;}
 .panel-wrap .panel-header .filter-title {padding:0 10px 0 0; color:#111; font-weight:700; font-size:12px;}
+.panel-wrap .panel-header .left {float:none !important;}
+.panel-wrap .panel-header .right {float:none !important; margin-left:auto;}
 .panel-wrap .panel-header .filter-title em {padding-right:5px; color:#819736;}
 .panel-wrap .panel-header >*:before {content:""; display:inline-block; height:100%; vertical-align:middle;}
 .panel-wrap .panel-body {width:100%; height:calc(100% - 34px); padding:6px; border-top:none; display:flex; flex-flow:column;}
@@ -189,31 +191,33 @@ aside .bottom-cont {position:absolute; bottom:80px; left:0; right:0;}
 .sub-tabs .tabs__item--active {background-color:#fff;}
 
 /* Rules for sizing the icon. */
-.material-icons.md-14 { font-size: 14px; }
-.material-icons.md-18 { font-size: 18px; }
-.material-icons.md-24 { font-size: 24px; }
-.material-icons.md-36 { font-size: 36px; }
-.material-icons.md-48 { font-size: 48px; }
-.material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
+.material-icons.md-14 {font-size:14px;}
+.material-icons.md-18 {font-size:18px;}
+.material-icons.md-24 {font-size:24px;}
+.material-icons.md-36 {font-size:36px;}
+.material-icons.md-48 {font-size:48px;}
+.material-icons.md-dark {color: rgba(0, 0, 0, 0.54);}
 .material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
-.material-icons.md-light { color: rgba(255, 255, 255, 1); }
+.material-icons.md-light {color: rgba(255, 255, 255, 1); }
 .material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
 
 /* btn */
-.btn {margin:0 ;min-width:18px; font-size:12px; text-transform:none;}
+.btn {margin:0; min-width:18px; font-size:12px; text-transform:none; box-shadow: 0 3px 1px -2px rgba(0,0,0,.2) !important;}
+.btn + .btn {margin-left:6px;}
 .btn--icon.ico-sm {width:18px; height:18px;}
 .btn-gnb-toggle {line-height:100%;  margin:10px 0 0 15px; background:transparent; border-radius:0; color:#fff;}
 .btn-gnb-toggle:before {content:"";}
 .btn-gnb-toggle:hover {box-shadow:none;}
 .toolbar__side-icon {color:#fff;}
-button[class^="btn-md"] {height:24px;}
+button[class^="btn-md"] {height:24px !important;}
+button[class^="btn-sm"] {height:18px; font-size:11px;}
 button[class*="-cr"] {border-radius:2px; background:#6477cd; color:#fff;}
 button[class*="-gy"] {border-radius:2px; background:#ededed linear-gradient(to bottom, #fefefe, #e4e4e4)}
 button[class^="btn-md"].ico {width:24px;}
 button.round {border-radius:12px;}
 .btn .icon--left {margin-right:6px;}
 .btn .icon--right {margin-left:6px;}
-button[class*="-tool"] {width:40px; border-radius:2px; box-shadow:0 3px 1px -2px rgba(0,0,0,.2) !important; border:1px solid #afafaf; background:#ededed;}
+button[class*="-tool"] {width:40px; border-radius:2px; border:1px solid #afafaf; background:#ededed;}
 button[class*="-tool"].on {border-color:#819736; background:#9ebb40; color:#fff}
 
 /* Button 정렬 */
@@ -307,11 +311,6 @@ caption {visibility:hidden; overflow:hidden; width:0; height:0; font-size:0; lin
 /* dialog */
 .dialog__content {position:absolute;}
 
-/* Layout */
-
-
-
-
 /* 임시Rack사이즈 */
 .col-fixed500 {flex-basis:500px !important; max-width:500px !important;}
 .col-fluid500 {flex-basis:calc(100% - 500px) !important; max-width:calc(100% - 500px) !important}
@@ -374,8 +373,6 @@ caption {visibility:hidden; overflow:hidden; width:0; height:0; font-size:0; lin
 .slider-number li .number6 {top:376px; left:294px; background:url(../../images/common/mv6_sm.png) no-repeat 0 0;}
 .slider-number li .number7 {top:280px; left:370px; background:url(../../images/common/mv7_sm.png) no-repeat 0 0;}
 
-fieldset {border:0 none;}
-
 /* treegrid icon */
 .ico-tree {width:18px; height:18px; background:url(../../images/common/bg_ico_tree_rack.png) no-repeat; vertical-align:middle;}
 .ico-tree.i-floor {background-position:0 0;}/* floor */
@@ -405,10 +402,8 @@ fieldset {border:0 none;}
 .treeitem .expanded.open {height:20px; background:url(../../images/common/node-opened.png) no-repeat 50% 50%;}
 .treeitem .expanded.closed {height:20px; background:url(../../images/common/node-closed.png) no-repeat 50% 50%;}
 
-.box-center {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	align-content: center;
-}
-.box-center img {overflow:hidden;}
+.rack-case {overflow:hidden; width:490px; height:100%; text-align:center;}
+
+/* 정렬 */
+.flex-center {display:flex; align-items:center;}
+.flex-center .in-right {margin-left:auto;}
