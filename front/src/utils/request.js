@@ -3,7 +3,7 @@ import store from '@/store'
 import { getToken } from '@/utils/auth'
 
 const service = axios.create({
-  baseURL: process.env.BASE_API,
+  baseURL: '/',
   timeout: 20000
 })
 
