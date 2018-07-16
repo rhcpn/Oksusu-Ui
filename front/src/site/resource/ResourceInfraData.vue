@@ -11,14 +11,11 @@
   </ag-grid-vue>
 </template>
 <script>
-import {AgGridVue} from 'ag-grid-vue'
-
 let restUrl = '/resource/infra/datacenter.json'
 let dataDepth = '1'
 export default {
   name: 'resource-infra-data',
   components: {
-    'ag-grid-vue': AgGridVue,
     'LinkComponent': {
       template: '<div class="flex-center"><span v-html="searchKeyword(params)" @click="sliderOpen()"></span> <button type="button" class="btn-sm-cr btn in-right"  @click="sliderOpen()" v-if="rackShowlink()"><div class=" btn__content">기본</div></button><button type="button" class="btn-sm-cr btn in-right" @click="sliderOpen()" v-if="bmServerShowlink()"><div class=" btn__content">상세</div></button></div>',
       data: function () {

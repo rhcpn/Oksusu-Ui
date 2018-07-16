@@ -23,7 +23,9 @@ import Vue from 'vue'
 import headerComponent from '@/common/component/header/header-component'
 import gnbComponent from '@/common/component/menu/gnb-component'
 import sliderComponent from '@/common/component/slider/slider-component'
+import {AgGridVue} from 'ag-grid-vue'
 
+Vue.component('ag-grid-vue', AgGridVue)
 Vue.component('header-component', headerComponent)
 Vue.component('gnb-component', gnbComponent)
 Vue.component('slider-component', sliderComponent)
