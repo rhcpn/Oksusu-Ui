@@ -4,12 +4,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.skt</groupId>
-    <artifactId>tcore</artifactId>
+    <artifactId>oksusu</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>TCORE</name>
-    <description>TCORE</description>
+    <name>OKSUSU</name>
+    <description>OKSUSU</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -25,6 +25,14 @@
         <java.version>1.8</java.version>
         <finalName>tcore</finalName>
     </properties>
+
+    <repositories>
+        <repository>
+            <id>oracle</id>
+            <name>ORACLE JDBC Repository</name>
+            <url>https://maven.atlassian.com/3rdparty/</url>
+        </repository>
+    </repositories>
 
     <dependencies>
         <dependency>
@@ -70,9 +78,9 @@
             <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <scope>runtime</scope>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc6</artifactId>
+            <version>12.1.0.1-atlassian-hosted</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

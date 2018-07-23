@@ -33,7 +33,7 @@ server:
     servlet:
       session:
         cookie:
-          name: msf-session-id
+          name: oksusu-session-id
     compression:
       enabled: true
     tomcat:
@@ -43,69 +43,45 @@ server:
         enabled: true
 
 
-#mybatis:
-#  mapper-locations: mybatis/mapper/**/*.xml
-#  type-aliases-package: com.mobigen, com.sample
-#  configuration:
-#    cache-enabled: true
-#    lazy-loading-enabled: false
-#    multiple-result-sets-enabled: true
-#    use-column-label: true
-#    use-generated-keys: false
-#    auto-mapping-behavior: PARTIAL
-#    default-executor-type: SIMPLE
-#    default-statement-timeout: 180
-#    safe-row-bounds-enabled: false
-#    map-underscore-to-camel-case: true
-#    local-cache-scope: SESSION
-#    jdbc-type-for-null: OTHER
-#---
-#spring:
-#  profiles: local
-#  datasource:
-#    type: org.apache.tomcat.jdbc.pool.DataSource
-#    #driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
-#    driver-class-name: com.mysql.jdbc.Driver
-#    url: jdbc:mysql://192.168.203.97:3306/dcms
-#    username: dcms
-#    password: dcms123
-#    tomcat:
-#      default-auto-commit: false
-#      initial-size: 10
-#      min-idle: 10
-#      max-idle: 30
-#      max-wait: 10000
-#      test-on-borrow: true
-#      test-on-return: true
-#      test-while-idle: true
-#      time-between-eviction-runs-millis: 130000
-#      min-evictable-idle-time-millis: 120000
-#      num-tests-per-eviction-run: 20
-#      remove-abandoned-timeout: 30
-#      remove-abandoned: true
-#      log-abandoned: false
-#      validation-query: select 1 from dual
-#
-#logging:
-#  level:
-#    root: info
-#    com:
-#      mobigen: debug
-#
-#server:
-#    port: 8080
-#    servlet:
-#      session:
-#        cookie:
-#          name: msf-session-id
-#    compression:
-#      enabled: true
-#    tomcat:
-#      uri-encoding: UTF-8
-#    error:
-#      whitelabel:
-#        enabled: true
-#
-#user:
-#  excel-temporary-path: ./excel-temporary
-#  stats-server-url: http://192.168.203.97:7777/statistic/all
+mybatis:
+  mapper-locations: mybatis/mapper/**/*.xml
+  type-aliases-package: com.mobigen, com.skt
+  configuration:
+    cache-enabled: true
+    lazy-loading-enabled: false
+    multiple-result-sets-enabled: true
+    use-column-label: true
+    use-generated-keys: false
+    auto-mapping-behavior: PARTIAL
+    default-executor-type: SIMPLE
+    default-statement-timeout: 180
+    safe-row-bounds-enabled: false
+    map-underscore-to-camel-case: true
+    local-cache-scope: SESSION
+    jdbc-type-for-null: OTHER
+---
+spring:
+  profiles: local
+  datasource:
+    type: org.apache.tomcat.jdbc.pool.DataSource
+    #driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+    driver-class-name: oracle.jdbc.OracleDriver
+    url: jdbc:oracle:thin:@192.168.101.2:1521:ORA
+    username: oksusu3
+    password: hellooksusu
+    tomcat:
+      default-auto-commit: false
+      initial-size: 10
+      min-idle: 10
+      max-idle: 30
+      max-wait: 10000
+      test-on-borrow: true
+      test-on-return: true
+      test-while-idle: true
+      time-between-eviction-runs-millis: 130000
+      min-evictable-idle-time-millis: 120000
+      num-tests-per-eviction-run: 20
+      remove-abandoned-timeout: 30
+      remove-abandoned: true
+      log-abandoned: false
+      validation-query: select 1 from dual

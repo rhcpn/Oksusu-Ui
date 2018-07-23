@@ -7,11 +7,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-//@Configuration
-//@EnableTransactionManagement
-//@MapperScan(basePackages = {"com.mobigen", "com.sample"})
+@Configuration
+@EnableTransactionManagement
+@MapperScan(basePackages = {"com.mobigen", "com.skt"})
 public class DatabaseConfiguration {
-	//@Bean
+	@Bean
 	public DataSourceTransactionManager transactionManager(DataSource dataSource) {
 		final DataSourceTransactionManager dataSourceTransactionManager = new DataSourceTransactionManager();
 		dataSourceTransactionManager.setDataSource(dataSource);

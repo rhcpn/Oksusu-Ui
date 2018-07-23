@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="wrapper application--wrap">
     <!-- GNB -->
-    <gnb-component></gnb-component>
+    <!--<gnb-component></gnb-component>-->
 
     <!-- Header-->
     <header-component :menuFolding="false"></header-component>
@@ -10,7 +10,7 @@
     <div class="content">
       <div class="content--wrap">
         <div class="container fluid fill-height">
-          <slider-component></slider-component>
+          <!--<slider-component></slider-component>-->
           <router-view/>
         </div>
       </div>

@@ -16,8 +16,9 @@ function hasPermission (roles, permissionRoles) {
   return roles.some(role => permissionRoles.indexOf(role) >= 0)
 }
 
-const whiteList = ['/login']
-
+// const whiteList = ['/login']
+// TODO: 로그인 페이지 숨김
+const whiteList = ['/']
 router.beforeEach((to, from, next) => {
   if (getToken()) {
     if (to.path === '/login') {

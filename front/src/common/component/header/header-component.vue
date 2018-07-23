@@ -1,29 +1,30 @@
 <template>
   <div class="fixed-top-cont">
     <div class="top-left">
-      <v-toolbar-side-icon id="foldingBtn" @click.stop="isFolding = !isFolding"></v-toolbar-side-icon>
+      Oksusu Demo &nbsp;&nbsp;<button>[Refresh]</button>
+      <!--<v-toolbar-side-icon id="foldingBtn" @click.stop="isFolding = !isFolding"></v-toolbar-side-icon>-->
     </div>
     <div class="top-right">
       <ul class="util-menu">
-        <li>
+        <!--<li>
           <v-badge left>
             <span slot="badge" class="bg-red">62</span>
             <v-icon color="white" class="md-18">notifications</v-icon>
           </v-badge>
-        </li>
-        <li>
+        </li>-->
+        <!--<li>
           <v-menu offset-y>
             <v-btn flat small slot="activator"><v-icon left color="white" class="md-18">person</v-icon>User info<v-icon right color="white" class="md-18">expand_more</v-icon></v-btn>
-            <!--<v-list>-->
-            <!--<v-list-tile v-for="(item, index) in items" :key="index" @click="">-->
-            <!--<v-list-tile-title>{{ item.title }}</v-list-tile-title>-->
-            <!--</v-list-tile>-->
-            <!--</v-list>-->
+            &lt;!&ndash;<v-list>&ndash;&gt;
+            &lt;!&ndash;<v-list-tile v-for="(item, index) in items" :key="index" @click="">&ndash;&gt;
+            &lt;!&ndash;<v-list-tile-title>{{ item.title }}</v-list-tile-title>&ndash;&gt;
+            &lt;!&ndash;</v-list-tile>&ndash;&gt;
+            &lt;!&ndash;</v-list>&ndash;&gt;
           </v-menu>
         </li>
         <li>
           <v-btn flat class="btn-util-logout" @click="logout"><v-icon color="white">power_settings_new</v-icon></v-btn>
-        </li>
+        </li>-->
       </ul>
     </div>
   </div>

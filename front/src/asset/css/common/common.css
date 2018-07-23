@@ -118,7 +118,7 @@ aside .bottom-cont {position:absolute; bottom:80px; left:0; right:0;}
 
 /* content */
 .fixed-top-cont {position:fixed; top:0; left:0; right:0; width:100%; height:46px; padding-left:200px; background:#485ab7; box-shadow:0 1px 5px 0 rgba(0,0,0,.3); z-index:2;}
-.content {height:100%; padding:46px 0 0 200px;}
+.content {height:100%; padding:46px 0 0 2px;}
 .container {position:relative; padding:6px;}
 
 /* layout flex 간격 */

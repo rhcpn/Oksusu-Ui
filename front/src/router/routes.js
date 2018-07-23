@@ -4,7 +4,7 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 export const BASE_ROUTES = [
-  { path: '', name: 'Main', component: () => import('@/site/Main') },
+  { path: '', name: 'Main', component: () => import('@/site/Main') }/* ,
   { path: '/login', name: 'Login', component: () => import('@/site/Login') },
   {
     path: '*',
@@ -15,7 +15,7 @@ export const BASE_ROUTES = [
     path: '/401',
     name: '401',
     component: { template: '<div><v-layout justify-center align-center><h2>Access denied</h2></v-layout></div>' }
-  }
+  } */
 ]
 
 export const ROUTES = [
@@ -24,7 +24,7 @@ export const ROUTES = [
     name: '인벤토리',
     iconClass: 'dns',
     position: 'top',
-    component: () => import('@/site/resource/ResourceInfra')
+    component: () => import('@/site/simpleMain/SimpleMain')
   },
   {
     path: '',
