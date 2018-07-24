@@ -40,7 +40,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.logout()
 				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 				.invalidateHttpSession(true)
-				.deleteCookies("oksusu-session-id")
+				.deleteCookies("recommendedSystem-session-id")
 				.logoutSuccessUrl("/")
 				.and()
 			.csrf().disable();

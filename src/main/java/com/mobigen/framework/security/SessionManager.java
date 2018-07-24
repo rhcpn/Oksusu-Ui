@@ -18,8 +18,8 @@ public class SessionManager {
 	@Autowired
 	CustomAuthenticationProvider customAuthenticationProvider;
 
-	@Autowired
-	private SecurityContextRepository repository;
+	/*@Autowired
+	private SecurityContextRepository repository;*/
 	
 	/**
 	 * 사용자 인증을 진행. 사용자 인증이 성공하면 Spring-Security에 정보를 생성 함
@@ -30,7 +30,7 @@ public class SessionManager {
 	 * @return
 	 * @throws Exception
 	 */
-	public IUserModel auth(HttpServletRequest request, HttpServletResponse response, IUserModel userModel, IUserDao userDao) throws Exception {
+	/*public IUserModel auth(HttpServletRequest request, HttpServletResponse response, IUserModel userModel, IUserDao userDao) throws Exception {
 		IUserModel user = userDao.getUser(userModel);
 		if (user == null) {
 			throw new Exception("User Auth Fail");
@@ -54,14 +54,14 @@ public class SessionManager {
 
 
 		return user;
-	}
+	}*/
 
 	/**
 	 * 현재 세션에 대한 사용자 계정을 반환
 	 *
 	 * @return
 	 */
-	public String getUsername() {
+	/*public String getUsername() {
 		String name = "";
 
 		try {
@@ -84,5 +84,5 @@ public class SessionManager {
 		}
 
 		return user;
-	}
+	}*/
 }

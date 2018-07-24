@@ -29,8 +29,8 @@ module.exports = {
       .frame('storybook-preview-iframe')
       .assert.title('Storybook')
       .waitForElementVisible('body', 2000)
-      .assert.visible('.main h1')
-      .assert.containsText('.main h1', 'Welcome to STORYBOOK')
+      .assert.visible('.oksusu h1')
+      .assert.containsText('.oksusu h1', 'Welcome to STORYBOOK')
       .pause(2000)
       .frame(null)
       .useXpath() // every selector now must be XPath

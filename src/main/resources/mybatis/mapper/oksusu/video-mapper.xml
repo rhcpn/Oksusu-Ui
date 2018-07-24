@@ -3,13 +3,13 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.skt.oksusu.main.VideoInfoMapper">
+<mapper namespace="com.skt.recommendedSystem.oksusu.VideoInfoMapper">
 
 	<select id="selectWatchVideoList" parameterType="videoInfoSearchModel" resultType="hashmap">
 	/*VideoInfoMapper.selectWatchVideoList*/
 		<![CDATA[
 		SELECT
-			USER_ID
+			USER_SVC_ID
 		FROM (SELECT t.* FROM OKSUSU3.USER_MAP t)
 		WHERE ROWNUM <= 501
 		]]>

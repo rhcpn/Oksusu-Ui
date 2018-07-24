@@ -21,92 +21,9 @@ export const BASE_ROUTES = [
 export const ROUTES = [
   {
     path: '/',
-    name: '인벤토리',
-    iconClass: 'dns',
+    name: 'oksusuVideo',
     position: 'top',
-    component: () => import('@/site/simpleMain/SimpleMain')
-  },
-  {
-    path: '',
-    name: '작업관리',
-    iconClass: 'description',
-    position: 'top',
-    component: { template: '<router-view/>' },
-    meta: { roles: ['admin'] }
-  },
-  {
-    path: '',
-    name: '대시보드',
-    iconClass: 'desktop_windows',
-    position: 'top',
-    component: { template: '<div>dashboard<router-view/></div>' },
-    children: [
-      { path: '/dashboard/grafana',
-        name: 'Grafana',
-        component: { template: '<div>grafana</div>' },
-        meta: { roles: ['admin'] }
-      },
-      { path: '/dashboard/custom',
-        name: 'Custom',
-        component: { template: '<div>custom</div>' }
-      }
-    ]
-  },
-  {
-    path: '',
-    name: '데이터분석',
-    iconClass: 'pie_chart',
-    position: 'top',
-    meta: { roles: ['admin'] }
-  },
-  {
-    path: '',
-    name: '관리자',
-    iconClass: 'people',
-    position: 'top',
-    children: [
-      { path: '',
-        name: '사용자 관리',
-        meta: { roles: ['admin'] }
-      },
-      { path: '',
-        name: '시스템 모니터링'
-      }
-    ]
-  },
-  {
-    path: '',
-    name: '설정',
-    iconClass: 'settings',
-    position: 'bottom',
-    children: [
-      { path: '',
-        name: '자원 관리',
-        children: [
-          { path: '',
-            name: 'Infra'
-          },
-          { path: '',
-            name: 'Service'
-          }
-        ]
-      },
-      { path: '',
-        name: '알람 정의'
-      },
-      { path: '',
-        name: '알람 공지 설정'
-      },
-      { path: '',
-        name: '수집 설정'
-      },
-      { path: '',
-        name: '메트릭 설정'
-      },
-      { path: '',
-        name: '데이터 센터 설정'
-      }
-    ]
+    component: () => import('@/site/oksusu/VideoMain')
   }
 ]
 

@@ -1,21 +1,4 @@
 [
-  { "name": "운영", "auth": true },
-  { "name": "인벤토리", "auth": true },
-  { "name": "작업관리", "auth": true },
-  { "name": "대시보드", "auth": true },
-  { "name": "Grafana", "auth": true },
-  { "name": "Custom", "auth": true },
-  { "name": "데이터분석", "auth": true },
-  { "name": "관리자", "auth": true },
-  { "name": "사용자 관리", "auth": true },
-  { "name": "시스템 모니터링", "auth": true },
-  { "name": "설정", "auth": true },
-  { "name": "자원 관리", "auth": true },
-  { "name": "Infra", "auth": true },
-  { "name": "Service", "auth": true },
-  { "name": "알람 정의", "auth": true },
-  { "name": "알람 공지 설정", "auth": true },
-  { "name": "수집 설정", "auth": true },
-  { "name": "메트릭 설정", "auth": true },
-  { "name": "데이터 센터 설정", "auth": true }
+  { "name": "oksusuVideo", "auth": true },
+  { "name": "musicMate", "auth": true }
 ]

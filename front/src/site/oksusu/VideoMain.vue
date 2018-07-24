@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: 'simple-main',
+  name: 'simple-oksusu',
   // components: {ResourceInfraData},
   methods: {
     onGridReady (params) {
@@ -20,18 +20,18 @@ export default {
     resultData: function () {
       let result = []
 
-      this.$http.get('/main/getWatchVideoList.json')
+      this.$http.get('/oksusu/getWatchVideoList.json')
         .then(response => {
           // for (let i = 0; i < fieldData.length; i++) {
           // result.push(fieldData[i])
-          result = response
+          result = response.data.data
           // }
           this.rowData = []
           this.rowData = result
 
-          this.gridOptions.api.refreshCells()
+          /* this.gridOptions.api.refreshCells()
           this.gridOptions.api.refreshView()
-          this.gridOptions.api.sizeColumnsToFit()
+          this.gridOptions.api.sizeColumnsToFit() */
         })
         .catch(e => {
           this.errors.push(e)
@@ -43,7 +43,8 @@ export default {
       source: [], // 전체 데이터
       columnDefs: null,
       rowData: null,
-      enableColResize: true
+      enableColResize: true,
+      errors: []
     }
   },
   created () {
@@ -53,7 +54,7 @@ export default {
     this.columnDefs = [
       {
         headerName: '시청 영상',
-        field: 'data1',
+        field: 'USER_SVC_ID',
         width: 700
         // header: {'text-align': 'center'}
       }
