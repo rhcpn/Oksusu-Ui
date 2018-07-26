@@ -12,7 +12,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       "**": {
-        target: 'http://localhost:8080',
+        target: 'http://localhost:9090',
         changeOrigin: true,
       }
     },
@@ -50,10 +50,10 @@ module.exports = {
 
   build: {
     // Template for index.html
-    index: path.resolve(__dirname, '../../../src/oksusu/resources/static/index.html'),
+    index: path.resolve(__dirname, '../../../src/main/resources/static/index.html'),
 
     // Paths
-    assetsRoot: path.resolve(__dirname, '../../../src/oksusu/resources/static'),
+    assetsRoot: path.resolve(__dirname, '../../../src/main/resources/static'),
     assetsSubDirectory: '',
     assetsPublicPath: '/',
 

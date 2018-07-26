@@ -1,6 +1,6 @@
 import router from '@/router/routes'
-import store from '@/store'
-import { getToken } from '@/utils/auth'
+// import store from '@/store'
+// import { getToken } from '@/utils/auth'
 /* router.beforeEach((to, from, next) => {
   console.log('requireAuth', to, from)
   if (to.name === 'login') return next()
@@ -10,17 +10,19 @@ import { getToken } from '@/utils/auth'
     query: { redirect: to.fullPath }
   })
 }) */
-function hasPermission (roles, permissionRoles) {
+/* function hasPermission (roles, permissionRoles) {
   if (roles.indexOf('admin') >= 0) return true
   if (!permissionRoles) return true
   return roles.some(role => permissionRoles.indexOf(role) >= 0)
-}
+} */
 
 // const whiteList = ['/login']
 // TODO: 로그인 페이지 숨김
-const whiteList = ['/']
+// const whiteList = ['/']
 router.beforeEach((to, from, next) => {
-  if (getToken()) {
+  // next({ path: '/' })
+  next()
+  /* if (getToken()) {
     if (to.path === '/login') {
       next({ path: '/' })
     } else {
@@ -51,7 +53,7 @@ router.beforeEach((to, from, next) => {
     } else {
       next('/login')
     }
-  }
+  } */
 })
 
 router.afterEach(() => {

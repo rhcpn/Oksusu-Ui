@@ -23,7 +23,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <spring.boot.mainclass>com.skt.tcore.TCOREApplication</spring.boot.mainclass>
         <java.version>1.8</java.version>
-        <finalName>tcore</finalName>
+        <finalName>Recommended_System_demo</finalName>
     </properties>
 
     <repositories>
@@ -86,10 +86,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
         </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-taglibs</artifactId>
-        </dependency>
+        </dependency>-->
 
         <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
         <dependency>
@@ -116,11 +116,11 @@
             <version>1.16</version>
         </dependency>
         <!-- Spring Boot 2.0으로 버전업하면서 새로 추가 -->
-        <dependency>
+        <!--<dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-jdbc</artifactId>
             <version>8.5.14</version>
-        </dependency>
+        </dependency>-->
 
         <!-- Swagger 관련 SpringFox -->
         <dependency>

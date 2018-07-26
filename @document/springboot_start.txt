@@ -1,1 +1,1 @@
-java -jar -Dspring.profiles.active=local msf_v2.war > msf.log &
+java -jar -Dspring.profiles.active=local Recommended_System_demo.jar > Recommended_System_demo.log &
