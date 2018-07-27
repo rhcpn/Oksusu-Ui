@@ -1,5 +1,6 @@
 package com.skt.recommendedSystem.oksusu;
 
+import com.skt.recommendedSystem.oksusu.model.VideoInfoModel;
 import com.skt.recommendedSystem.oksusu.model.VideoInfoSearchModel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,14 +17,24 @@ public class VideoInfoService {
 	private VideoInfoMapper videoInfo;
 
     /**
-     * oksusu 정보 조회
+     * oksusu 시청 이력 정보 조회
      * @param filter
      * @return
      * @throws Exception
      */
-	public List<Map<String,Object>> getWatchVideoList(VideoInfoSearchModel filter) throws Exception {
-		filter.setUserId("1");
-		List<Map<String,Object>> result = videoInfo.selectWatchVideoList(filter);
-		return result;
+	public List<VideoInfoModel> getWatchVideoList(VideoInfoSearchModel filter) throws Exception {
+		List<VideoInfoModel> resultModel = videoInfo.selectWatchVideoList(filter);
+		return resultModel;
+	}
+
+	/**
+	 * oksusu 추천 결과 정보 조회
+	 * @param filter
+	 * @return
+	 * @throws Exception
+	 */
+	public List<VideoInfoModel> getRecommendationVideoList(VideoInfoSearchModel filter) throws Exception {
+		List<VideoInfoModel> resultModel = videoInfo.selectRecommendationVideoList(filter);
+		return resultModel;
 	}
 }

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="app">
     <router-view/>
 
     <!-- Common Components -->
@@ -22,5 +22,5 @@ export default {
 </script>
 
 <style>
-  @import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+  /* @import url(https://fonts.googleapis.com/icon?family=Material+Icons); */
 </style>

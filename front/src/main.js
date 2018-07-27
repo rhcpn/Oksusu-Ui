@@ -11,8 +11,13 @@ import ConfigMessages from '@/resource/config/messages'
 import './permission'
 
 import 'vuetify/dist/vuetify.min.css'
-import '@/asset/css/common/reset.css'
-import '@/asset/css/common/common.css'
+import '@/asset/css/common.css'
+
+/* import '@/asset/js/jquery.min.js'
+import '@/asset/js/iscroll.js' */
+
+import IScrollView from 'vue-iscroll-view'
+import IScroll from 'iscroll'
 
 import '../node_modules/ag-grid/dist/styles/ag-grid.css'
 import '../node_modules/ag-grid/dist/styles/ag-theme-balham.css'
@@ -44,6 +49,7 @@ Object.defineProperties(Vue.prototype, {
   }
 })
 
+Vue.use(IScrollView, IScroll)
 Vue.use(Vuetify)
 
 Vue.config.productionTip = false
@@ -55,7 +61,7 @@ window.isAuthenticated = isAuthenticated
 
 /* eslint-disable no-new */
 new Vue({
-  el: '#app',
+  el: '#wrap',
   router,
   store,
   i18n,

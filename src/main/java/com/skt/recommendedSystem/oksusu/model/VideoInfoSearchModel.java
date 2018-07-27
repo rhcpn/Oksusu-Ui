@@ -8,13 +8,8 @@ import java.util.List;
 @Data
 @Alias("videoInfoSearchModel")
 public class VideoInfoSearchModel {
-	private int pageIndex;
-	private int pageCount;
-	private String order;
-	private String exp;
-	
 	private String userId;
-
+	private String userSvnId;
 	
 	private List<String> networkTypeList;
 	private List<String> serviceIdList;
@@ -22,6 +17,4 @@ public class VideoInfoSearchModel {
 	private List<String> deviceIdList;
 	private List<String> deviceSerialList;
 	
-	private String deleteStringList;
-
 }

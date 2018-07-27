@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<title> OKSUSU - DEMO </title>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link href="./css/common.css" rel="stylesheet" type="text/css" />
+	</head>
+	<body onload="loaded()">
+		<!-- 전체 영역 -->
+		<div id="wrap">
+			
+			<ul class="wrapper">
+				<!-- left area -->
+				<li class="left-area section-wrap">
+					<div class="section-title-area">
+						<p class="section-title">사용자 로그 리스트</p>
+						<div class="section-right section-select">
+							<a href="#" class="select-title">user1 시청 이력</a>
+							<ul>
+								<li><a href="#">user2 시청 이력</a></li>
+								<li><a href="#">user3 시청 이력</a></li>
+								<li><a href="#">user4 시청 이력</a></li>
+							</ul>
+						</div>
+					</div>
+					<ul class="list-wrap">
+						<li class="list-box">
+							<p class="thumb-img"><img src="./images/thumb-img-1.png" alt="movie-역린"></p>
+							<dl>
+								<dt class="icon-movie"><span>역린</span></dt>
+								<dd><em>개봉일</em>2014.03.30</dd>
+								<dd><em>시청일</em>2018.07.10</dd>
+								<dd><em>시청시간</em>01:20:00</dd>
+							</dl>
+						</li>
+						<li class="list-box">
+							<p class="thumb-img"><img src="./images/thumb-img-2.png" alt="vod-같이살래요33"></p>
+							<dl>
+								<dt class="icon-vod"><span>같이 살래요 (33회)</span></dt>
+								<dd><em>방영일</em>2018.07.08</dd>
+								<dd><em>시청일</em>2018.07.10</dd>
+								<dd><em>시청시간</em>00:40:00</dd>
+							</dl>
+						</li>
+						<li class="list-box">
+							<p class="thumb-img"><img src="./images/thumb-img-3.png" alt="movie-너도 인간이니13"></p>
+							<dl>
+								<dt class="icon-vod"><span>너도 인간이니?(13회)</span></dt>
+								<dd><em>방영일</em>2018.07.08</dd>
+								<dd><em>시청일</em>2018.07.10</dd>
+								<dd><em>시청시간</em>00:40:00</dd>
+							</dl>
+						</li>
+						<li class="list-box">
+							<p class="thumb-img"><img src="./images/thumb-img-4.png" alt="clip-스페셜 2,000만뷰 라이브 그 현장"></p>
+							<dl class="mt4">
+								<dt class="icon-clip"><span>[스페셜] 2,000만뷰 라이브 그 현장</span></dt>
+								<dd><em>방영일</em>2018.07.08</dd>
+								<dd><em>시청일</em>2018.07.10</dd>
+								<dd><em>시청시간</em>01:07:25</dd>
+							</dl>
+						</li>
+						<li class="list-box">
+							<p class="thumb-img"><img src="./images/thumb-img-1.png" alt="movie-역린"></p>
+							<dl>
+								<dt class="icon-movie"><span>역린</span></dt>
+								<dd><em>개봉일</em>2014.03.30</dd>
+								<dd><em>시청일</em>2018.07.10</dd>
+								<dd><em>시청시간</em>01:20:00</dd>
+							</dl>
+						</li>
+						<li class="list-box">
+							<p class="thumb-img"><img src="./images/thumb-img-2.png" alt="vod-같이살래요33"></p>
+							<dl>
+								<dt class="icon-vod"><span>같이 살래요 (33회)</span></dt>
+								<dd><em>방영일</em>2018.07.08</dd>
+								<dd><em>시청일</em>2018.07.10</dd>
+								<dd><em>시청시간</em>00:40:00</dd>
+							</dl>
+						</li>
+						<li class="list-box">
+							<p class="thumb-img"><img src="./images/thumb-img-3.png" alt="movie-너도 인간이니13"></p>
+							<dl>
+								<dt class="icon-vod"><span>너도 인간이니?(13회)</span></dt>
+								<dd><em>방영일</em>2018.07.08</dd>
+								<dd><em>시청일</em>2018.07.10</dd>
+								<dd><em>시청시간</em>00:40:00</dd>
+							</dl>
+						</li>
+						<li class="list-box">
+							<p class="thumb-img"><img src="./images/thumb-img-4.png" alt="clip-스페셜 2,000만뷰 라이브 그 현장"></p>
+							<dl class="mt4">
+								<dt class="icon-clip"><span>[스페셜] 2,000만뷰 라이브 그 현장</span></dt>
+								<dd><em>방영일</em>2018.07.08</dd>
+								<dd><em>시청일</em>2018.07.10</dd>
+								<dd><em>시청시간</em>01:07:25</dd>
+							</dl>
+						</li>
+						<li class="list-box">
+							<p class="thumb-img"><img src="./images/thumb-img-1.png" alt="movie-역린"></p>
+							<dl>
+								<dt class="icon-movie"><span>역린</span></dt>
+								<dd><em>개봉일</em>2014.03.30</dd>
+								<dd><em>시청일</em>2018.07.10</dd>
+								<dd><em>시청시간</em>01:20:00</dd>
+							</dl>
+						</li>
+						<li class="list-box">
+							<p class="thumb-img"><img src="./images/thumb-img-2.png" alt="vod-같이살래요33"></p>
+							<dl>
+								<dt class="icon-vod"><span>같이 살래요 (33회)</span></dt>
+								<dd><em>방영일</em>2018.07.08</dd>
+								<dd><em>시청일</em>2018.07.10</dd>
+								<dd><em>시청시간</em>00:40:00</dd>
+							</dl>
+						</li>
+						<li class="list-box">
+							<p class="thumb-img"><img src="./images/thumb-img-3.png" alt="movie-너도 인간이니13"></p>
+							<dl>
+								<dt class="icon-vod"><span>너도 인간이니?(13회)</span></dt>
+								<dd><em>방영일</em>2018.07.08</dd>
+								<dd><em>시청일</em>2018.07.10</dd>
+								<dd><em>시청시간</em>00:40:00</dd>
+							</dl>
+						</li>
+						<li class="list-box">
+							<p class="thumb-img"><img src="./images/thumb-img-4.png" alt="clip-스페셜 2,000만뷰 라이브 그 현장"></p>
+							<dl class="mt4">
+								<dt class="icon-clip"><span>[스페셜] 2,000만뷰 라이브 그 현장</span></dt>
+								<dd><em>방영일</em>2018.07.08</dd>
+								<dd><em>시청일</em>2018.07.10</dd>
+								<dd><em>시청시간</em>01:07:25</dd>
+							</dl>
+						</li>
+						<li class="list-box">
+							<p class="thumb-img"><img src="./images/thumb-img-1.png" alt="movie-역린"></p>
+							<dl>
+								<dt class="icon-movie"><span>역린</span></dt>
+								<dd><em>개봉일</em>2014.03.30</dd>
+								<dd><em>시청일</em>2018.07.10</dd>
+								<dd><em>시청시간</em>01:20:00</dd>
+							</dl>
+						</li>
+						<li class="list-box">
+							<p class="thumb-img"><img src="./images/thumb-img-2.png" alt="vod-같이살래요33"></p>
+							<dl>
+								<dt class="icon-vod"><span>같이 살래요 (33회)</span></dt>
+								<dd><em>방영일</em>2018.07.08</dd>
+								<dd><em>시청일</em>2018.07.10</dd>
+								<dd><em>시청시간</em>00:40:00</dd>
+							</dl>
+						</li>
+						<li class="list-box">
+							<p class="thumb-img"><img src="./images/thumb-img-3.png" alt="movie-너도 인간이니13"></p>
+							<dl>
+								<dt class="icon-vod"><span>너도 인간이니?(13회)</span></dt>
+								<dd><em>방영일</em>2018.07.08</dd>
+								<dd><em>시청일</em>2018.07.10</dd>
+								<dd><em>시청시간</em>00:40:00</dd>
+							</dl>
+						</li>
+						<li class="list-box">
+							<p class="thumb-img"><img src="./images/thumb-img-4.png" alt="clip-스페셜 2,000만뷰 라이브 그 현장"></p>
+							<dl class="mt4">
+								<dt class="icon-clip"><span>[스페셜] 2,000만뷰 라이브 그 현장</span></dt>
+								<dd><em>방영일</em>2018.07.08</dd>
+								<dd><em>시청일</em>2018.07.10</dd>
+								<dd><em>시청시간</em>01:07:25</dd>
+							</dl>
+						</li>
+					</ul>
+				</li>
+				<!-- //left area -->
+
+				<!-- center area -->
+				<li class="center-area section-wrap">
+					<div class="section-title-area">
+						<p class="section-title">추천 결과 리스트</p>
+						<div class="section-right">user1을 위한 추천</div>
+					</div>
+					<ul class="list-wrap">
+						<li class="list-box">
+							<p class="thumb-img"><img src="./images/thumb-img-1.png" alt="movie-역린"></p>
+							<dl>
+								<dt class="icon-movie"><span>역린</span></dt>
+								<dd><em>개봉일</em>2014.03.30</dd>
+								<dd><em>시청일</em>2018.07.10</dd>
+								<dd><em>시청시간</em>01:20:00</dd>
+							</dl>
+						</li>
+						<li class="list-box">
+							<p class="thumb-img"><img src="./images/thumb-img-2.png" alt="vod-같이살래요33"></p>
+							<dl>
+								<dt class="icon-vod"><span>같이 살래요 (33회)</span></dt>
+								<dd><em>방영일</em>2018.07.08</dd>
+								<dd><em>시청일</em>2018.07.10</dd>
+								<dd><em>시청시간</em>00:40:00</dd>
+							</dl>
+						</li>
+						<li class="list-box">
+							<p class="thumb-img"><img src="./images/thumb-img-3.png" alt="movie-너도 인간이니13"></p>
+							<dl>
+								<dt class="icon-vod"><span>너도 인간이니?(13회)</span></dt>
+								<dd><em>방영일</em>2018.07.08</dd>
+								<dd><em>시청일</em>2018.07.10</dd>
+								<dd><em>시청시간</em>00:40:00</dd>
+							</dl>
+						</li>
+						<li class="list-box">
+							<p class="thumb-img"><img src="./images/thumb-img-4.png" alt="clip-스페셜 2,000만뷰 라이브 그 현장"></p>
+							<dl class="mt4">
+								<dt class="icon-clip"><span>[스페셜] 2,000만뷰 라이브 그 현장</span></dt>
+								<dd><em>방영일</em>2018.07.08</dd>
+								<dd><em>시청일</em>2018.07.10</dd>
+								<dd><em>시청시간</em>01:07:25</dd>
+							</dl>
+						</li>
+						<li class="list-box">
+							<p class="thumb-img"><img src="./images/thumb-img-1.png" alt="movie-역린"></p>
+							<dl>
+								<dt class="icon-movie"><span>역린</span></dt>
+								<dd><em>개봉일</em>2014.03.30</dd>
+								<dd><em>시청일</em>2018.07.10</dd>
+								<dd><em>시청시간</em>01:20:00</dd>
+							</dl>
+						</li>
+						<li class="list-box">
+							<p class="thumb-img"><img src="./images/thumb-img-2.png" alt="vod-같이살래요33"></p>
+							<dl>
+								<dt class="icon-vod"><span>같이 살래요 (33회)</span></dt>
+								<dd><em>방영일</em>2018.07.08</dd>
+								<dd><em>시청일</em>2018.07.10</dd>
+								<dd><em>시청시간</em>00:40:00</dd>
+							</dl>
+						</li>
+						<li class="list-box">
+							<p class="thumb-img"><img src="./images/thumb-img-3.png" alt="movie-너도 인간이니13"></p>
+							<dl>
+								<dt class="icon-vod"><span>너도 인간이니?(13회)</span></dt>
+								<dd><em>방영일</em>2018.07.08</dd>
+								<dd><em>시청일</em>2018.07.10</dd>
+								<dd><em>시청시간</em>00:40:00</dd>
+							</dl>
+						</li>
+						<li class="list-box">
+							<p class="thumb-img"><img src="./images/thumb-img-4.png" alt="clip-스페셜 2,000만뷰 라이브 그 현장"></p>
+							<dl class="mt4">
+								<dt class="icon-clip"><span>[스페셜] 2,000만뷰 라이브 그 현장</span></dt>
+								<dd><em>방영일</em>2018.07.08</dd>
+								<dd><em>시청일</em>2018.07.10</dd>
+								<dd><em>시청시간</em>01:07:25</dd>
+							</dl>
+						</li>
+						<li class="list-box">
+							<p class="thumb-img"><img src="./images/thumb-img-1.png" alt="movie-역린"></p>
+							<dl>
+								<dt class="icon-movie"><span>역린</span></dt>
+								<dd><em>개봉일</em>2014.03.30</dd>
+								<dd><em>시청일</em>2018.07.10</dd>
+								<dd><em>시청시간</em>01:20:00</dd>
+							</dl>
+						</li>
+						<li class="list-box">
+							<p class="thumb-img"><img src="./images/thumb-img-2.png" alt="vod-같이살래요33"></p>
+							<dl>
+								<dt class="icon-vod"><span>같이 살래요 (33회)</span></dt>
+								<dd><em>방영일</em>2018.07.08</dd>
+								<dd><em>시청일</em>2018.07.10</dd>
+								<dd><em>시청시간</em>00:40:00</dd>
+							</dl>
+						</li>
+						<li class="list-box">
+							<p class="thumb-img"><img src="./images/thumb-img-3.png" alt="movie-너도 인간이니13"></p>
+							<dl>
+								<dt class="icon-vod"><span>너도 인간이니?(13회)</span></dt>
+								<dd><em>방영일</em>2018.07.08</dd>
+								<dd><em>시청일</em>2018.07.10</dd>
+								<dd><em>시청시간</em>00:40:00</dd>
+							</dl>
+						</li>
+						<li class="list-box">
+							<p class="thumb-img"><img src="./images/thumb-img-4.png" alt="clip-스페셜 2,000만뷰 라이브 그 현장"></p>
+							<dl class="mt4">
+								<dt class="icon-clip"><span>[스페셜] 2,000만뷰 라이브 그 현장</span></dt>
+								<dd><em>방영일</em>2018.07.08</dd>
+								<dd><em>시청일</em>2018.07.10</dd>
+								<dd><em>시청시간</em>01:07:25</dd>
+							</dl>
+						</li>
+						<li class="list-box">
+							<p class="thumb-img"><img src="./images/thumb-img-1.png" alt="movie-역린"></p>
+							<dl>
+								<dt class="icon-movie"><span>역린</span></dt>
+								<dd><em>개봉일</em>2014.03.30</dd>
+								<dd><em>시청일</em>2018.07.10</dd>
+								<dd><em>시청시간</em>01:20:00</dd>
+							</dl>
+						</li>
+						<li class="list-box">
+							<p class="thumb-img"><img src="./images/thumb-img-2.png" alt="vod-같이살래요33"></p>
+							<dl>
+								<dt class="icon-vod"><span>같이 살래요 (33회)</span></dt>
+								<dd><em>방영일</em>2018.07.08</dd>
+								<dd><em>시청일</em>2018.07.10</dd>
+								<dd><em>시청시간</em>00:40:00</dd>
+							</dl>
+						</li>
+						<li class="list-box">
+							<p class="thumb-img"><img src="./images/thumb-img-3.png" alt="movie-너도 인간이니13"></p>
+							<dl>
+								<dt class="icon-vod"><span>너도 인간이니?(13회)</span></dt>
+								<dd><em>방영일</em>2018.07.08</dd>
+								<dd><em>시청일</em>2018.07.10</dd>
+								<dd><em>시청시간</em>00:40:00</dd>
+							</dl>
+						</li>
+						<li class="list-box">
+							<p class="thumb-img"><img src="./images/thumb-img-4.png" alt="clip-스페셜 2,000만뷰 라이브 그 현장"></p>
+							<dl class="mt4">
+								<dt class="icon-clip"><span>[스페셜] 2,000만뷰 라이브 그 현장</span></dt>
+								<dd><em>방영일</em>2018.07.08</dd>
+								<dd><em>시청일</em>2018.07.10</dd>
+								<dd><em>시청시간</em>01:07:25</dd>
+							</dl>
+						</li>
+					</ul>
+				</li>
+				<!-- //center area -->
+
+				<!-- right area -->
+				<li class="right-area section-mobile-wrap">
+					<div class="mobile-area">
+						<div class="mobile-inner-box">
+							<div class="mobile-inner-top">
+								<img src="./images/mobile_inner_top.png">
+							</div>
+							<div class="mu-scroller-wrap mu-scroller" style="max-height:575px">
+								<div class="mobile-inner-area">
+									<p class="mobile-inner-menu"><img src="./images/mobile_inner_menu.png"></p>
+									<div class="mobile-inner-list">
+										<div class="section-title-area">
+											<p class="section-title">추천 결과 리스트</p>
+											<div class="section-right">user1을 위한 추천</div>
+										</div>
+										<ul class="list-wrap">
+											<li class="list-box">
+												<p class="thumb-img"><img src="./images/thumb-img-1.png" alt="movie-역린"></p>
+												<dl>
+													<dt class="icon-movie"><span>역린</span></dt>
+													<dd><em>개봉일</em>2014.03.30</dd>
+													<dd><em>추천</em>82%</dd>
+												</dl>
+											</li>
+											<li class="list-box">
+												<p class="thumb-img"><img src="./images/thumb-img-2.png" alt="vod-같이살래요33"></p>
+												<dl>
+													<dt class="icon-vod"><span>같이 살래요 (33회)</span></dt>
+													<dd><em>방영일</em>2018.07.08</dd>
+													<dd><em>추천</em>145,667</dd>
+												</dl>
+											</li>
+											<li class="list-box">
+												<p class="thumb-img"><img src="./images/thumb-img-3.png" alt="movie-너도 인간이니13"></p>
+												<dl>
+													<dt class="icon-vod"><span>너도 인간이니?(13회)</span></dt>
+													<dd><em>방영일</em>2018.07.08</dd>
+													<dd><em>추천수</em>98,236</dd>
+													<dd><em>시청시간</em>00:40:00</dd>
+												</dl>
+											</li>
+											<li class="list-box">
+												<p class="thumb-img"><img src="./images/thumb-img-4.png" alt="clip-스페셜 2,000만뷰 라이브 그 현장"></p>
+												<dl class="mt4">
+													<dt class="icon-clip"><span>[스페셜] 2,000만뷰 라이브 그 현장</span></dt>
+													<dd><em>방영일</em>2018.07.08</dd>
+													<dd><em>추천</em>56,567</dd>
+													<dd><em>시청시간</em>01:07:25</dd>
+												</dl>
+											</li>
+											<li class="list-box">
+												<p class="thumb-img"><img src="./images/thumb-img-1.png" alt="movie-역린"></p>
+												<dl>
+													<dt class="icon-movie"><span>역린</span></dt>
+													<dd><em>개봉일</em>2014.03.30</dd>
+													<dd><em>추천</em>82%</dd>
+												</dl>
+											</li>
+											<li class="list-box">
+												<p class="thumb-img"><img src="./images/thumb-img-2.png" alt="vod-같이살래요33"></p>
+												<dl>
+													<dt class="icon-vod"><span>같이 살래요 (33회)</span></dt>
+													<dd><em>방영일</em>2018.07.08</dd>
+													<dd><em>추천</em>145,667</dd>
+												</dl>
+											</li>
+											<li class="list-box">
+												<p class="thumb-img"><img src="./images/thumb-img-3.png" alt="movie-너도 인간이니13"></p>
+												<dl>
+													<dt class="icon-vod"><span>너도 인간이니?(13회)</span></dt>
+													<dd><em>방영일</em>2018.07.08</dd>
+													<dd><em>추천수</em>98,236</dd>
+													<dd><em>시청시간</em>00:40:00</dd>
+												</dl>
+											</li>
+											<li class="list-box">
+												<p class="thumb-img"><img src="./images/thumb-img-4.png" alt="clip-스페셜 2,000만뷰 라이브 그 현장"></p>
+												<dl class="mt4">
+													<dt class="icon-clip"><span>[스페셜] 2,000만뷰 라이브 그 현장</span></dt>
+													<dd><em>방영일</em>2018.07.08</dd>
+													<dd><em>추천</em>56,567</dd>
+													<dd><em>시청시간</em>01:07:25</dd>
+												</dl>
+											</li>
+											<li class="list-box">
+												<p class="thumb-img"><img src="./images/thumb-img-1.png" alt="movie-역린"></p>
+												<dl>
+													<dt class="icon-movie"><span>역린</span></dt>
+													<dd><em>개봉일</em>2014.03.30</dd>
+													<dd><em>추천</em>82%</dd>
+												</dl>
+											</li>
+											<li class="list-box">
+												<p class="thumb-img"><img src="./images/thumb-img-2.png" alt="vod-같이살래요33"></p>
+												<dl>
+													<dt class="icon-vod"><span>같이 살래요 (33회)</span></dt>
+													<dd><em>방영일</em>2018.07.08</dd>
+													<dd><em>추천</em>145,667</dd>
+												</dl>
+											</li>
+											<li class="list-box">
+												<p class="thumb-img"><img src="./images/thumb-img-3.png" alt="movie-너도 인간이니13"></p>
+												<dl>
+													<dt class="icon-vod"><span>너도 인간이니?(13회)</span></dt>
+													<dd><em>방영일</em>2018.07.08</dd>
+													<dd><em>추천수</em>98,236</dd>
+												</dl>
+											</li>
+											<li class="list-box">
+												<p class="thumb-img"><img src="./images/thumb-img-4.png" alt="clip-스페셜 2,000만뷰 라이브 그 현장"></p>
+												<dl class="mt4">
+													<dt class="icon-clip"><span>[스페셜] 2,000만뷰 라이브 그 현장</span></dt>
+													<dd><em>방영일</em>2018.07.08</dd>
+													<dd><em>추천</em>56,567</dd>
+												</dl>
+											</li>
+										</ul>
+									</div>
+									<div class="mobile-inner-footer">
+										<img src="./images/mobile_inner_footer.png">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</li>
+				<!-- //right area -->
+			</ul>
+
+		</div>
+		<!-- //전체 영역 -->
+
+		<script src="./js/jquery.min.js"></script>
+		<script src="./js/iscroll.js"></script>
+		<script type="text/javascript">
+			
+			//테이블 스크롤바
+			var tblScroll;
+
+			function loaded () {
+				tblScroll = new IScroll('.mu-scroller-wrap', {
+					scrollbars: true,
+					mouseWheel: true,
+					interactiveScrollbars: true,
+					shrinkScrollbars: 'scale',
+					fadeScrollbars: false
+				});
+			}
+
+			$(function() {
+				$(".section-select .select-title").click(function(){
+					$(".section-select ul").toggle();
+				});
+			});
+		
+		</script>
+	</body>
+</html> 
