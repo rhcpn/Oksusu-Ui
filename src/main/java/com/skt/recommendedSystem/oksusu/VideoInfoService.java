@@ -24,6 +24,12 @@ public class VideoInfoService {
      */
 	public List<VideoInfoModel> getWatchVideoList(VideoInfoSearchModel filter) throws Exception {
 		List<VideoInfoModel> resultModel = videoInfo.selectWatchVideoList(filter);
+		/*for (int i = 0; i < resultModel.size(); i++) {
+			log.debug(resultModel.get(i).getVideoSvcId());
+			String contentsId = resultModel.get(i).getVideoSvcId();
+			//resultModel[i].add('imgUrl', this.imageRestCall('left', contentsId))
+		}*/
+
 		return resultModel;
 	}
 

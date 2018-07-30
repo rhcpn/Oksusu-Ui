@@ -44,6 +44,7 @@
 							and A.USER_SVC_ID = #{userSvnId}
 							and ROWNUM = 1
 						  	)
+		and  ROWNUM <= 50
 		order by US.ORDER_NO DESC
 		]]>
 	</select>
@@ -86,6 +87,7 @@
 							and A.USER_SVC_ID = #{userSvnId}
 							and ROWNUM = 1
 							)
+		and  ROWNUM <= 50
 		order by UC.ORDER_NO
 	]]>
 	</select>
