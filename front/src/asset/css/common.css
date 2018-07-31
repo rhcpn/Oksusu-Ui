@@ -1,15 +1,5 @@
 @charset "utf-8";
 
-/* Font */
-@font-face{
-	font-family:"NSCJK";
-	src:local(※), url('../fonts/NotoSansCJKkr.woff') format('woff');
-	src:url('../fonts/NotoSansCJKkr.eot');
-	src:url('../fonts/NotoSansCJKkr.eot?#iefix') format('embedded-opentype'), url('../fonts/NotoSansCJKkr.woff') format('woff'), url('../fonts/NotoSansCJKkr.ttf') format('truetype');
-	font-style:normal;
-	font-weight:400;
-}
-
 /* reset */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -31,6 +21,16 @@ q:before, q:after {content:'';content:none}
 table {border-collapse:collapse;border-spacing:0}
 a,a:hover,a:active,a:focus{text-decoration:none;color:#000}
 
+/* Font */
+@font-face{
+  font-family:"NSCJK";
+  src:local(â»), url('../fonts/NotoSansCJKkr.woff') format('woff');
+  src:url('../fonts/NotoSansCJKkr.eot');
+  src:url('../fonts/NotoSansCJKkr.eot?#iefix') format('embedded-opentype'), url('../fonts/NotoSansCJKkr.woff') format('woff'), url('../fonts/NotoSansCJKkr.ttf') format('truetype');
+  font-style:normal;
+  font-weight:400;
+}
+
 /* Layout */
 html, body{width:100%;height:100%;overflow-x:auto;overflow-y:hidden}
 body{background:#fff;font-family:"NSCJK","돋움",Dotum,Verdana,Arial,AppleGothic,sans-serif;font-size:12px;line-height:1.2;color:#000}
@@ -41,19 +41,22 @@ body{background:#fff;font-family:"NSCJK","돋움",Dotum,Verdana,Arial,AppleGothi
 .wrapper:after{display:block;content:'';clear:both}
 .wrapper > li{float:left}
 
-.section-wrap{width:490px;height:100%;padding:15px 10px 0;overflow-y:auto}
+.left-area{border-right:1px solid #c8c8c8;margin-left: 100px}
+.center-area{margin-left: 100px}
+/*.right-area{width: 600px;}*/
+.section-wrap{position:relative;width:490px;height:100%;margin-left: 100px}
 
-.section-title-area{margin-bottom:15px}
+.section-title-area{height:50px;padding:15px 25px 0 10px;background:#fff}
 .section-title-area:after{display:block;content:'';clear:both}
 .section-title-area .section-title{float:left;font-size:16px;font-weight:700;width:150px}
-.section-title-area .section-right{float:right;font-size:14px;width:200px;}
+.section-title-area .section-right{float:right;font-size:14px;width:180px;}
 .section-select{position:relative;width:145px}
 .section-select a{display:block}
 .section-select .select-title{background:url(../images/btn_arrow.png) no-repeat 95% 50%;padding-left:10px}
 .section-select ul{display:none;position:absolute;top:20px;width:100%;padding:10px;border:1px solid #c6c6c6;line-height:1.5}
 .section-select ul li{}
 
-.list-wrap{}
+.list-wrap{position:absolute;top:50px;width:100%;height:calc(100% - 50px);padding:0 10px;overflow-y:auto}
 .list-box{margin-bottom:10px}
 .list-box:after{display:block;content:'';clear:both}
 .list-box .thumb-img,.list-box dl{float:left}
@@ -70,14 +73,21 @@ body{background:#fff;font-family:"NSCJK","돋움",Dotum,Verdana,Arial,AppleGothi
 .list-box dd{color:#909090}
 .list-box dd em{display:inline-block;min-width:55px}
 
-.section-mobile-wrap{position:relative;background:#c8c8c8;width:calc(100% - 980px);height:100%}
+.section-mobile-wrap{position:relative;background:#c8c8c8;width: calc(86% - 990px);height:100%}
 .mobile-area{position:absolute;top:50%;left:50%;width:410px;height:811px;margin:-405px -205px;background:url(../images/bg_mobile.png) no-repeat 0 0}
 .mobile-inner-box{position:absolute;top:85px;left:18px;width:370px;height:650px;overflow:hidden}
-.mobile-inner-top{height:75px;}
+.mobile-inner-top{height:75px}
 .mobile-inner-area{width:100%;background:#fff}
 .mobile-inner-area .mobile-inner-menu img{display:block;width:100%}
-.mobile-inner-area .mobile-inner-list{padding:10px}
-.mobile-inner-area .list-box dt span{width:130px}
+.mobile-inner-area .mobile-inner-list{}
+.mobile-inner-area .mobile-inner-list .section-title-area{padding:15px 15px 0}
+.mobile-inner-area .mobile-inner-list .list-wrap{position:relative;top:0;width:100%;height:100%;padding:0;overflow-y:hidden}
+.mobile-inner-area .mobile-inner-list .list-box .thumb-img{float:none;width:100%;height:207px}
+.mobile-inner-area .mobile-inner-list .list-box dl{float:none;margin:13px 0 25px 20px}
+.mobile-inner-area .mobile-inner-list .list-box dd{display:inline-block;margin-right:15px}
+.mobile-inner-area .mobile-inner-list .list-box dd em{min-width:0;margin-right:4px}
+.mobile-inner-area .list-box dt span{width:80%}
+
 .scroll-view{touch-action: none;position:relative;background:#c8c8c8;width:calc(100% - 980px);left: 0;rigth: 0;top: 0; bottom: 0;padding: 1rem;}
 
 /* scrollbar */

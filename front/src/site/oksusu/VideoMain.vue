@@ -1,3 +1,4 @@
+
 <template>
   <ul class="wrapper">
     <!-- left area -->
@@ -31,9 +32,7 @@
       <ul class="list-wrap">
         <li class="list-box" v-for="item of list" :key="item.id" :data="item">
           <p class="thumb-img">
-            <!--<a :href="imageRestCall(item.videoSvcId)" download>-->
-              <img v-bind:src="imageRestCall(item.videoSvcId)" :title="item.title">
-            <!--</a>-->
+            <img v-bind:src="item.imgSrc" :title="item.title">
           </p>
           <dl class="mt4">
             <dt v-bind:class="getIconClass(item.videoType)"><span>{{item.title}}</span></dt>
@@ -56,25 +55,14 @@
         <p class="section-title">추천 결과 리스트</p>
         <div class="section-right">{{this.userId}}을 위한 추천</div>
       </div>
-      <!--<ul class="list-wrap">
-        <li class="list-box">
-          <p class="thumb-img"><img src="../../../src/asset/images/thumb-img-1.png" title="movie-역린"></p>
-          <dl>
-            <dt class="icon-movie"><span>역린</span></dt>
-            <dd><em>개봉일</em>2014.03.30</dd>
-            <dd><em>시청일</em>2018.07.10</dd>
-            <dd><em>시청시간</em>01:20:00</dd>
-          </dl>
-        </li>
-      </ul>-->
       <ul class="list-wrap">
         <li class="list-box" v-for="item of RecommendationList" :key="item.id" :data="item">
-          <p class="thumb-img"><img src="../../../src/asset/images/thumb-img-2.png" :title="item.title"></p>
+          <p class="thumb-img"><img v-bind:src="item.imgSrc" :title="item.title"></p>
           <dl class="mt4">
             <dt v-bind:class="getIconClass(item.videoType)"><span>{{item.title}}</span></dt>
             <dd v-if="item.videoType === '2'"><em>개봉일</em>{{item.ddShowing}}</dd>
             <dd v-else><em>방영일</em>{{item.dtTelevise}}</dd>
-            <dd><em>추천 score</em>&nbsp;{{item.score}}</dd>
+            <!--<dd><em>추천 score</em>&nbsp;{{item.score}}</dd>-->
           </dl>
         </li>
         <li class="list-box" v-show="recommendationVideoYn">
@@ -92,7 +80,6 @@
             <img src="../../../src/asset/images/mobile_inner_top.png">
           </div>
           <iscroll-view ref="iscroll" class="mu-scroller-wrap mu-scroller" style="max-height:575px" :options="{scrollbars: true, mouseWheel: true, interactiveScrollbars: true, shrinkScrollbars: 'scale', fadeScrollbars: false}">
-          <!-- <div class="mu-scroller-wrap mu-scroller" style="max-height:575px"> -->
             <div class="mobile-inner-area">
               <p class="mobile-inner-menu"><img src="../../../src/asset/images/mobile_inner_menu.png"></p>
               <div class="mobile-inner-list">
@@ -101,13 +88,13 @@
                   <div class="section-right">{{this.userId}}을 위한 추천</div>
                 </div>
                 <ul class="list-wrap">
-                  <li class="list-box" v-for="item of RecommendationList" :key="item.id" :data="item">
-                    <p class="thumb-img"><img src="../../../src/asset/images/thumb-img-2.png" :title="item.title"></p>
+                  <li class="list-box" v-for="item of PhoneList" :key="item.id" :data="item">
+                    <p class="thumb-img"><img v-bind:src="item.imgSrc" :title="item.title"></p>
                     <dl class="mt4">
                       <dt v-bind:class="getIconClass(item.videoType)"><span>{{item.title}}</span></dt>
                       <dd v-if="item.videoType === '2'"><em>개봉일</em>{{item.ddShowing}}</dd>
                       <dd v-else><em>방영일</em>{{item.dtTelevise}}</dd>
-                      <dd><em>추천 score</em>&nbsp;{{item.score}}</dd>
+                      <!--<dd><em>추천 score</em>&nbsp;{{item.score}}</dd>-->
                     </dl>
                   </li>
                   <li class="list-box" v-show="recommendationVideoYn">
@@ -119,7 +106,7 @@
                 <img src="../../../src/asset/images/mobile_inner_footer.png">
               </div>
             </div>
-          <!-- </div> -->
+            <!-- </div> -->
           </iscroll-view>
         </div>
       </div>
@@ -129,13 +116,11 @@
 </template>
 
 <script>
-
 let urlImg
-// let tempList = []
-// let tempImgList = []
+let urlPhoneImg
+
 export default {
   name: 'simple-oksusu',
-  // components: {ResourceInfraData},
   methods: {
     onUserSvnIdChange: function () {
       console.log(this.userSvnId)
@@ -143,17 +128,11 @@ export default {
       let tempUserIdArray = []
       tempUserId = $('#selectUserId option:selected').text()
       tempUserIdArray = tempUserId.split(' ')
-      console.log(tempUserIdArray[0])
+
+      console.log('userId= ' + tempUserIdArray[0])
+
       this.userId = tempUserIdArray[0]
       this.getWatchVideoList(this.userSvnId)
-      // this.imageRestCall(tempList)
-      /* for (let i = 0; i < this.list.length; i++) {
-        let contentsId = this.list[i].videoSvcId
-        console.log('contents_id= ' + contentsId)
-        this.list[i].add('imgUrl', this.imageRestCall('left', contentsId))
-      } */
-      // this.imageRestCall('left', '')
-
       this.getRecommendationVideoList(this.userSvnId)
     },
     getWatchVideoList: function (param) {
@@ -170,28 +149,43 @@ export default {
         if (result.length === 0) {
           this.watchVideoYn = true
         } else {
-          // tempList = []
-          /* for (let i = 0; i < result.length; i++) {
-            let contentsId = result[i].videoSvcId
-            tempList.push(contentsId)
-            // result[i].add('imgUrl', this.imageRestCall('left', contentsId))
-          }
-          console.log('contents_id list= ' + tempList) */
-
           this.watchVideoYn = false
         }
 
-        this.list = []
-        this.list = result
-        // this.imageRestCall(tempList)
+        var promises = []
+        for (var i = 0; i < result.length; i++) {
+          var p = this.$http.get('http://seg.oksusu.com:8080/seg/index.php?m=getContent&IF=IF-NSMXPG-003&ver=2.0&response_format=json&con_id=' + result[i].videoSvcId).then(response => {
+            let url = response.data.content.thum_path
+            let tempUrl = response.data.content.pstr_path
+            console.log('url= ' + url)
 
-        // this.list.push('imgUrl', tempImgList)
-        // tempImgList.push('imgUrl')
-        // console.log(tempImgList)
-      })
-        .catch(e => {
-          this.errors.push(e)
+            if (url !== null) {
+              urlImg = url.replace(':type', '173_96')
+            } else {
+              urlImg = tempUrl.replace(':type', '173_96')
+            }
+            console.log('imageUrl= ' + urlImg)
+
+            var r = {key: response.data.content.con_id, url: urlImg}
+            return r
+          })
+          promises.push(p)
+        }
+
+        var self = this
+        Promise.all(promises).then(function (values) {
+          console.log('urls=' + values)
+          for (var i = 0; i < result.length; i++) {
+            for (var j = 0; j < values.length; j++) {
+              if (result[i].videoSvcId === values[j].key) {
+                result[i].imgSrc = values[j].url
+                break
+              }
+            }
+          }
+          self.list = result
         })
+      })
     },
     getIconClass: function (videoType) {
       let returnVal
@@ -205,7 +199,8 @@ export default {
       return returnVal
     },
     getRecommendationVideoList: function (param) {
-      let result = []
+      let resultList = []
+      let resultPhoneList = []
 
       this.$http.get('/oksusu/getRecommendationVideoList.json',
         {
@@ -213,49 +208,68 @@ export default {
             userSvnId: param
           }
         }).then(response => {
-        result = response.data.data.list
-        this.RecommendationList = []
-        this.RecommendationList = result
-        if (this.RecommendationList.length === 0) {
+        resultList = response.data.data.list
+        resultPhoneList = response.data.data.list
+
+        if (resultList.length === 0) {
           this.recommendationVideoYn = true
         } else {
           this.recommendationVideoYn = false
         }
 
-        this.scrollInit()
-      })
-        .catch(e => {
-          this.errors.push(e)
-        })
-    },
-    imageRestCall (params) {
-      // setTimeout(() => {
-      this.$http.get('http://seg.oksusu.com:8080/seg/index.php?m=getContent&IF=IF-NSMXPG-003&ver=2.0&response_format=json&con_id=' + params
-      ).then(response => {
-        // console.log(response.data.content.thum_path)
-        let url = response.data.content.thum_path
+        var promises = []
+        for (var i = 0; i < resultList.length; i++) {
+          var p = this.$http.get('http://seg.oksusu.com:8080/seg/index.php?m=getContent&IF=IF-NSMXPG-003&ver=2.0&response_format=json&con_id=' + resultList[i].videoSvcId).then(response => {
+            let url = response.data.content.thum_path
+            let tempUrl = response.data.content.pstr_path
+            console.log('url= ' + url)
 
-        /* if (flag === 'center') {
-          urlImg = ''
-        } else { */
-        urlImg = url.replace(':type', '173_96')
-        console.log('imageUrl= ' + urlImg)
+            if (url !== null) {
+              urlImg = url.replace(':type', '173_96')
+              urlPhoneImg = url.replace(':type', '368_205')
+            } else {
+              urlImg = tempUrl.replace(':type', '173_96')
+              urlPhoneImg = tempUrl.replace(':type', '368_205')
+            }
+            console.log('urlImg= ' + urlImg)
+            console.log('urlPhoneImg= ' + urlPhoneImg)
+
+            var list = {key: response.data.content.con_id, url: urlImg}
+            var phonelist = {key: response.data.content.con_id, url: urlPhoneImg}
+            return {list, phonelist}
+          })
+          promises.push(p)
+        }
+
+        var self = this
+        Promise.all(promises).then(function (values) {
+          for (var i = 0; i < resultList.length; i++) {
+            for (var j = 0; j < values.length; j++) {
+              if (resultList[i].videoSvcId === values[j].list.key) {
+                resultList[i].imgSrc = values[j].list.url
+                resultPhoneList[i].imgSrc = values[j].phonelist.url
+                break
+              }
+            }
+          }
+          self.scrollInit()
+          self.RecommendationList = resultList
+          self.PhoneList = resultPhoneList
+        })
       })
         .catch(e => {
           this.errors.push(e)
         })
-      return urlImg
-      // }, 5000)
     },
     scrollInit: function () {
-      $('.left-area').scrollTop(0) // 왼쪽 scroll 위치 초기화
-      $('.center-area').scrollTop(0) // 중앙 scroll 위치 초기화
+      $('.list-wrap').scrollTop(0)
 
       const iscroll = this.$refs.iscroll
-      iscroll.scrollTo(0, 0, 100) // 핸드폰 scroll 위치 초기화
-      iscroll.refresh()
+      setTimeout(function () {
+        iscroll.refresh()
+        iscroll.scrollTo(0, 0, 100) // 핸드폰 scroll 위치 초기화
+      }, 300)
     }
-
   },
   data: function () {
     return {
@@ -263,15 +277,14 @@ export default {
       userId: 'okservicetest01',
       list: [], // 시청 영상 리스트
       RecommendationList: [], // 추천 영상 리스트
+      PhoneList: [], // 추천 영상 리스트(핸드폰 용)
       errors: [],
-      watchVideoYn: true,
-      recommendationVideoYn: true,
-      imgWatchList: []
+      watchVideoYn: false,
+      recommendationVideoYn: false
     }
   },
   mounted () {
     this.getWatchVideoList(this.userSvnId)
-    // this.imageRestCall(tempList)
     this.getRecommendationVideoList(this.userSvnId)
   }
 }

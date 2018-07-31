@@ -7,6 +7,7 @@ import VueI18n from 'vue-i18n'
 import Vuetify from 'vuetify'
 import messages from '@/common/component/messages-handler'
 import ConfigMessages from '@/resource/config/messages'
+import AsyncComputed from 'vue-async-computed'
 
 import './permission'
 
@@ -50,6 +51,7 @@ Object.defineProperties(Vue.prototype, {
 })
 
 Vue.use(IScrollView, IScroll)
+Vue.use(AsyncComputed)
 Vue.use(Vuetify)
 
 Vue.config.productionTip = false

@@ -33,6 +33,7 @@
     "underscore": "^1.9.0",
     "velocity-animate": "^1.5.1",
     "vue": "^2.5.2",
+    "vue-async-computed": "^3.3.1",
     "vue-full-loading": "^1.2.1",
     "vue-i18n": "^7.8.0",
     "vue-iscroll-view": "^1.0.3",
