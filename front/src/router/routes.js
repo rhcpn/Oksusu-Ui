@@ -24,6 +24,12 @@ export const ROUTES = [
     name: 'oksusuVideo',
     position: 'top',
     component: () => import('@/site/oksusu/VideoMain')
+  },
+  {
+    path: '/musicMate',
+    name: 'musicMate',
+    position: 'top',
+    component: () => import('@/site/music/musicMate')
   }
 ]
 

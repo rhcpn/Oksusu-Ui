@@ -10,18 +10,39 @@
 		<![CDATA[
 		select
 			US.USER_ID,
-			US.ORDER_NO,
 			US.VIDEO_ID,
 			VM.VIDEO_TYPE,
 			VM.VIDEO_SVC_ID,
-			MT.TITLE,
+			case
+			  when VM.VIDEO_TYPE in ('2', '3')
+				then MT.TITLE
+			  when VM.VIDEO_TYPE = '4'
+				then VM.CLIP_TITLE
+		  	end TITLE,
 			TO_CHAR(MT.DD_SHOWING, 'YYYY.MM.DD') AS DD_SHOWING,
-			TO_CHAR(TO_DATE(TO_CHAR(substr(MT.DT_TELEVISE,0,8)), 'YYYY.MM.DD'), 'YYYY.MM.DD') AS DT_TELEVISE,
+			case
+				when VM.VIDEO_TYPE = '3'
+			  		then TO_CHAR(TO_DATE(TO_CHAR(substr(MT.DT_TELEVISE,0,8)), 'YYYY.MM.DD'), 'YYYY.MM.DD')
+				when VM.VIDEO_TYPE = '4'
+			  	then TO_CHAR(VM.DT_ORGANIZE, 'YYYY.MM.DD')
+		  	end DT_TELEVISE,
 			US.WATCH_DATE,
 			US.WATCH_TIME
 		from
-		  	USER_SEQUENCE US,
-		  	VIDEO_MAP VM,
+		  	USER_SEQUENCE_RE US,
+		  	(
+				select
+				  VM.VIDEO_ID,
+				  VM.VIDEO_TYPE,
+				  VM.VIDEO_SVC_ID,
+				  CCM.CLIP_TITLE,
+				  CCM.DT_ORGANIZE
+				from
+				  VIDEO_MAP VM,
+				  CLP_CLIP_MST CCM
+				where 1=1
+				  and VM.VIDEO_SVC_ID= CCM.CLIP_ID(+)
+		  	) VM,
 		  	(
 				select
 					VC.ID_CONTENTS AS ID_CONTENTS,
@@ -36,7 +57,7 @@
 		 	 ) MT
 		where 1=1
 		and US.VIDEO_ID = VM.VIDEO_ID
-		and VM.VIDEO_SVC_ID = MT.ID_CONTENTS
+		and VM.VIDEO_SVC_ID = MT.ID_CONTENTS(+)
 		and US.USER_ID =	(
 							select A.USER_ID
 							from USER_MAP A
@@ -45,7 +66,6 @@
 							and ROWNUM = 1
 						  	)
 		and  ROWNUM <= 50
-		order by US.ORDER_NO DESC
 		]]>
 	</select>
 
@@ -55,17 +75,38 @@
 		<![CDATA[
 		select
 			UC.USER_ID,
-			UC.ORDER_NO,
 			UC.VIDEO_ID,
 			VM.VIDEO_TYPE,
 			VM.VIDEO_SVC_ID,
-			MT.TITLE,
+			case
+			  when VM.VIDEO_TYPE in ('2', '3')
+				then MT.TITLE
+			  when VM.VIDEO_TYPE = '4'
+				then VM.CLIP_TITLE
+		  	end TITLE,
 			TO_CHAR(MT.DD_SHOWING, 'YYYY.MM.DD') AS DD_SHOWING,
-			TO_CHAR(TO_DATE(TO_CHAR(substr(MT.DT_TELEVISE,0,8)), 'YYYY.MM.DD'), 'YYYY.MM.DD') AS DT_TELEVISE,
+			case
+				when VM.VIDEO_TYPE = '3'
+			  		then TO_CHAR(TO_DATE(TO_CHAR(substr(MT.DT_TELEVISE,0,8)), 'YYYY.MM.DD'), 'YYYY.MM.DD')
+				when VM.VIDEO_TYPE = '4'
+			  	then TO_CHAR(VM.DT_ORGANIZE, 'YYYY.MM.DD')
+		  	end DT_TELEVISE,
 			UC.SCORE
 		from
 			USER_CANDIDATES UC,
-			VIDEO_MAP VM,
+			(
+				select
+				  VM.VIDEO_ID,
+				  VM.VIDEO_TYPE,
+				  VM.VIDEO_SVC_ID,
+				  CCM.CLIP_TITLE,
+				  CCM.DT_ORGANIZE
+				from
+				  VIDEO_MAP VM,
+				  CLP_CLIP_MST CCM
+				where 1=1
+				  and VM.VIDEO_SVC_ID= CCM.CLIP_ID(+)
+		  	) VM,
 			(
 				select
 					VC.ID_CONTENTS AS ID_CONTENTS,
@@ -80,7 +121,7 @@
 			) MT
 		where 1=1
 		and UC.VIDEO_ID = VM.VIDEO_ID
-		and VM.VIDEO_SVC_ID = MT.ID_CONTENTS
+		and VM.VIDEO_SVC_ID = MT.ID_CONTENTS(+)
 		and UC.USER_ID =	(
 							select A.USER_ID
 							from USER_MAP A

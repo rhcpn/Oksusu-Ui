@@ -14,9 +14,6 @@ import './permission'
 import 'vuetify/dist/vuetify.min.css'
 import '@/asset/css/common.css'
 
-/* import '@/asset/js/jquery.min.js'
-import '@/asset/js/iscroll.js' */
-
 import IScrollView from 'vue-iscroll-view'
 import IScroll from 'iscroll'
 

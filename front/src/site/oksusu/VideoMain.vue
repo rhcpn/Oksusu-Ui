@@ -1,10 +1,9 @@
-
 <template>
   <ul class="wrapper">
     <!-- left area -->
     <li class="left-area section-wrap">
       <div class="section-title-area">
-        <p class="section-title">사용자 로그 리스트</p>
+        <p class="section-title">사용자 시청 이력</p>
         <select id="selectUserId" class="selectbox" style="float: right;" v-model="userSvnId" v-on:change="onUserSvnIdChange">
           <option value="6AC427B19A7A2B4C93DC6D335385D774">okservicetest01 시청 이력</option>
           <option value="FBC04B0DAC1B314F529B4BEC1CB6F123">okservicetest02 시청 이력</option>
@@ -116,6 +115,7 @@
 </template>
 
 <script>
+let imgId
 let urlImg
 let urlPhoneImg
 
@@ -123,7 +123,6 @@ export default {
   name: 'simple-oksusu',
   methods: {
     onUserSvnIdChange: function () {
-      console.log(this.userSvnId)
       let tempUserId
       let tempUserIdArray = []
       tempUserId = $('#selectUserId option:selected').text()
@@ -152,29 +151,39 @@ export default {
           this.watchVideoYn = false
         }
 
+        // let apiUrl = 'http://seg.oksusu.com:8080/seg/index.php?m=getClipContent&IF=IF-NSMXPG-015&ver=2.0&response_format=json&clip_id={F5D59885-EA44-11E5-BA98-7F99E9FCA028}&hmd_yn=Y&web_os=pcweb&web_ver=1.0.0&web_vr=pcweb'
         var promises = []
         for (var i = 0; i < result.length; i++) {
-          var p = this.$http.get('http://seg.oksusu.com:8080/seg/index.php?m=getContent&IF=IF-NSMXPG-003&ver=2.0&response_format=json&con_id=' + result[i].videoSvcId).then(response => {
-            let url = response.data.content.thum_path
-            let tempUrl = response.data.content.pstr_path
-            console.log('url= ' + url)
+          var p = this.$http.get(
+            result[i].videoType === '4' ? 'http://seg.oksusu.com:8080/seg/index.php?m=getClipContent&IF=IF-NSMXPG-015&ver=2.0&response_format=json&clip_id=' + result[i].videoSvcId + '&hmd_yn=Y&web_os=pcweb&web_ver=1.0.0&web_vr=pcweb' : 'http://seg.oksusu.com:8080/seg/index.php?m=getContent&IF=IF-NSMXPG-003&ver=2.0&response_format=json&con_id=' + result[i].videoSvcId)
+            .then(response => {
+              if (response.data.result === 'OK') {
+                let url = response.data.content.thum_path
+                let tempUrl = response.data.content.pstr_path
+                let clipUrl
 
-            if (url !== null) {
-              urlImg = url.replace(':type', '173_96')
-            } else {
-              urlImg = tempUrl.replace(':type', '173_96')
-            }
-            console.log('imageUrl= ' + urlImg)
-
-            var r = {key: response.data.content.con_id, url: urlImg}
-            return r
-          })
+                if (url === undefined) {
+                  clipUrl = response.data.content.thum_info_type[0]['1']
+                  urlImg = clipUrl.replace(':type', '173_96')
+                  imgId = response.data.content.clip_id
+                } else {
+                  if (url !== null) {
+                    urlImg = url.replace(':type', '173_96')
+                  } else {
+                    urlImg = tempUrl.replace(':type', '173_96')
+                  }
+                  imgId = response.data.content.con_id
+                }
+              }
+              var r = {key: imgId, url: urlImg}
+              return r
+            })
           promises.push(p)
         }
 
         var self = this
         Promise.all(promises).then(function (values) {
-          console.log('urls=' + values)
+          // console.log('urls=' + values)
           for (var i = 0; i < result.length; i++) {
             for (var j = 0; j < values.length; j++) {
               if (result[i].videoSvcId === values[j].key) {
@@ -219,25 +228,35 @@ export default {
 
         var promises = []
         for (var i = 0; i < resultList.length; i++) {
-          var p = this.$http.get('http://seg.oksusu.com:8080/seg/index.php?m=getContent&IF=IF-NSMXPG-003&ver=2.0&response_format=json&con_id=' + resultList[i].videoSvcId).then(response => {
-            let url = response.data.content.thum_path
-            let tempUrl = response.data.content.pstr_path
-            console.log('url= ' + url)
+          var p = this.$http.get(
+            resultList[i].videoType === '4' ? 'http://seg.oksusu.com:8080/seg/index.php?m=getClipContent&IF=IF-NSMXPG-015&ver=2.0&response_format=json&clip_id=' + resultList[i].videoSvcId + '&hmd_yn=Y&web_os=pcweb&web_ver=1.0.0&web_vr=pcweb' : 'http://seg.oksusu.com:8080/seg/index.php?m=getContent&IF=IF-NSMXPG-003&ver=2.0&response_format=json&con_id=' + resultList[i].videoSvcId)
+            .then(response => {
+              if (response.data.result === 'OK') {
+                let url = response.data.content.thum_path
+                let tempUrl = response.data.content.pstr_path
+                let clipUrl
 
-            if (url !== null) {
-              urlImg = url.replace(':type', '173_96')
-              urlPhoneImg = url.replace(':type', '368_205')
-            } else {
-              urlImg = tempUrl.replace(':type', '173_96')
-              urlPhoneImg = tempUrl.replace(':type', '368_205')
-            }
-            console.log('urlImg= ' + urlImg)
-            console.log('urlPhoneImg= ' + urlPhoneImg)
+                if (url === undefined) {
+                  clipUrl = response.data.content.thum_info_type[0]['1']
+                  urlImg = clipUrl.replace(':type', '173_96')
+                  urlPhoneImg = clipUrl.replace(':type', '368_205')
+                  imgId = response.data.content.clip_id
+                } else {
+                  if (url !== null) {
+                    urlImg = url.replace(':type', '173_96')
+                    urlPhoneImg = url.replace(':type', '368_205')
+                  } else {
+                    urlImg = tempUrl.replace(':type', '173_96')
+                    urlPhoneImg = tempUrl.replace(':type', '368_205')
+                  }
+                  imgId = response.data.content.con_id
+                }
+              }
 
-            var list = {key: response.data.content.con_id, url: urlImg}
-            var phonelist = {key: response.data.content.con_id, url: urlPhoneImg}
-            return {list, phonelist}
-          })
+              var list = {key: imgId, url: urlImg}
+              var phonelist = {key: imgId, url: urlPhoneImg}
+              return {list, phonelist}
+            })
           promises.push(p)
         }
 
