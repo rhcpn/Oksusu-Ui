@@ -78,7 +78,8 @@
           <div class="mobile-inner-top">
             <img src="../../../src/asset/images/mobile_inner_top.png">
           </div>
-          <iscroll-view ref="iscroll" class="mu-scroller-wrap mu-scroller" style="max-height:575px" :options="{scrollbars: true, mouseWheel: true, interactiveScrollbars: true, shrinkScrollbars: 'scale', fadeScrollbars: false}">
+          <iscroll-view ref="iscroll" class="mu-scroller-wrap mu-scroller" style="max-height:575px"
+                        :options="{scrollbars: true, mouseWheel: true, interactiveScrollbars: true, shrinkScrollbars: 'scale', fadeScrollbars: false, disablePointer: true, disableTouch: false, disableMouse: true}">
             <div class="mobile-inner-area">
               <p class="mobile-inner-menu"><img src="../../../src/asset/images/mobile_inner_menu.png"></p>
               <div class="mobile-inner-list">
