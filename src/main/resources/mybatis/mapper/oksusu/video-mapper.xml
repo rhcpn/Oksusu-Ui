@@ -66,6 +66,7 @@
 							and ROWNUM = 1
 						  	)
 		and  ROWNUM <= 50
+		order by USER_ID, RANK DESC
 		]]>
 	</select>
 
