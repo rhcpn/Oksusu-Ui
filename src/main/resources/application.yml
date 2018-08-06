@@ -1,6 +1,8 @@
 spring:
   mvc:
     locale: ko_KR
+    favicon:
+      enabled: false
 
   devtools:
     livereload:
@@ -12,7 +14,7 @@ spring:
     chain:
       gzipped: true
       cache: true
-      
+
   http:
     encoding:
       charset: UTF-8

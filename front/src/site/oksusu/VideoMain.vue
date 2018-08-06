@@ -49,29 +49,6 @@
     <!-- //left area -->
 
     <!-- center area -->
-    <li class="center-area section-wrap">
-      <div class="section-title-area">
-        <p class="section-title">추천 결과 리스트</p>
-        <div class="section-right">{{this.userId}}을 위한 추천</div>
-      </div>
-      <ul class="list-wrap">
-        <li class="list-box" v-for="item of RecommendationList" :key="item.id" :data="item">
-          <p class="thumb-img"><img v-bind:src="item.imgSrc" :title="item.title"></p>
-          <dl class="mt4">
-            <dt v-bind:class="getIconClass(item.videoType)"><span>{{item.title}}</span></dt>
-            <dd v-if="item.videoType === '2'"><em>개봉일</em>{{item.ddShowing}}</dd>
-            <dd v-else><em>방영일</em>{{item.dtTelevise}}</dd>
-            <!--<dd><em>추천 score</em>&nbsp;{{item.score}}</dd>-->
-          </dl>
-        </li>
-        <li class="list-box" v-show="recommendationVideoYn">
-          추천 결과가 없습니다.
-        </li>
-      </ul>
-    </li>
-    <!-- //center area -->
-
-    <!-- right area -->
     <li class="right-area section-mobile-wrap">
       <div class="mobile-area">
         <div class="mobile-inner-box">
@@ -110,6 +87,29 @@
           </iscroll-view>
         </div>
       </div>
+    </li>
+    <!-- //center area -->
+
+    <!-- right area -->
+    <li class="center-area section-wrap">
+      <div class="section-title-area">
+        <p class="section-title">추천 결과 리스트</p>
+        <div class="section-right">{{this.userId}}을 위한 추천</div>
+      </div>
+      <ul class="list-wrap">
+        <li class="list-box" v-for="item of RecommendationList" :key="item.id" :data="item">
+          <p class="thumb-img"><img v-bind:src="item.imgSrc" :title="item.title"></p>
+          <dl class="mt4">
+            <dt v-bind:class="getIconClass(item.videoType)"><span>{{item.title}}</span></dt>
+            <dd v-if="item.videoType === '2'"><em>개봉일</em>{{item.ddShowing}}</dd>
+            <dd v-else><em>방영일</em>{{item.dtTelevise}}</dd>
+            <!--<dd><em>추천 score</em>&nbsp;{{item.score}}</dd>-->
+          </dl>
+        </li>
+        <li class="list-box" v-show="recommendationVideoYn">
+          추천 결과가 없습니다.
+        </li>
+      </ul>
     </li>
     <!-- //right area -->
   </ul>
