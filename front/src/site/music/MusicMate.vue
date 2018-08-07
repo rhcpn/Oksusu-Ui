@@ -53,11 +53,12 @@
     </li>
     <!-- //left area -->
 
-    <iframe v-bind:src="musicPlayUrl" width="500px" height="900px" allow="autoplay"/>
+    <iframe :src="musicPlayUrl" width="500px" height="900px" allow="autoplay"/>
   </ul>
 </template>
 
 <script>
+let count = 0
 export default {
   name: 'music-mate',
   methods: {
@@ -72,27 +73,12 @@ export default {
       this.userId = tempUserIdArray[0]
     },
     musicPlayClick: function (idParam) {
-      var promises = ''
-      var p = 'https://music.bugs.co.kr/newPlayer?&autoplay=false&html5=true'
-      promises = p
-
-      // let url
-      var self = this
-      Promise.all(promises).then(function () {
-        if (idParam !== null) {
-          self.musicPlayUrl = 'https://music.bugs.co.kr/newPlayer?trackId=' + idParam + '&autoplay=true&html5=true'
-          /* var promise = 'https://music.bugs.co.kr/newPlayer?trackId=' + idParam + '&autoplay=true&html5=true'
-          if (promise !== undefined) {
-            promise.then(function () {
-              this.musicPlayUrl = promise
-            }).catch(e => {
-            })
-          } */
-        } else {
-          self.musicPlayUrl = 'https://music.bugs.co.kr/newPlayer?&autoplay=false&html5=true'
-        }
-      })
-      // this.musicPlayUrl = url
+      if (idParam !== null) {
+        count++
+        this.musicPlayUrl = 'https://music.bugs.co.kr/newPlayer?trackId=' + idParam + '&autoplay=true&html5=true&' + count
+      } else {
+        this.musicPlayUrl = 'https://music.bugs.co.kr/newPlayer?&autoplay=false&html5=true'
+      }
     }
   },
   data: function () {
