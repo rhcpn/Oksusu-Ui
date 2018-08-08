@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.skt</groupId>
-    <artifactId>Recommended_System_demo</artifactId>
+    <artifactId>Oksusu_demo</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
@@ -23,7 +23,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <spring.boot.mainclass>com.skt.tcore.TCOREApplication</spring.boot.mainclass>
         <java.version>1.8</java.version>
-        <finalName>Recommended_System_demo</finalName>
+        <finalName>Oksusu_demo</finalName>
     </properties>
 
     <repositories>
