@@ -31,10 +31,12 @@
       <ul class="list-wrap">
         <li class="list-box" v-for="item of list" :key="item.id" :data="item">
           <p class="thumb-img">
-            <img v-bind:src="item.imgSrc" :title="item.title">
+            <img :src="item.imgListSrc" :title="item.title" onerror="this.src='../../../static/oksusu-demopage-img/sequence_no_img.jpg';">
+            <!--<img src="../../../static/oksusu-demopage-img/" :title="item.title">-->
           </p>
-          <dl class="mt4">
-            <dt v-bind:class="getIconClass(item.videoType)"><span>{{item.title}}</span></dt>
+          <dl class="mt4" style="width:315px">
+            <dt v-bind:class="getIconClass(item.videoType)"><span style="width:290px !important;">{{item.title}}</span></dt>
+            <dd><em>장르</em>{{item.metaTypNm}}</dd>
             <dd v-if="item.videoType === '2'"><em>개봉일</em>{{item.ddShowing}}</dd>
             <dd v-else><em>방영일</em>{{item.dtTelevise}}</dd>
             <dd><em>시청일</em>{{item.watchDate}}</dd>
@@ -66,12 +68,16 @@
                 </div>
                 <ul class="list-wrap">
                   <li class="list-box" v-for="item of PhoneList" :key="item.id" :data="item">
-                    <p class="thumb-img"><img v-bind:src="item.imgSrc" :title="item.title"></p>
+                    <p class="thumb-img">
+                      <img :src="item.imgPhoneSrc" :title="item.title" onerror="this.src='../../../static/oksusu-demopage-img/sequence_no_img.jpg';">
+                      <!--<img :src="item.imgPhoneSrc" :title="item.title">-->
+                    </p>
                     <dl class="mt4">
                       <dt v-bind:class="getIconClass(item.videoType)"><span>{{item.title}}</span></dt>
+                      <dd><em>장르</em>{{item.metaTypNm}}</dd>
                       <dd v-if="item.videoType === '2'"><em>개봉일</em>{{item.ddShowing}}</dd>
                       <dd v-else><em>방영일</em>{{item.dtTelevise}}</dd>
-                      <!--<dd><em>추천 score</em>&nbsp;{{item.score}}</dd>-->
+                      <dd><em>추천 score</em>&nbsp;{{item.score}}</dd>
                     </dl>
                   </li>
                   <li class="list-box" v-show="recommendationVideoYn">
@@ -98,12 +104,15 @@
       </div>
       <ul class="list-wrap">
         <li class="list-box" v-for="item of RecommendationList" :key="item.id" :data="item">
-          <p class="thumb-img"><img v-bind:src="item.imgSrc" :title="item.title"></p>
-          <dl class="mt4">
-            <dt v-bind:class="getIconClass(item.videoType)"><span>{{item.title}}</span></dt>
+          <p class="thumb-img">
+            <img :src="item.imgListSrc" :title="item.title" onerror="this.src='../../../static/oksusu-demopage-img/sequence_no_img.jpg';">
+          </p>
+          <dl class="mt4" style="width:315px">
+            <dt v-bind:class="getIconClass(item.videoType)"><span style="width:290px !important;">{{item.title}}</span></dt>
+            <dd><em>장르</em>{{item.metaTypNm}}</dd>
             <dd v-if="item.videoType === '2'"><em>개봉일</em>{{item.ddShowing}}</dd>
             <dd v-else><em>방영일</em>{{item.dtTelevise}}</dd>
-            <!--<dd><em>추천 score</em>&nbsp;{{item.score}}</dd>-->
+            <dd><em>추천 score</em>&nbsp;{{item.score}}</dd>
           </dl>
         </li>
         <li class="list-box" v-show="recommendationVideoYn">
@@ -116,10 +125,12 @@
 </template>
 
 <script>
-let imgId
-let urlImg
-let urlPhoneImg
-
+// let imgId
+// let urlImg
+// let urlPhoneImg
+let videoId
+let imgYn
+let videoImgId
 export default {
   name: 'simple-oksusu',
   methods: {
@@ -146,38 +157,38 @@ export default {
         }).then(response => {
         result = response.data.data.list
 
+        // this.getImage(0, result)
+
         if (result.length === 0) {
           this.watchVideoYn = true
         } else {
           this.watchVideoYn = false
         }
 
-        // let apiUrl = 'http://seg.oksusu.com:8080/seg/index.php?m=getClipContent&IF=IF-NSMXPG-015&ver=2.0&response_format=json&clip_id={F5D59885-EA44-11E5-BA98-7F99E9FCA028}&hmd_yn=Y&web_os=pcweb&web_ver=1.0.0&web_vr=pcweb'
-        var promises = []
-        for (var i = 0; i < result.length; i++) {
-          var p = this.$http.get(
-            result[i].videoType === '4' ? 'http://seg.oksusu.com:8080/seg/index.php?m=getClipContent&IF=IF-NSMXPG-015&ver=2.0&response_format=json&clip_id=' + result[i].videoSvcId + '&hmd_yn=Y&web_os=pcweb&web_ver=1.0.0&web_vr=pcweb' : 'http://seg.oksusu.com:8080/seg/index.php?m=getContent&IF=IF-NSMXPG-003&ver=2.0&response_format=json&con_id=' + result[i].videoSvcId)
-            .then(response => {
-              if (response.data.result === 'OK') {
-                let url = response.data.content.thum_path
-                let tempUrl = response.data.content.pstr_path
-                let clipUrl
+        this.list = result
+        /* var promises = []
 
-                if (url === undefined) {
-                  clipUrl = response.data.content.thum_info_type[0]['1']
-                  urlImg = clipUrl.replace(':type', '173_96')
-                  imgId = response.data.content.clip_id
-                } else {
-                  if (url !== null) {
-                    urlImg = url.replace(':type', '173_96')
-                  } else {
-                    urlImg = tempUrl.replace(':type', '173_96')
-                  }
-                  imgId = response.data.content.con_id
-                }
-              }
-              var r = {key: imgId, url: urlImg}
+        var noImgFlie = new Image(['sequence_no_img.jpg'], '../../../static/oksusu-demopage-img/sequence_no_img.jpg', {type: 'image/jpg'})
+        var noImg = noImgFlie.src
+
+        for (var i = 0; i < result.length; i++) {
+          // imgId = result[i].videoSvcId
+          // videoId = result[i].videoId
+          /!* videoImgId = '../../../static/oksusu-demopage-img/sequence/[thum]' + videoId + '.jpg'
+          imgYn = new Image(['[thum]' + videoId], videoImgId, {type: 'image/jpg'})
+          imgYn.src = videoImgId *!/
+
+          var p = this.$http.get(this.getUrl(result[i].videoId))
+            .then(response => {
+              imgId = result[i].videoSvcId
+              // urlImg = imgYn.src
+              var r = {key: imgId, url: imgYn.src}
               return r
+            })
+            .catch(function () {
+              // urlImg = noImg
+              // var r1 = {key: result[i].videoSvcId, url: noImg}
+              // return r1
             })
           promises.push(p)
         }
@@ -194,8 +205,15 @@ export default {
             }
           }
           self.list = result
-        })
+        }) */
       })
+    },
+    getUrl: function (param) {
+      videoId = param
+      videoImgId = '../../../static/oksusu-demopage-img/sequence/[thum]' + videoId + '.jpg'
+      imgYn = new Image(['[thum]' + videoId], videoImgId, {type: 'image/jpg'})
+      imgYn.src = videoImgId
+      return imgYn.src
     },
     getIconClass: function (videoType) {
       let returnVal
@@ -227,7 +245,11 @@ export default {
           this.recommendationVideoYn = false
         }
 
-        var promises = []
+        this.scrollInit()
+        this.RecommendationList = resultList
+        this.PhoneList = resultPhoneList
+
+        /* var promises = []
         for (var i = 0; i < resultList.length; i++) {
           var p = this.$http.get(
             resultList[i].videoType === '4' ? 'http://seg.oksusu.com:8080/seg/index.php?m=getClipContent&IF=IF-NSMXPG-015&ver=2.0&response_format=json&clip_id=' + resultList[i].videoSvcId + '&hmd_yn=Y&web_os=pcweb&web_ver=1.0.0&web_vr=pcweb' : 'http://seg.oksusu.com:8080/seg/index.php?m=getContent&IF=IF-NSMXPG-003&ver=2.0&response_format=json&con_id=' + resultList[i].videoSvcId)
@@ -275,7 +297,7 @@ export default {
           self.scrollInit()
           self.RecommendationList = resultList
           self.PhoneList = resultPhoneList
-        })
+        }) */
       })
         .catch(e => {
           this.errors.push(e)
@@ -289,6 +311,54 @@ export default {
         iscroll.refresh()
         iscroll.scrollTo(0, 0, 100) // 핸드폰 scroll 위치 초기화
       }, 300)
+    },
+    getImage: function (flag, data) {
+      // let folderName = (flag === 0 ? 'sequence/' : 'candidates/')
+
+      // var promises = []
+
+      /* if (data.length > 0) {
+        for (var i = 0; i < data.length; i++) {
+          let videoId = data[i].videoId
+          let videoImgId = '../../../static/oksusu-demopage-img/' + folderName + '[thum]' + videoId + '.jpg'
+          var imgYn = new Image(['[thum]' + videoId], videoImgId, {type: 'image/jpg'})
+          imgYn.src = videoImgId
+
+          var p = this.$http.get(imgYn.src)
+            .then(response => {
+              if (flag == 0) {
+                urlImg = imgYn.src
+              }else {
+                resultModel.get(i).setImgListSrc(videoImgId)
+                resultModel.get(i).setImgPhoneSrc(videoImgId)
+              }
+
+              var list = {key: imgId, url: urlImg}
+              var phonelist = {key: imgId, url: urlPhoneImg}
+              return {list, phonelist}
+            }).catch(
+            )
+          promises.push(p)
+
+          /!* File imgName = new File(videoImgId);
+
+          if (imgName.exists()) {
+            if (flag == 0) {
+              resultModel.get(i).setImgListSrc(videoImgId);
+            }else {
+              resultModel.get(i).setImgListSrc(videoImgId);
+              resultModel.get(i).setImgPhoneSrc(videoImgId);
+            }
+          } else {
+            if (flag == 0) {
+              resultModel.get(i).setImgListSrc(IMG + "sequence_no_img.jpg");
+            }else {
+              resultModel.get(i).setImgListSrc(IMG + "sequence_no_img.jpg");
+              resultModel.get(i).setImgPhoneSrc(IMG + "candidates_no_img.jpg");
+            }
+          } *!/
+        }
+      } */
     }
   },
   data: function () {

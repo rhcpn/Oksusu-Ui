@@ -17,4 +17,7 @@ public class VideoInfoModel {
 	private String watchDate;
 	private String watchTime;
 	private String score;
+	private String metaTypNm;
+	private String imgListSrc;
+	private String imgPhoneSrc;
 }
