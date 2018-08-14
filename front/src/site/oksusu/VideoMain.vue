@@ -34,8 +34,8 @@
             <img :src="item.imgListSrc" :title="item.title" onerror="this.src='/oksusu-demopage-img/sequence_no_img.jpg';">
             <!--<img src="../../../../..//main/resources/static/oksusu-demopage-img/" :title="item.title">-->
           </p>
-          <dl class="mt4" style="width:315px">
-            <dt v-bind:class="getIconClass(item.videoType)"><span style="width:290px !important;">{{item.title}}</span></dt>
+          <dl class="mt4">
+            <dt v-bind:class="getIconClass(item.videoType)"><span :title="item.title">{{textLengthOverCut(item.title, 20, '...')}}</span></dt>
             <dd><em>장르</em>{{item.metaTypNm}}</dd>
             <dd v-if="item.videoType === '2'"><em>개봉일</em>{{item.ddShowing}}</dd>
             <dd v-else><em>방영일</em>{{item.dtTelevise}}</dd>
@@ -107,8 +107,8 @@
           <p class="thumb-img">
             <img :src="item.imgListSrc" :title="item.title" onerror="this.src='/oksusu-demopage-img/sequence_no_img.jpg';">
           </p>
-          <dl class="mt4" style="width:315px">
-            <dt v-bind:class="getIconClass(item.videoType)"><span style="width:290px !important;">{{item.title}}</span></dt>
+          <dl class="mt4">
+            <dt v-bind:class="getIconClass(item.videoType)"><span :title="item.title">{{textLengthOverCut(item.title, 18, '...')}}</span></dt>
             <dd><em>장르</em>{{item.metaTypNm}}</dd>
             <dd v-if="item.videoType === '2'"><em>개봉일</em>{{item.ddShowing}}</dd>
             <dd v-else><em>방영일</em>{{item.dtTelevise}}</dd>
@@ -156,8 +156,6 @@ export default {
           }
         }).then(response => {
         result = response.data.data.list
-
-        // this.getImage(0, result)
 
         if (result.length === 0) {
           this.watchVideoYn = true
@@ -312,53 +310,17 @@ export default {
         iscroll.scrollTo(0, 0, 100) // 핸드폰 scroll 위치 초기화
       }, 300)
     },
-    getImage: function (flag, data) {
-      // let folderName = (flag === 0 ? 'sequence/' : 'candidates/')
-
-      // var promises = []
-
-      /* if (data.length > 0) {
-        for (var i = 0; i < data.length; i++) {
-          let videoId = data[i].videoId
-          let videoImgId = '../../../static/oksusu-demopage-img/' + folderName + '[thum]' + videoId + '.jpg'
-          var imgYn = new Image(['[thum]' + videoId], videoImgId, {type: 'image/jpg'})
-          imgYn.src = videoImgId
-
-          var p = this.$http.get(imgYn.src)
-            .then(response => {
-              if (flag == 0) {
-                urlImg = imgYn.src
-              }else {
-                resultModel.get(i).setImgListSrc(videoImgId)
-                resultModel.get(i).setImgPhoneSrc(videoImgId)
-              }
-
-              var list = {key: imgId, url: urlImg}
-              var phonelist = {key: imgId, url: urlPhoneImg}
-              return {list, phonelist}
-            }).catch(
-            )
-          promises.push(p)
-
-          /!* File imgName = new File(videoImgId);
-
-          if (imgName.exists()) {
-            if (flag == 0) {
-              resultModel.get(i).setImgListSrc(videoImgId);
-            }else {
-              resultModel.get(i).setImgListSrc(videoImgId);
-              resultModel.get(i).setImgPhoneSrc(videoImgId);
-            }
-          } else {
-            if (flag == 0) {
-              resultModel.get(i).setImgListSrc(IMG + "sequence_no_img.jpg");
-            }else {
-              resultModel.get(i).setImgListSrc(IMG + "sequence_no_img.jpg");
-              resultModel.get(i).setImgPhoneSrc(IMG + "candidates_no_img.jpg");
-            }
-          } *!/
-        }
-      } */
+    textLengthOverCut: function (txt, len, lastTxt) {
+      if (len === '' || len === null) {
+        len = 22
+      }
+      if (lastTxt === '' || lastTxt === null) {
+        lastTxt = '...'
+      }
+      if (txt.length > len) {
+        txt = txt.substr(0, len) + lastTxt
+      }
+      return txt
     }
   },
   data: function () {
