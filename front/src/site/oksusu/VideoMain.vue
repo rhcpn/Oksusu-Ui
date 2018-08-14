@@ -31,8 +31,8 @@
       <ul class="list-wrap">
         <li class="list-box" v-for="item of list" :key="item.id" :data="item">
           <p class="thumb-img">
-            <img :src="item.imgListSrc" :title="item.title" onerror="this.src='../../../static/oksusu-demopage-img/sequence_no_img.jpg';">
-            <!--<img src="../../../static/oksusu-demopage-img/" :title="item.title">-->
+            <img :src="item.imgListSrc" :title="item.title" onerror="this.src='/oksusu-demopage-img/sequence_no_img.jpg';">
+            <!--<img src="../../../../..//main/resources/static/oksusu-demopage-img/" :title="item.title">-->
           </p>
           <dl class="mt4" style="width:315px">
             <dt v-bind:class="getIconClass(item.videoType)"><span style="width:290px !important;">{{item.title}}</span></dt>
@@ -69,7 +69,7 @@
                 <ul class="list-wrap">
                   <li class="list-box" v-for="item of PhoneList" :key="item.id" :data="item">
                     <p class="thumb-img">
-                      <img :src="item.imgPhoneSrc" :title="item.title" onerror="this.src='../../../static/oksusu-demopage-img/sequence_no_img.jpg';">
+                      <img :src="item.imgPhoneSrc" :title="item.title" onerror="this.src='/oksusu-demopage-img/sequence_no_img.jpg';">
                       <!--<img :src="item.imgPhoneSrc" :title="item.title">-->
                     </p>
                     <dl class="mt4">
@@ -105,7 +105,7 @@
       <ul class="list-wrap">
         <li class="list-box" v-for="item of RecommendationList" :key="item.id" :data="item">
           <p class="thumb-img">
-            <img :src="item.imgListSrc" :title="item.title" onerror="this.src='../../../static/oksusu-demopage-img/sequence_no_img.jpg';">
+            <img :src="item.imgListSrc" :title="item.title" onerror="this.src='/oksusu-demopage-img/sequence_no_img.jpg';">
           </p>
           <dl class="mt4" style="width:315px">
             <dt v-bind:class="getIconClass(item.videoType)"><span style="width:290px !important;">{{item.title}}</span></dt>

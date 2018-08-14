@@ -77,7 +77,7 @@ spring:
       pool-prepared-statements: true
 
 config:
-  img-path: ../../../static/oksusu-demopage-img/
+  img-path: /oksusu-demopage-img/
 
 ---
 spring:
@@ -95,7 +95,7 @@ spring:
       pool-prepared-statements: true
 
 config:
-  img-path: ../../../static/oksusu-demopage-img/
+  img-path: /oksusu-demopage-img/
 
 #    tomcat:
 #      default-auto-commit: false
