@@ -60,8 +60,8 @@ export default {
   .common-spinner-wrapper {
     position: absolute;
     display: inline-block;
-    right: 50vw;
-    bottom: 50vh;
+    right: 45vw;
+    bottom: 740px;
   }
 
   .common-spinner-wrapper .wrapper {
