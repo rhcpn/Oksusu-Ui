@@ -7,14 +7,12 @@ import VueI18n from 'vue-i18n'
 import Vuetify from 'vuetify'
 import messages from '@/common/component/messages-handler'
 import ConfigMessages from '@/resource/config/messages'
+import AsyncComputed from 'vue-async-computed'
 
 import './permission'
 
 import 'vuetify/dist/vuetify.min.css'
 import '@/asset/css/common.css'
-
-/* import '@/asset/js/jquery.min.js'
-import '@/asset/js/iscroll.js' */
 
 import IScrollView from 'vue-iscroll-view'
 import IScroll from 'iscroll'
@@ -50,6 +48,7 @@ Object.defineProperties(Vue.prototype, {
 })
 
 Vue.use(IScrollView, IScroll)
+Vue.use(AsyncComputed)
 Vue.use(Vuetify)
 
 Vue.config.productionTip = false

@@ -1,1 +1,1 @@
-java -jar -Dspring.profiles.active=local Recommended_System_demo.jar > Recommended_System_demo.log &
+java -jar -Dspring.profiles.active=local Oksusu_demo.jar > Oksusu_demo.log &

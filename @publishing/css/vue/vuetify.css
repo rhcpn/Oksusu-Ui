@@ -4,6 +4,7 @@
 * Forged by John Leider
 * Released under the MIT License.
 */
+/* eslint-disable no-proto */
 @-webkit-keyframes a{59%{margin-left:0}60%,80%{margin-left:2px}70%,90%{margin-left:-2px}}
 @keyframes a{
 59margin-left:0}

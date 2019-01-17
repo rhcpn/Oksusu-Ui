@@ -1,6 +1,8 @@
 spring:
   mvc:
     locale: ko_KR
+    favicon:
+      enabled: false
 
   devtools:
     livereload:
@@ -12,7 +14,7 @@ spring:
     chain:
       gzipped: true
       cache: true
-      
+
   http:
     encoding:
       charset: UTF-8
@@ -64,7 +66,6 @@ spring:
   profiles: local
   datasource:
     #type: org.apache.tomcat.jdbc.pool.DataSource
-    #driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
     driver-class-name: oracle.jdbc.driver.OracleDriver
     url: jdbc:oracle:thin:@192.168.101.2:1521:ORA
     username: oksusu3
@@ -75,6 +76,26 @@ spring:
       max-total: 100
       pool-prepared-statements: true
 
+config:
+  img-path: /oksusu-demopage-img/
+
+---
+spring:
+  profiles: dev
+  datasource:
+    #type: org.apache.tomcat.jdbc.pool.DataSource
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@192.168.101.2:1521:ORA
+    username: oksusu3
+    password: hellooksusu
+
+    dbcp2:
+      initial-size: 7
+      max-total: 100
+      pool-prepared-statements: true
+
+config:
+  img-path: /oksusu-demopage-img/
 
 #    tomcat:
 #      default-auto-commit: false
